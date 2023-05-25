@@ -1,10 +1,66 @@
+/* FONTS
+
+font-family: 'Jacques Francois', serif;
+font-family: 'Maven Pro', sans-serif;
+
+*/
+
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background: rgba(118, 149, 193, 0.85);
+  margin: 0 auto; 
 }
-.nav-item {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+
+header {
+  background: rgba(249, 249, 249, 0.13);
+  height: 5%;
+  width: 100%;
+  display: flex; 
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Jacques Francois', serif;
+  word-spacing: 0.35em;
+  margin: 0 auto; 
+  text-align: center;
+
+}
+
+h1 > span {
+  letter-spacing: -0.2em;
+}
+
+h2 {
+  font-family: 'Maven Pro', sans-serif;
+  font-size: large;
+  letter-spacing: 0.1em;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo {
+  height: 75%;
+  width: 13%;
+  border-right: 2px solid black;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-right: 2%;
+  padding: 2%
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main > div {
+  width: 100vw;
+}
+
+.bg-img {
+  width: 95%;
+  height: 95%;
+  margin: 2%;
+  position: relative; 
 }

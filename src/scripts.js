@@ -6,8 +6,10 @@ import './css/styles.css';
 import { getBookingsData, getRoomsData } from './apicalls';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-import './images/home-icon.png'
+import './images/cabana-room.png'
+import './images/lotus-logo.png'
+import './images/pool-side.png'
+// import './images/ocean-view.webp'
 
 
 console.log('This is the JavaScript entry file - your code begins here.');
