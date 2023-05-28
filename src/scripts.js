@@ -9,7 +9,7 @@ import { getBookingsData, getRoomsData } from './apicalls';
 import './images/cabana-room.png'
 import './images/lotus-logo.png'
 import './images/pool-side.png'
-// import './images/ocean-view.webp'
+import './images/ocean-view.png'
 
 
 console.log('This is the JavaScript entry file - your code begins here.');
