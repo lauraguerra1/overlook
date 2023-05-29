@@ -5,8 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Maven+Pro&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Maven+Pro&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <title>Lavish Living Hotel</title>
 </head>
 <body>
@@ -18,36 +20,46 @@
     </div>
   </header>
   <main>
-    <div class="landing-page hidden"> 
-      <img class="bg-img" src="./images/pool-side.png" alt="pool side resort">
-      <section class="initial-content-container">
-        <div class="login-view-container">
-          <div class="login-child">
-            <h1>WELCOME</h1>
-            <p>Please Log-in</p>
+    <div class="landing-page-container main-container hidden">
+      <div class="landing-page-view content-box"> 
+        <img class="bg-img" src="./images/pool-side.png" alt="pool side resort">
+        <section class="initial-content-container">
+          <div class="login-view-container">
+            <div class="login-child">
+              <h1>WELCOME</h1>
+              <p>Please Log-in</p>
+            </div>
+            <form class="login-child">
+              <input type="text" id="username">
+              <label for="username">username</label>
+            </form>
+            <form class="login-child">
+              <input type="password" id="password">
+              <label for="password">password</label> 
+            </form>
+            <button class="login-btn">Log-In</button>
           </div>
-          <form class="login-child">
-            <input type="text" id="username">
-            <label for="username">username</label>
-          </form>
-          <form class="login-child">
-            <input type="password" id="password">
-            <label for="password">password</label> 
-          </form>
-          <button class="login-btn">Log-In</button>
+        </section>
+      </div> 
+    </div>
+    <div class="available-rooms-container main-container">
+      <button class="filter-button">
+        <div class="material-icons filter-icon">
+          filter_alt
         </div>
-      </section>
-    </div> 
-    <div class="available-rooms-view scrollbar">
-      <section class="single-room">
-        <img class="room-img" src="./images/cabana-room.png">
-      </section>
-      <section class="single-room">
-        <img class="room-img" src="./images/ocean-view.png">
-      </section>
-      <section class="single-room last-room">
-        <img class="room-img" src="./images/cabana-room.png">
-      </section>
+        <p>FILTER</p>
+      </button>
+      <div class="available-rooms-view content-box scrollbar">
+        <section class="single-room">
+          <img class="room-img" src="./images/cabana-room.png">
+        </section>
+        <section class="single-room">
+          <img class="room-img" src="./images/ocean-view.png">
+        </section>
+        <section class="single-room last-room">
+          <img class="room-img" src="./images/cabana-room.png">
+        </section>
+      </div>
     </div>
   </main>
   <!-- <nav class="nav-bar">
