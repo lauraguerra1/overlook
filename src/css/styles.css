@@ -32,7 +32,7 @@ h1 > span {
   letter-spacing: -0.2em;
 }
 
-h2 {
+h2, .filter-heading {
   font-family: 'Maven Pro', sans-serif;
   font-size: large;
   letter-spacing: 0.1em;
@@ -145,8 +145,25 @@ input {
   position: absolute;
   height: 85%;
   width: 70%;
-  background: rgba(154, 179, 199, 0.761);
+  background: rgba(154, 179, 199, 0.863);
   border-radius: 20px;
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-modal-top {
+  display: flex; 
+  border: 1px solid red;
+  width: 98%;
+  margin-top: 1%;
+}
+
+.filter-tags {
+  height: 80%;
+  width: 80%;
+  border: 1px solid blue;
 }
 
 /* SCROLL BAR */
@@ -223,9 +240,10 @@ input {
   padding-left: 2%;
   padding-right: 2%;
   margin-right: 13%;
+  cursor: pointer;
 }
 
-.filter-button > p {
+.btn-text {
   font-family: 'Maven Pro', sans-serif;
   font-size: 16px;
   letter-spacing: 0.1em;
@@ -233,14 +251,34 @@ input {
   text-align: center;
 }
 
+.filter-show-button {
+  margin-top: 0;
+  margin-bottom: 2%;
+  margin-right: 5%;
+  padding: 1%;
+  border-radius: 8px;
+  align-self: flex-end;
+  background-color:#6789ba;
+  border: none;
+}
+
+.close-btn {
+  background-color: #00000000;
+  border: none;
+  cursor: pointer;
+}
+
 /* OVERRIDES */
 .last-room {
   margin-bottom: 1%; 
 }
 
-.static {
-  pointer-events: none;
+.blur {
   filter: blur(4px);
+}
+
+.no-click{
+  pointer-events: none;
 }
 
 .hidden {

@@ -13,7 +13,7 @@
 </head>
 <body>
   <header>
-    <img class="logo" src="./images/lotus-logo.png" alt="Lavish Living Lotus Logo">
+    <img class="logo" src="./images/lotus-logo-b.png" alt="Lavish Living Lotus Logo">
     <div> 
       <h1>L<span>A</span>VISH LIVING  HOTEL</h1>
       <h2>WHERE BEAUTY SLEEP AWAITS</h2>
@@ -43,13 +43,13 @@
       </div> 
     </div>
     <div class="available-rooms-container main-container">
-      <button class="filter-button" disabled>
+      <button class="filter-button no-click" disabled>
         <div class="material-icons filter-icon">
           filter_alt
         </div>
-        <p>FILTER</p>
+        <p class="btn-text">FILTER</p>
       </button>
-      <div class="available-rooms-view content-box scrollbar static">
+      <div class="available-rooms-view content-box scrollbar blur no-click">
         <section class="single-room">
           <img class="room-img" src="./images/cabana-room.png">
         </section>
@@ -61,17 +61,20 @@
         </section>
       </div>
       <section class="filter-modal">
-        <div>
-          Are you sure you want to delete this item?
-        </div> 
-        <div>
-          <button class="close">
-            Yes
+        <div class="filter-modal-top">
+          <button class="material-icons close-btn">
+            close
           </button>
-          <button class="close">
-            No
-          </button>
+          <h1 class="filter-heading">FILTERS</h1>
         </div>
+        <section class="filter-tags">
+          <!-- filter tags will appear here -->
+        </section> 
+
+          <button class="btn-text filter-show-button">
+            SHOW ROOMS
+          </button>
+
       </section>
     </div>
   </main>
