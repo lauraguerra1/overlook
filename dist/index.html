@@ -43,13 +43,13 @@
       </div> 
     </div>
     <div class="available-rooms-container main-container">
-      <button class="filter-button">
+      <button class="filter-button" disabled>
         <div class="material-icons filter-icon">
           filter_alt
         </div>
         <p>FILTER</p>
       </button>
-      <div class="available-rooms-view content-box scrollbar">
+      <div class="available-rooms-view content-box scrollbar static">
         <section class="single-room">
           <img class="room-img" src="./images/cabana-room.png">
         </section>
@@ -60,6 +60,19 @@
           <img class="room-img" src="./images/cabana-room.png">
         </section>
       </div>
+      <section class="filter-modal">
+        <div>
+          Are you sure you want to delete this item?
+        </div> 
+        <div>
+          <button class="close">
+            Yes
+          </button>
+          <button class="close">
+            No
+          </button>
+        </div>
+      </section>
     </div>
   </main>
   <!-- <nav class="nav-bar">

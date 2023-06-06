@@ -65,6 +65,9 @@ h2 {
 }
 
 /* LANDING PAGE VIEW */
+.landing-page-view {
+  height: 90%;
+}
 
 .bg-img {
   width: 95%;
@@ -113,6 +116,7 @@ input {
 /* AVAILABLE ROOMS VIEW */
 .available-rooms-container {
   justify-content: space-evenly;
+  position: relative;
 }
 
 .available-rooms-view {
@@ -136,9 +140,16 @@ input {
   width: 36%;
 }
 
+/* FILTER MODAL */
+.filter-modal {
+  position: absolute;
+  height: 85%;
+  width: 70%;
+  background: rgba(154, 179, 199, 0.761);
+  border-radius: 20px;
+}
 
 /* SCROLL BAR */
-
 .scrollbar {
   overflow-y: scroll;
 }
@@ -190,7 +201,6 @@ input {
 }
 
 /* BUTTONS */
-
 .login-btn {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 29px;
@@ -226,6 +236,11 @@ input {
 /* OVERRIDES */
 .last-room {
   margin-bottom: 1%; 
+}
+
+.static {
+  pointer-events: none;
+  filter: blur(4px);
 }
 
 .hidden {
