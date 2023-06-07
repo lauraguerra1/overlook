@@ -144,7 +144,8 @@ input {
 .filter-modal {
   /* font-size: larger; */
   position: absolute;
-  height:  70%;
+  min-height: fit-content; 
+  height: 70%;
   width: 70%;
   background: rgba(154, 179, 199, 0.863);
   border-radius: 20px;
@@ -160,9 +161,19 @@ input {
   margin-top: 1%;
 }
 
+.filter-modal-bottom {
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 98%;
+  min-height: min-content;
+  height: 90%;
+}
+
 .filter-tags {
-  min-height: 60%;
-  max-height: 70%;
+  min-height: min-content;
+  height: 70%;
   width: 90%; 
   display: flex; 
   justify-content: space-around;
@@ -171,12 +182,17 @@ input {
 
 .filter-option {
   height: 10%;
+  min-height: fit-content;
+
   margin: 1%; 
   padding: 2%;
   min-width: 10%;
   background-color: #82a1cd;
   border-radius: 8px;
   font-family: 'Maven Pro', sans-serif;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
   text-align: center;
 }
 
@@ -370,4 +386,14 @@ input[type="range"]:active::-moz-range-thumb {
 
 .hidden {
   display: none;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 750px) {
+  .filter-tags {
+    flex-direction: column;
+  }
+  .filter-option {
+    width: 50%;
+  }
 }
