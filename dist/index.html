@@ -64,6 +64,7 @@
         </button>
       </nav>
       <div class="available-rooms-view content-box scrollbar">
+        <p class="rooms-shown-txt">Showing <span class="roomsa-avail-amt">All</span> Available Rooms:</p>
         <section class="single-room">
           <img class="room-img" src="./images/suite.png" alt="breezy plant filled hotel suite with an ocean view and wicker decor">
           <button>
@@ -92,7 +93,32 @@
         </div>
         <div class="filter-modal-bottom">
           <section class="filter-tags">
-            <section tabindex="0" class="filter-option">
+            <form>
+              <label for="calendar">Change Date:</label>
+              <input type="date" id="calendar">
+            </form>
+            <form>
+              <label for="roomTypes">Filter By Room Type:</label>
+              <select id="roomTypes">
+                <option value="allRooms">
+                  Any
+                </option>
+                <option value="residentialSuite">
+                  Residential Suite
+                </option>
+                <option value="juniorSuite">
+                  Junior Suite
+                </option>
+                <option value="suite">
+                  Suite
+                </option>
+                <option value="singleRoom">
+                  Single Room 
+                </option>
+              </select>
+            </form>
+          
+            <!-- <section tabindex="0" class="filter-option">
               Residential Suite
             </section>
             <section tabindex="0" class="filter-option">
@@ -103,16 +129,17 @@
             </section>
             <section tabindex="0" class="filter-option">
               Single Room 
-            </section>
+            </section> -->
           </section> 
           <section class="budget-container">
-            <div class="values">
+            <label for="valueSliders" id="valueLabel">Filter By Price Range:</label>
+            <section class="values">
               <span>$</span><span class="value1">150</span><span> &dash; $</span><span class="value2">500</span>
-            </div>
-            <div class="slider-track">
+            </section>
+            <form class="slider-track" id="valueSliders">
               <input type="range" min="150" max="250" value="150" id="firstSlider"> 
               <input type="range" min="251" max="500" value="500" id="secondSlider"> 
-            </div>
+            </form>
           </section>
           <button class="btn-text filter-show-button">
             SHOW ROOMS

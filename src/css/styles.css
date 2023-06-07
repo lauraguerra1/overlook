@@ -27,9 +27,9 @@ nav {
   /* align-self: flex-end; */
   display: flex; 
   justify-content: flex-end;
-  border: 2px solid blue;
+  align-items: flex-end;
   width: 75%;
-  /* align-self: flex-end; */
+  max-height: 10%;
 }
 
 h1 {
@@ -139,6 +139,10 @@ input {
   margin-right: 1%;
 }
 
+.rooms-shown-txt {
+  margin-left: 5%;
+}
+
 .single-room {
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -162,7 +166,7 @@ input {
   position: absolute;
   min-height: fit-content; 
   height: 70%;
-  width: 70%;
+  width: 60%;
   background: rgba(154, 179, 199, 0.863);
   border-radius: 20px;
   display: flex; 
@@ -189,14 +193,32 @@ input {
 
 .filter-tags {
   min-height: min-content;
-  height: 70%;
-  width: 90%; 
+  height: 60%;
+  width: 60%; 
   display: flex; 
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
-.filter-option {
+.filter-tags > form {
+  margin: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter-tags > form > input, .filter-tags > form > select {
+  border-radius: 25px;
+  background-color:rgba(255, 255, 255, 0.474)
+}
+
+
+/* #valueLabel {
+align-self: flex-start;
+margin-left: 10%
+} */
+
+/* .filter-option {
   height: 10%;
   min-height: fit-content;
   margin: 1%; 
@@ -209,7 +231,7 @@ input {
   justify-content: center; 
   align-items: center;
   text-align: center;
-}
+} */
 
 .budget-container {
   width: 90%;
