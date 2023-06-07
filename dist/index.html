@@ -44,19 +44,19 @@
     </div>
     <div class="available-rooms-container main-container">
       <nav>
-        <button class="nav-btn search-btn hidden">
+        <button class="btn nav-btn search-btn hidden">
           <div class="material-icons icon">
             search
           </div>
           <p class="btn-text">FIND ROOMS</p>
         </button>
-        <button class="nav-btn account-btn">
+        <button class="btn nav-btn account-btn">
           <div class="material-icons icon">
             person
           </div>
           <p class="btn-text">DASHBOARD</p>
         </button>
-        <button class="nav-btn filter-button">
+        <button class="btn nav-btn filter-button">
           <div class="material-icons icon">
             filter_alt
           </div>
@@ -64,24 +64,66 @@
         </button>
       </nav>
       <div class="available-rooms-view content-box scrollbar">
-        <p class="rooms-shown-txt">Showing <span class="roomsa-avail-amt">All</span> Available Rooms:</p>
+        <p class="rooms-shown-txt">Showing <span class="rooms-avail-amt">All</span> Available Rooms:</p>
         <section class="single-room">
           <img class="room-img" src="./images/suite.png" alt="breezy plant filled hotel suite with an ocean view and wicker decor">
-          <button>
-            View Room
+          <div class="room-details">
+            <p class="rooom-number">Room Number: 1</p>
+            <p class="room-type">Room Type: Suite</p>
+            <p class="room-cost">Cost Per Night: $350</p>
+            <p class="room-beds">1 queen sized bed</p>
+          </div>
+          <button class="btn booking-btn">
+            Book Now
           </button>
         </section>
         <section class="single-room">
           <img class="room-img" src="./images/singleroom.png" alt="single hotel room with an ocean view, small desk, and comfortable chaise">
+          <div class="room-details">
+            <p class="rooom-number">Room Number: 2</p>
+            <p class="room-type">Room Type: Single Room</p>
+            <p class="room-cost">Cost Per Night: $200</p>
+            <p class="room-beds">2 full sized beds</p>
+          </div>
+          <button class="btn booking-btn">
+            Book Now
+          </button>
         </section>
         <section class="single-room">
           <img class="room-img" src="./images/juniorsuite.png" alt="modern hotel suite with an ocean view and small living room">
+          <div class="room-details">
+            <p class="rooom-number">Room Number: 3</p>
+            <p class="room-type">Room Type: Junior Suite</p>
+            <p class="room-cost">Cost Per Night: $390</p>
+            <p class="room-beds">1 queen bed</p>
+          </div>
+          <button class="btn booking-btn">
+            Book Now
+          </button>
         </section>
         <section class="single-room">
           <img class="room-img" src="./images/residentialsuite.png" alt="open floor plan hotel suite with an outdoor patio, ocean view and blue decor">
+          <div class="room-details">
+            <p class="rooom-number">Room Number: 4</p>
+            <p class="room-type">Room Type: Residential Suite</p>
+            <p class="room-cost">Cost Per Night: $490</p>
+            <p class="room-beds">2 king beds</p>
+          </div>
+          <button class="btn booking-btn">
+            Book Now
+          </button>
         </section>
         <section class="single-room last-room">
           <img class="room-img" src="./images/suite.png" alt="breezy plant filled hotel suite with an ocean view and wicker decor">
+          <div class="room-details">
+            <p class="rooom-number">Room Number: 5</p>
+            <p class="room-type">Room Type: Suite</p>
+            <p class="room-cost">Cost Per Night: $350</p>
+            <p class="room-beds">1 queen sized bed</p>
+          </div>
+          <button class="btn booking-btn">
+            Book Now
+          </button>
         </section>
       </div>
       <section class="filter-modal hidden">

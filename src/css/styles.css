@@ -152,12 +152,25 @@ input {
   padding: 1%;
   margin-bottom: 5%;
   margin-left: 8%;
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
 }
 
 .single-room > img {
-  position: absolute;
   height: 90%;
+  max-width: 36%;
   width: 36%;
+}
+
+.room-details {
+  margin-right: 30%;
+  /* margin-left: 5%; */
+}
+
+.room-details > p {
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 /* FILTER MODAL */
@@ -210,6 +223,10 @@ input {
 .filter-tags > form > input, .filter-tags > form > select {
   border-radius: 25px;
   background-color:rgba(255, 255, 255, 0.474)
+}
+
+.filter-tags > form > label {
+  text-align: center;
 }
 
 
@@ -372,21 +389,20 @@ input[type="range"]:active::-moz-range-thumb {
 .nav-btn {
   display: flex;
   justify-content: space-evenly;
-  /* justify-self: top; */
-  /* align-self: flex-end; */
   align-items: center;
+  margin-left: 5%;
+  height: 80%;
+}
+
+.btn {
   background-color:  #97AECF;
   border: 1px solid #6886B0;
   border-radius: 25px;
+  align-self: flex-end;
   padding-left: 2%;
   padding-right: 2%;
-  margin-left: 5%;
-  height: 80%;
-  /* align-self: flex-end; */
   cursor: pointer;
 }
-
-
 
 .btn-text {
   font-family: 'Maven Pro', sans-serif;
@@ -466,11 +482,48 @@ input[type="range"]:active::-moz-range-thumb {
 }
 
 /* MEDIA QUERIES */
+@media screen and (max-width: 975px) {
+  .room-details {
+    margin-right: 10%;
+  }
+}
+
 @media screen and (max-width: 750px) {
   .filter-tags {
     flex-direction: column;
   }
+
   .filter-option {
     width: 50%;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    width: 45%;
+    margin: 1%
+  }
+
+  .filter-show-button {
+    align-self: center;
+    margin-top: 10%;
+  }
+
+  .single-room {
+
+    height: 80%;
+
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: space-between; */
+  }
+
+  .single-room > img {
+    height: 40%;
+    width: 100%;
+    max-width: none;
   }
 }
