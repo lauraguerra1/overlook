@@ -18,13 +18,7 @@
       <h1>L<span>A</span>VISH LIVING  HOTEL</h1>
       <h2>WHERE BEAUTY SLEEP AWAITS</h2>
     </div>
-    <nav>
-      <button class="material-icons account-btn">
-        account_circle
-      </button>
-    </nav>
   </header>
-
   <main>
     <div class="landing-page-container main-container hidden">
       <div class="landing-page-view content-box"> 
@@ -49,12 +43,26 @@
       </div> 
     </div>
     <div class="available-rooms-container main-container">
-      <button class="filter-button">
-        <div class="material-icons filter-icon">
-          filter_alt
-        </div>
-        <p class="btn-text">FILTER</p>
-      </button>
+      <nav>
+        <button class="nav-btn search-btn hidden">
+          <div class="material-icons icon">
+            search
+          </div>
+          <p class="btn-text">FIND ROOMS</p>
+        </button>
+        <button class="nav-btn account-btn">
+          <div class="material-icons icon">
+            person
+          </div>
+          <p class="btn-text">DASHBOARD</p>
+        </button>
+        <button class="nav-btn filter-button">
+          <div class="material-icons icon">
+            filter_alt
+          </div>
+          <p class="btn-text">FILTER</p>
+        </button>
+      </nav>
       <div class="available-rooms-view content-box scrollbar">
         <section class="single-room">
           <img class="room-img" src="./images/suite.png" alt="breezy plant filled hotel suite with an ocean view and wicker decor">
