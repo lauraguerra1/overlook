@@ -4,10 +4,12 @@ import { getBookingsData, getRoomsData } from './apicalls';
 import { slideBudget, openModal, closeModal } from './domUpdates';
 
 //IMAGES
-import './images/cabana-room.png';
+import './images/suite.png';
 import './images/lotus-logo-b.png';
 import './images/pool-side.png';
-import './images/ocean-view.png';
+import './images/singleroom.png';
+import './images/juniorsuite.png';
+import './images/residentialsuite.png';
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#firstSlider');
@@ -17,7 +19,7 @@ const rightBudgetValue = document.querySelector('.value2');
 const closeBtn = document.querySelector('.close-btn');
 const filterBtn = document.querySelector('.filter-button');
 const filterModal = document.querySelector('.filter-modal');
-const availableRoomsView = document.querySelector('.available-rooms-view')
+const availableRoomsView = document.querySelector('.available-rooms-view');
 
 // EVENT LISTENERS
 window.addEventListener('load', () => {
