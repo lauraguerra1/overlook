@@ -4,10 +4,201 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Maven+Pro&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <title>Lavish Living Hotel</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
+  <header>
+    <img class="logo" src="./images/lotus-logo-b.png" alt="Lavish Living Lotus Logo">
+    <div> 
+      <h1>L<span>A</span>VISH LIVING  HOTEL</h1>
+      <h2>WHERE BEAUTY SLEEP AWAITS</h2>
+    </div>
+  </header>
+  <main>
+    <div class="landing-page-container main-container hidden">
+      <div class="landing-page-view content-box"> 
+        <img class="bg-img" src="./images/pool-side.png" alt="pool side resort">
+        <section class="initial-content-container">
+          <div class="login-view-container">
+            <div class="login-child">
+              <h1>WELCOME</h1>
+              <p>Please Log-in</p>
+            </div>
+            <form class="login-child">
+              <input type="text" id="username">
+              <label for="username">username</label>
+            </form>
+            <form class="login-child">
+              <input type="password" id="password">
+              <label for="password">password</label> 
+            </form>
+            <button class="login-btn">Log-In</button>
+          </div>
+        </section>
+      </div> 
+    </div>
+    <div class="available-rooms-container main-container">
+      <nav>
+        <button class="btn nav-btn search-btn hidden">
+          <div class="material-icons icon">
+            search
+          </div>
+          <p class="btn-text">FIND ROOMS</p>
+        </button>
+        <button class="btn nav-btn account-btn">
+          <div class="material-icons icon">
+            person
+          </div>
+          <p class="btn-text">DASHBOARD</p>
+        </button>
+        <button class="btn nav-btn filter-button">
+          <div class="material-icons icon">
+            filter_alt
+          </div>
+          <p class="btn-text">FILTER</p>
+        </button>
+      </nav>
+      <div class="available-rooms-view content-box scrollbar">
+        <p class="rooms-shown-txt">Showing <span class="rooms-avail-amt">All</span> Available Rooms:</p>
+        <section class="single-room">
+          <img class="room-img" src="./images/suite.png" alt="breezy plant filled hotel suite with an ocean view and wicker decor">
+          <div class="room-details">
+            <p class="rooom-number">Room Number: 1</p>
+            <p class="room-type">Room Type: Suite</p>
+            <p class="room-cost">Cost Per Night: $350</p>
+            <p class="room-beds">1 queen sized bed</p>
+          </div>
+          <button class="btn booking-btn">
+            Book Now
+          </button>
+        </section>
+        <section class="single-room">
+          <img class="room-img" src="./images/singleroom.png" alt="single hotel room with an ocean view, small desk, and comfortable chaise">
+          <div class="room-details">
+            <p class="rooom-number">Room Number: 2</p>
+            <p class="room-type">Room Type: Single Room</p>
+            <p class="room-cost">Cost Per Night: $200</p>
+            <p class="room-beds">2 full sized beds</p>
+          </div>
+          <button class="btn booking-btn">
+            Book Now
+          </button>
+        </section>
+        <section class="single-room">
+          <img class="room-img" src="./images/juniorsuite.png" alt="modern hotel suite with an ocean view and small living room">
+          <div class="room-details">
+            <p class="rooom-number">Room Number: 3</p>
+            <p class="room-type">Room Type: Junior Suite</p>
+            <p class="room-cost">Cost Per Night: $390</p>
+            <p class="room-beds">1 queen bed</p>
+          </div>
+          <button class="btn booking-btn">
+            Book Now
+          </button>
+        </section>
+        <section class="single-room">
+          <img class="room-img" src="./images/residentialsuite.png" alt="open floor plan hotel suite with an outdoor patio, ocean view and blue decor">
+          <div class="room-details">
+            <p class="rooom-number">Room Number: 4</p>
+            <p class="room-type">Room Type: Residential Suite</p>
+            <p class="room-cost">Cost Per Night: $490</p>
+            <p class="room-beds">2 king beds</p>
+          </div>
+          <button class="btn booking-btn">
+            Book Now
+          </button>
+        </section>
+        <section class="single-room last-room">
+          <img class="room-img" src="./images/suite.png" alt="breezy plant filled hotel suite with an ocean view and wicker decor">
+          <div class="room-details">
+            <p class="rooom-number">Room Number: 5</p>
+            <p class="room-type">Room Type: Suite</p>
+            <p class="room-cost">Cost Per Night: $350</p>
+            <p class="room-beds">1 queen sized bed</p>
+          </div>
+          <button class="btn booking-btn">
+            Book Now
+          </button>
+        </section>
+      </div>
+      <section class="filter-modal hidden">
+        <div class="filter-modal-top">
+          <button class="material-icons close-btn">
+            close
+          </button>
+          <h1 class="filter-heading">FILTERS</h1>
+        </div>
+        <div class="filter-modal-bottom">
+          <section class="filter-tags">
+            <form>
+              <label for="calendar">Change Date:</label>
+              <input type="date" id="calendar">
+            </form>
+            <form>
+              <label for="roomTypes">Filter By Room Type:</label>
+              <select id="roomTypes">
+                <option value="allRooms">
+                  Any
+                </option>
+                <option value="residentialSuite">
+                  Residential Suite
+                </option>
+                <option value="juniorSuite">
+                  Junior Suite
+                </option>
+                <option value="suite">
+                  Suite
+                </option>
+                <option value="singleRoom">
+                  Single Room 
+                </option>
+              </select>
+            </form>
+          
+            <!-- <section tabindex="0" class="filter-option">
+              Residential Suite
+            </section>
+            <section tabindex="0" class="filter-option">
+              Junior Suite
+            </section>
+            <section tabindex="0" class="filter-option">
+              Suite
+            </section>
+            <section tabindex="0" class="filter-option">
+              Single Room 
+            </section> -->
+          </section> 
+          <section class="budget-container">
+            <label for="valueSliders" id="valueLabel">Filter By Price Range:</label>
+            <section class="values">
+              <span>$</span><span class="value1">150</span><span> &dash; $</span><span class="value2">500</span>
+            </section>
+            <form class="slider-track" id="valueSliders">
+              <input type="range" min="150" max="250" value="150" id="firstSlider"> 
+              <input type="range" min="251" max="500" value="500" id="secondSlider"> 
+            </form>
+          </section>
+          <button class="btn-text filter-show-button">
+            SHOW ROOMS
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+  <!-- <nav class="nav-bar">
+    <label for="dashboard">Dashboard</label>
+    <img class="nav-item "id="dashboard" src="./images/home-icon.png">
+    <label for="bookings">Bookings</label>
+    <img class="nav-item" id="bookings" src="./images/turing-logo.png">
+    <label for="finances">Finances</label>
+    <img class="nav-item" id="finances" src="./images/turing-logo.png">
+  </nav> -->
+  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
