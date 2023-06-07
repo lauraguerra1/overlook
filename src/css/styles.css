@@ -142,8 +142,9 @@ input {
 
 /* FILTER MODAL */
 .filter-modal {
+  /* font-size: larger; */
   position: absolute;
-  height: 85%;
+  height:  70%;
   width: 70%;
   background: rgba(154, 179, 199, 0.863);
   border-radius: 20px;
@@ -155,16 +156,102 @@ input {
 
 .filter-modal-top {
   display: flex; 
-  border: 1px solid red;
   width: 98%;
   margin-top: 1%;
 }
 
 .filter-tags {
-  height: 80%;
-  width: 80%;
-  border: 1px solid blue;
+  min-height: 60%;
+  max-height: 70%;
+  width: 90%; 
+  display: flex; 
+  justify-content: space-around;
+  align-items: center;
 }
+
+.filter-option {
+  height: 10%;
+  margin: 1%; 
+  padding: 2%;
+  min-width: 10%;
+  background-color: #82a1cd;
+  border-radius: 8px;
+  font-family: 'Maven Pro', sans-serif;
+  text-align: center;
+}
+
+.budget-container {
+  width: 90%;
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.values {
+  background-color:rgba(118, 149, 193, 0.85);
+  padding: 1% 5%; 
+  border-radius: 8px;
+}
+
+.values > span {
+  font-family: 'Maven Pro', sans-serif;
+}
+
+.slider-track {
+  display:flex; 
+  justify-content: center;
+  align-items: center;
+  background-color: #3c4f6b;
+  width: 80%;
+  height: 8%;
+  border-radius: 3px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none; 
+  -moz-appearance:none; 
+  appearance: none;
+  width: 50%;
+  margin: 0 auto;
+  /* padding: 0 auto; */
+  /* outline: none; */
+  /* pointer-events: auto; */
+  background-color: #00000000;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 1.5em;
+  width: 1.5em;
+  background-color: #6e9ddd;
+  border: 1px solid #6886B0;
+  border-radius: 50%;
+  cursor: pointer;
+  /* pointer-events: auto; */
+}
+
+input[type="range"]::-moz-range-thumb {
+  -moz-appearance: none;
+  height: 1.5em;
+  width: 1.5em;
+  background-color: #6e9ddd;
+  border: 1px solid #6886B0;
+  border-radius: 50%;
+  cursor: pointer;
+  /* pointer-events: auto; */
+}
+
+/* input[type="range"]:active::-webkit-range-thumb {
+  background-color: white; 
+  border: 3px solid blue;
+}
+
+input[type="range"]:active::-moz-range-thumb {
+  background-color: white; 
+  border: 3px solid blue;
+} */
 
 /* SCROLL BAR */
 .scrollbar {
