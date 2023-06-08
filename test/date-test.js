@@ -66,6 +66,11 @@ describe('date', () => {
     assert.equal(USDate, '6/8/2023')
   })
 
+  it('should format a two integer month & day date into a US date', () => {
+    const USDate = formatDate('US', '2023/10/18')
+    assert.equal(USDate, '10/18/2023')
+  })
+
   it('should format a number into yyyy-mm-dd', () => {
     const calendarDate = formatDate('calendar', 1686196800000)
     assert.equal(calendarDate, '2023-06-08')

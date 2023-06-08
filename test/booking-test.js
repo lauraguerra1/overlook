@@ -1,11 +1,12 @@
 import chai from 'chai';
 const assert = chai.assert;
 import { sampleData } from '../src/sample-data';
-import { sortBookings } from '../src/bookings';
+import { sortBookings, totalCost } from '../src/bookings';
 import { getDateValue } from '../src/dates';
 
-describe('bookings by date', () => {
-  let sampleBookings = sampleData.bookings;
+describe('bookings', () => {
+  const sampleBookings = sampleData.bookings;
+  const sampleRooms = sampleData.rooms
   it('should sort bookings into past, upcoming, and current', () => {
     const currentDate = getDateValue('2023/06/08');
     const bookings = sortBookings(sampleBookings, currentDate);
@@ -47,4 +48,20 @@ describe('bookings by date', () => {
     assert.deepEqual(bookings.upcoming, []);
     assert.deepEqual(bookings.current, []);
   });
+
+  it('should find the total cost of bookings', () => {
+    const cost = totalCost(sampleBookings, sampleRooms);
+    assert.equal(cost, 2493.55)
+  })
+
+  it('should find the total cost of a single booking', () => {
+    const cost = totalCost([sampleBookings[0]], sampleRooms);
+    assert.equal(cost, 358.40)
+  })
+
+  it('should find the total cost of a free booking', () => {
+    const cost = totalCost([{roomNumber: 10}], [{number: 10, costPerNight: 0}]);
+    assert.equal(cost, 0.00)
+  })
 });
+
