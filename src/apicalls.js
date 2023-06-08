@@ -41,7 +41,6 @@ const getUserBookings = (id) => {
   Promise.all([fetchAPI('rooms'), fetchAPI('bookings')])
     .then(data => {
       let userBookings = data[1].bookings.filter(booking => booking.userID === id)
-      // let sortedUserBookings = sortBookings(userBookings, Date.now())
       createUserBookingsHTML(userBookings, data[0].rooms)
       })
 }

@@ -11,8 +11,8 @@ import {
   roomsShownText,
   userDashView,
   closeBtn,
-  upcomingBookings,
-  pastBookings,
+  userBookingSections,
+  currentBookings
 } from './scripts';
 
 
@@ -105,16 +105,26 @@ const createSingleUserBookingHTML = (booking, rooms) => {
 </section>`;
 };
 
+const addTitleToSections = () => [
+  userBookingSections.forEach(section => {
+    const formattedTitle = section.id.charAt(0).toUpperCase() + section.id.split('').slice(1).join('')
+    section.innerHTML = `<p class="${section.id}-text">${formattedTitle} Bookings</p>`;
+  })
+]
 const createUserBookingsHTML = (userBookings, rooms) => {
   let sortedBookings = sortBookings(userBookings, Date.now())
-  upcomingBookings.innerHTML = `<p class="upcoming-text">Upcoming Bookings</p>`;
-  pastBookings.innerHTML = `<p class="past-text">Past Bookings</p>`;
+  addTitleToSections();
   document.querySelector('.total-spent').innerText = `Total Spent: $${totalCost(userBookings, rooms)}`
-  Array.from([upcomingBookings, pastBookings]).forEach((section) => {
+  userBookingSections.forEach((section) => {
     section.innerHTML += sortedBookings[section.id]
       .map((booking) => createSingleUserBookingHTML(booking, rooms))
       .join('');
   });
+  console.log('sorted', sortedBookings)
+  if(!sortedBookings.current.length) {
+    currentBookings.innerHTML = '';
+    currentBookings.classList.add('hidden');
+  }
 };
 
 export {

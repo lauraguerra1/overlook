@@ -41,6 +41,8 @@ const showRoomsBtn = document.querySelector('.filter-show-button');
 const userDashView = document.querySelector('.user-dash-view');
 const upcomingBookings = document.querySelector('.upcoming-bookings');
 const pastBookings = document.querySelector('.past-bookings');
+const currentBookings = document.querySelector('.current-bookings');
+const userBookingSections = Array.from([upcomingBookings, pastBookings, currentBookings])
 
 // EVENT LISTENERS
 window.addEventListener('load', () => {
@@ -105,6 +107,6 @@ export {
   searchBtn,
   closeBtn,
   roomsShownText,
-  upcomingBookings,
-  pastBookings,
+  userBookingSections,
+  currentBookings
 };

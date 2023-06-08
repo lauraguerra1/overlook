@@ -16,11 +16,13 @@ const sortBookings = (bookings, date) => {
 };
 
 const totalCost = (bookings, rooms) => {
-  let bookedRooms = bookings.map(booking => {
-    return rooms.find(room => room.number === booking.roomNumber)
-  })
+  let bookedRooms = bookings.map((booking) => {
+    return rooms.find((room) => room.number === booking.roomNumber);
+  });
 
-  return bookedRooms.reduce((total, curr) => total += curr.costPerNight, 0).toFixed(2)
-}
+  return bookedRooms
+    .reduce((total, curr) => (total += curr.costPerNight), 0)
+    .toFixed(2);
+};
 
 export { sortBookings, totalCost };
