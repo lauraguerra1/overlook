@@ -1,17 +1,21 @@
+import { createUserBookingsHTML } from "./domUpdates"
 
-const getBookingsData = () => {
-  fetch('http://localhost:3001/api/v1/bookings')
-    .then(response => response.json())
-    .then(data => console.log(data.bookings.sort((a,b) => a.date - b.date)))
-    .catch(error => console.error(error))
+const fetchAPI = (dataType) => {
+  return fetch(`http://localhost:3001/api/v1/${dataType}`)
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.error(err));
+};
+
+const getUserBookings = (id) => {
+  Promise.all([fetchAPI('rooms'), fetchAPI('bookings')])
+    .then(data => {
+      let userBookings = data[1].bookings.filter(booking => booking.userID === id)
+      createUserBookingsHTML(userBookings, data[0].rooms)
+    })
+    .catch((err) => console.error(err))
+
 }
 
-
-const getRoomsData = () => {
-  fetch('http://localhost:3001/api/v1/rooms')
-    .then(response => response.json())
-    .then(data => console.log(data.rooms))
-    .catch(error => console.error(error))
-}
-
-export {getBookingsData, getRoomsData}
+export { getUserBookings }
