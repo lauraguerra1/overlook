@@ -13,4 +13,11 @@ const checkDateValidity = (currDate, bookingDate) => {
     return false
   }
 }
-export {getDateValue, checkDateValidity}
+
+const getUSDate = (date) => {
+  const month = new Date(getDateValue(date)).getMonth() + 1
+  const day = new Date(getDateValue(date)).getDate()
+  const year = new Date(getDateValue(date)).getFullYear()
+  return `${month}/${day}/${year}`;
+}
+export {getDateValue, checkDateValidity, getUSDate}

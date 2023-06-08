@@ -1,6 +1,12 @@
 // IMPORTS
 import './css/styles.css';
-import { getBookingsData, getRoomsData } from './apicalls';
+import { 
+  getAllData, 
+  // getBookingsData, 
+  // getRoomsData, 
+  // getSingleUser
+} from './apicalls';
+
 import {
   slideBudget,
   openModal,
@@ -30,14 +36,18 @@ const filterModal = document.querySelector('.filter-modal');
 const availableRoomsView = document.querySelector('.available-rooms-view');
 const roomsShownText = document.querySelector('.rooms-shown-txt');
 const showRoomsBtn = document.querySelector('.filter-show-button');
-const userDashView = document.querySelector('.user-dash-view')
+const userDashView = document.querySelector('.user-dash-view');
+const upcomingBookings = document.querySelector('.upcoming-bookings')
 
 // EVENT LISTENERS
-// window.addEventListener('load', () => {
-//   getRoomsData();
-//   getBookingsData();
-//   // console.log(leftSlider, rightSlider)
-// });
+window.addEventListener('load', () => {
+  console.log('hellooo')
+  getAllData(50)
+  // getRoomsData();
+  // getBookingsData(50);
+  // getSingleUser(50);
+  // console.log(leftSlider, rightSlider)
+});
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {
   console.log(input);
@@ -92,4 +102,5 @@ export {
   searchBtn,
   closeBtn,
   roomsShownText,
+  upcomingBookings
 };

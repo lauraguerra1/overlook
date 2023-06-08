@@ -1,3 +1,4 @@
+import { getUSDate } from './helpers';
 import {
   leftBudgetValue,
   rightBudgetValue,
@@ -8,7 +9,8 @@ import {
   searchBtn,
   roomsShownText,
   userDashView,
-  closeBtn
+  closeBtn,
+  upcomingBookings
 } from './scripts';
 
 const slideBudget = (e) => {
@@ -72,4 +74,33 @@ const switchToHome = () => {
   userDashView.classList.add('hidden')
 }
 
-export { slideBudget, openModal, closeModal, showDash, switchToHome };
+const createSingleUserBookingHTML = (booking, rooms) => {
+  const foundRoom = rooms.find(room => room.number === booking.roomNumber)
+  console.log('foundRoom', foundRoom)
+  const img = foundRoom.roomType.split(' ').join('').toLowerCase()
+  const date = getUSDate(booking.date)
+  let plural = '';
+  if(foundRoom.numBeds > 1) {
+    plural = 's'
+  }
+  return `
+  <section class="single-room user-room">
+    <img class="room-img" src="./images/${img}.png" alt="breezy plant filled hotel suite with an ocean view and wicker decor">
+    <div class="room-details">
+      <p class="rooom-number">Room Number: ${foundRoom.number}</p>
+      <p class="room-type">Room Type: ${foundRoom.roomType}</p>
+      <p class="room-beds">${foundRoom.numBeds} ${foundRoom.bedSize} sized bed${plural}</p>
+      <p class="booked-date">Date: ${date}</p>
+    </div>
+  </section>
+</section>`;
+}
+
+const createUpcomingBookingsHTML = (bookings, rooms) => {
+  upcomingBookings.innerHTML = `<p class="upcoming-text">Upcoming Bookings</p>`
+  // console.log(bookings.upcoming)
+  upcomingBookings.innerHTML += bookings.map(booking => createSingleUserBookingHTML(booking, rooms)).join('')
+  console.log('here', upcomingBookings)
+}
+
+export { slideBudget, openModal, closeModal, showDash, switchToHome, createUpcomingBookingsHTML };
