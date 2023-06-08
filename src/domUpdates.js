@@ -1,3 +1,4 @@
+import { totalCost, sortBookings } from './bookings';
 import { formatDate } from './dates';
 import {
   leftBudgetValue,
@@ -13,6 +14,13 @@ import {
   upcomingBookings,
   pastBookings,
 } from './scripts';
+
+
+const setCalendarDate = () => {
+  document
+  .querySelector('#calendar')
+  .setAttribute('min', formatDate('calendar', Date.now()));
+}
 
 const slideBudget = (e) => {
   const targets = {
@@ -97,15 +105,16 @@ const createSingleUserBookingHTML = (booking, rooms) => {
 </section>`;
 };
 
-const createUserBookingsHTML = (bookings, rooms) => {
+const createUserBookingsHTML = (userBookings, rooms) => {
+  let sortedBookings = sortBookings(userBookings, Date.now())
   upcomingBookings.innerHTML = `<p class="upcoming-text">Upcoming Bookings</p>`;
   pastBookings.innerHTML = `<p class="past-text">Past Bookings</p>`;
+  document.querySelector('.total-spent').innerText = `Total Spent: $${totalCost(userBookings, rooms)}`
   Array.from([upcomingBookings, pastBookings]).forEach((section) => {
-    section.innerHTML += bookings[section.id]
+    section.innerHTML += sortedBookings[section.id]
       .map((booking) => createSingleUserBookingHTML(booking, rooms))
       .join('');
   });
-  console.log('here', upcomingBookings);
 };
 
 export {
@@ -115,4 +124,5 @@ export {
   showDash,
   switchToHome,
   createUserBookingsHTML,
+  setCalendarDate
 };

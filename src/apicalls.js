@@ -1,4 +1,4 @@
-import { sortBookings } from "./bookings"
+// import { sortBookings } from "./bookings"
 import { createUserBookingsHTML } from "./domUpdates"
 
 // const getSingleUser = (id) => {
@@ -37,20 +37,17 @@ const fetchAPI = (dataType) => {
 //     .catch(error => console.error(error))
 // }
 
-const getAllData = (id) => {
+const getUserBookings = (id) => {
   Promise.all([fetchAPI('rooms'), fetchAPI('bookings')])
     .then(data => {
-      console.log(data)
       let userBookings = data[1].bookings.filter(booking => booking.userID === id)
-      console.log()
-      let sortedUserBookings = sortBookings(userBookings, Date.now())
-      console.log(sortedUserBookings.upcoming)
-      createUserBookingsHTML(sortedUserBookings, data[0].rooms)
+      // let sortedUserBookings = sortBookings(userBookings, Date.now())
+      createUserBookingsHTML(userBookings, data[0].rooms)
       })
 }
 
 export {
-  getAllData
+  getUserBookings
   // getBookingsData, 
   // getRoomsData, 
   // getSingleUser

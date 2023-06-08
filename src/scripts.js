@@ -1,7 +1,7 @@
 // IMPORTS
 import './css/styles.css';
 import {
-  getAllData,
+  getUserBookings,
   // getBookingsData,
   // getRoomsData,
   // getSingleUser
@@ -13,6 +13,7 @@ import {
   closeModal,
   showDash,
   switchToHome,
+  setCalendarDate
 } from './domUpdates';
 
 //IMAGES
@@ -43,13 +44,8 @@ const pastBookings = document.querySelector('.past-bookings');
 
 // EVENT LISTENERS
 window.addEventListener('load', () => {
-  console.log('in load', formatDate('calendar', Date.now()));
-  document
-    .querySelector('#calendar')
-    .setAttribute('min', formatDate('calendar', Date.now()));
-
-  console.log(document.querySelector('#calendar'));
-  getAllData(50);
+  setCalendarDate()
+  getUserBookings(50);
   // getRoomsData();
   // getBookingsData(50);
   // getSingleUser(50);
