@@ -44,22 +44,9 @@ const changeAttribute = (elements, change, attribute, boolean) => {
 
 const toggleModal = (changeOption, attributeOption) => {
   changeClass([accountBtn, searchBtn, filterBtn], changeOption, ['no-click']);
-  changeClass([availableRoomsView, userDashView], changeOption, [
-    'blur',
-    'no-click',
-  ]);
-  changeAttribute(
-    [filterBtn, accountBtn, searchBtn],
-    attributeOption,
-    'disabled',
-    true
-  );
-  changeAttribute(
-    availableRoomsView.querySelectorAll('button'),
-    attributeOption,
-    'disabled',
-    true
-  );
+  changeClass([availableRoomsView, userDashView], changeOption, ['blur', 'no-click',]);
+  changeAttribute([filterBtn, accountBtn, searchBtn], attributeOption, 'disabled', true);
+  changeAttribute(availableRoomsView.querySelectorAll('button'), attributeOption, 'disabled', true);
   filterModal.classList.toggle('fade-in');
   filterModal.classList.toggle('hidden');
 };
@@ -105,13 +92,7 @@ const createCardInfo = (booking, rooms) => {
     plural = 's';
   }
 
-  return {
-    foundRoom,
-    img,
-    alt,
-    date,
-    plural,
-  };
+  return { foundRoom, img, alt, date, plural };
 };
 
 const createSingleUserBookingHTML = (booking, rooms) => {
@@ -141,10 +122,7 @@ const addTitleToSections = () => {
 
 const createUserBookingsHTML = (userBookings, rooms) => {
   let sortedBookings = sortBookings(userBookings, Date.now());
-  document.querySelector('.total-spent').innerText = `Total Spent: $${totalCost(
-    userBookings,
-    rooms
-  )}`;
+  document.querySelector('.total-spent').innerText = `Total Spent: $${totalCost(userBookings,rooms)}`;
   addTitleToSections();
 
   userBookingSections.forEach((section) => {

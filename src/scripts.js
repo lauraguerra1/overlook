@@ -2,9 +2,6 @@
 import './css/styles.css';
 import {
   getUserBookings,
-  // getBookingsData,
-  // getRoomsData,
-  // getSingleUser
 } from './apicalls';
 
 import {
@@ -22,7 +19,6 @@ import './images/pool-side.png';
 import './images/singleroom.png';
 import './images/juniorsuite.png';
 import './images/residentialsuite.png';
-import { formatDate } from './dates';
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#firstSlider');

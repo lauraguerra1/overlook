@@ -24,7 +24,6 @@ header {
 }
 
 nav {
-  /* align-self: flex-end; */
   display: flex; 
   justify-content: flex-end;
   align-items: flex-end;
@@ -59,12 +58,6 @@ h2, .filter-heading {
   margin-right: 2%;
   padding: 1%
 }
-
-/* header > button {
-  justify-self: flex-end;
-  align-self: flex-end;
-  border: 1px solid blue
-} */
 
 .main-container {
   display: flex;
@@ -165,7 +158,6 @@ input {
 
 .room-details {
   margin-right: 25%;
-  /* margin-left: 5%; */
 }
 
 .room-details > p {
@@ -175,7 +167,6 @@ input {
 
 /* USER DASHBOARD */
 .user-dash-view {
-  /* display: flex; */
   width: 80%;
   max-height: 90%;
 }
@@ -220,7 +211,6 @@ input {
 
 /* FILTER MODAL */
 .filter-modal {
-  /* font-size: larger; */
   position: absolute;
   min-height: fit-content; 
   height: 70%;
@@ -274,27 +264,6 @@ input {
   text-align: center;
 }
 
-
-/* #valueLabel {
-align-self: flex-start;
-margin-left: 10%
-} */
-
-/* .filter-option {
-  height: 10%;
-  min-height: fit-content;
-  margin: 1%; 
-  padding: 2%;
-  min-width: 10%;
-  background-color: #82a1cd;
-  border-radius: 8px;
-  font-family: 'Maven Pro', sans-serif;
-  display: flex; 
-  justify-content: center; 
-  align-items: center;
-  text-align: center;
-} */
-
 .budget-container {
   width: 90%;
   display: flex; 
@@ -330,9 +299,6 @@ input[type="range"] {
   appearance: none;
   width: 50%;
   margin: 0 auto;
-  /* padding: 0 auto; */
-  /* outline: none; */
-  /* pointer-events: auto; */
   background-color: #00000000;
 }
 
@@ -344,7 +310,6 @@ input[type="range"]::-webkit-slider-thumb {
   border: 1px solid #6886B0;
   border-radius: 50%;
   cursor: pointer;
-  /* pointer-events: auto; */
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -355,18 +320,7 @@ input[type="range"]::-moz-range-thumb {
   border: 1px solid #6886B0;
   border-radius: 50%;
   cursor: pointer;
-  /* pointer-events: auto; */
 }
-
-/* input[type="range"]:active::-webkit-range-thumb {
-  background-color: white; 
-  border: 3px solid blue;
-}
-
-input[type="range"]:active::-moz-range-thumb {
-  background-color: white; 
-  border: 3px solid blue;
-} */
 
 /* SCROLL BAR */
 .scrollbar {
@@ -561,11 +515,6 @@ input[type="range"]:active::-moz-range-thumb {
   .all-user-bookings {
     flex-direction: column;
   }
-
-  /* .upcoming-bookings {
-    margin-left: 2%;
-    border: 1px solid red;
-  } */
 
   .single-room {
     height: 70%;
