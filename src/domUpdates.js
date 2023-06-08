@@ -1,4 +1,4 @@
-import { formatDate } from './helpers';
+import { formatDate } from './dates';
 import {
   leftBudgetValue,
   rightBudgetValue,
@@ -11,7 +11,7 @@ import {
   userDashView,
   closeBtn,
   upcomingBookings,
-  pastBookings
+  pastBookings,
 } from './scripts';
 
 const slideBudget = (e) => {
@@ -24,35 +24,35 @@ const slideBudget = (e) => {
 };
 
 const openModal = () => {
-  filterBtn.setAttribute('disabled', true)
-  console.log(accountBtn)
-  accountBtn.setAttribute('disabled', true)
-  console.log(accountBtn.disabled)
-  searchBtn.setAttribute('disabled', true)
+  filterBtn.setAttribute('disabled', true);
+  console.log(accountBtn);
+  accountBtn.setAttribute('disabled', true);
+  console.log(accountBtn.disabled);
+  searchBtn.setAttribute('disabled', true);
   accountBtn.classList.add('no-click');
   searchBtn.classList.add('no-click');
   filterBtn.classList.add('no-click');
   availableRoomsView.classList.add('blur', 'no-click');
-  availableRoomsView.querySelectorAll('button').forEach(btn => {
-    btn.setAttribute('disabled', true)
-  })
+  availableRoomsView.querySelectorAll('button').forEach((btn) => {
+    btn.setAttribute('disabled', true);
+  });
   userDashView.classList.add('blur', 'no-click');
   filterModal.classList.add('fade-in');
   filterModal.classList.remove('hidden');
-  closeBtn.focus()
+  closeBtn.focus();
 };
 
 const closeModal = () => {
-  searchBtn.removeAttribute('disabled')
-  accountBtn.removeAttribute('disabled')
-  filterBtn.removeAttribute('disabled')
+  searchBtn.removeAttribute('disabled');
+  accountBtn.removeAttribute('disabled');
+  filterBtn.removeAttribute('disabled');
   accountBtn.classList.remove('no-click');
   searchBtn.classList.remove('no-click');
   filterBtn.classList.remove('no-click');
   availableRoomsView.classList.remove('blur', 'no-click');
-  availableRoomsView.querySelectorAll('button').forEach(btn => {
-    btn.removeAttribute('disabled')
-  })
+  availableRoomsView.querySelectorAll('button').forEach((btn) => {
+    btn.removeAttribute('disabled');
+  });
   userDashView.classList.remove('blur', 'no-click');
   filterModal.classList.remove('fade-in');
   filterModal.classList.add('hidden');
@@ -72,17 +72,17 @@ const switchToHome = () => {
   accountBtn.classList.remove('hidden');
   searchBtn.classList.add('hidden');
   availableRoomsView.classList.remove('hidden');
-  userDashView.classList.add('hidden')
-}
+  userDashView.classList.add('hidden');
+};
 
 const createSingleUserBookingHTML = (booking, rooms) => {
-  const foundRoom = rooms.find(room => room.number === booking.roomNumber)
-  console.log('foundRoom', foundRoom)
-  const img = foundRoom.roomType.split(' ').join('').toLowerCase()
-  const date = formatDate('US', booking.date)
+  const foundRoom = rooms.find((room) => room.number === booking.roomNumber);
+  console.log('foundRoom', foundRoom);
+  const img = foundRoom.roomType.split(' ').join('').toLowerCase();
+  const date = formatDate('US', booking.date);
   let plural = '';
-  if(foundRoom.numBeds > 1) {
-    plural = 's'
+  if (foundRoom.numBeds > 1) {
+    plural = 's';
   }
   return `
   <section class="single-room user-room">
@@ -95,15 +95,24 @@ const createSingleUserBookingHTML = (booking, rooms) => {
     </div>
   </section>
 </section>`;
-}
+};
 
 const createUserBookingsHTML = (bookings, rooms) => {
-  upcomingBookings.innerHTML = `<p class="upcoming-text">Upcoming Bookings</p>`
-  pastBookings.innerHTML = `<p class="past-text">Past Bookings</p>`
-  Array.from([upcomingBookings, pastBookings]).forEach(section => {
-    section.innerHTML += bookings[section.id].map(booking => createSingleUserBookingHTML(booking, rooms)).join('')
-  })
-  console.log('here', upcomingBookings)
-}
+  upcomingBookings.innerHTML = `<p class="upcoming-text">Upcoming Bookings</p>`;
+  pastBookings.innerHTML = `<p class="past-text">Past Bookings</p>`;
+  Array.from([upcomingBookings, pastBookings]).forEach((section) => {
+    section.innerHTML += bookings[section.id]
+      .map((booking) => createSingleUserBookingHTML(booking, rooms))
+      .join('');
+  });
+  console.log('here', upcomingBookings);
+};
 
-export { slideBudget, openModal, closeModal, showDash, switchToHome, createUserBookingsHTML };
+export {
+  slideBudget,
+  openModal,
+  closeModal,
+  showDash,
+  switchToHome,
+  createUserBookingsHTML,
+};
