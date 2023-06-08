@@ -14,10 +14,42 @@ const checkDateValidity = (currDate, bookingDate) => {
   }
 }
 
-const getUSDate = (date) => {
-  const month = new Date(getDateValue(date)).getMonth() + 1
-  const day = new Date(getDateValue(date)).getDate()
-  const year = new Date(getDateValue(date)).getFullYear()
-  return `${month}/${day}/${year}`;
+const checkInitialDateFormat = date => {
+  let udpatedDate = date;
+  if(date.toString().includes('/')) {
+    udpatedDate = getDateValue(date)
+  }
+
+  return udpatedDate;
 }
-export {getDateValue, checkDateValidity, getUSDate}
+
+const fixIntegerFormat = date => {
+  let setDate = date
+  if (date.length !== 2) {
+    setDate = `0${date}`
+  }
+
+  return setDate;
+}
+
+const formatDate = (formatType, date) => {
+  const udpatedDate = checkInitialDateFormat(date);
+
+  const month = new Date(udpatedDate).getMonth() + 1;
+  const setMonth = fixIntegerFormat(month);
+
+  const day = new Date(udpatedDate).getDate();
+  const setDay = fixIntegerFormat(day); 
+
+  const year = new Date(udpatedDate).getFullYear();
+
+  const dates = {
+    'US': `${month}/${day}/${year}`,
+    'calendar': `${year}-${setMonth}-${setDay}`, 
+    'API': `${year}/${setMonth}/${setDay}`,
+  } 
+ 
+  return dates[formatType];
+}
+
+export {getDateValue, checkDateValidity, formatDate}

@@ -1,5 +1,5 @@
 import { sortBookings } from "./bookings"
-import { createUpcomingBookingsHTML } from "./domUpdates"
+import { createUserBookingsHTML } from "./domUpdates"
 
 // const getSingleUser = (id) => {
 //   fetch(`http://localhost:3001/api/v1/customers/${id}`)
@@ -45,7 +45,7 @@ const getAllData = (id) => {
       console.log()
       let sortedUserBookings = sortBookings(userBookings, Date.now())
       console.log(sortedUserBookings.upcoming)
-      createUpcomingBookingsHTML(sortedUserBookings.upcoming, data[0].rooms)
+      createUserBookingsHTML(sortedUserBookings, data[0].rooms)
       })
 }
 

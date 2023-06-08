@@ -22,6 +22,7 @@ import './images/pool-side.png';
 import './images/singleroom.png';
 import './images/juniorsuite.png';
 import './images/residentialsuite.png';
+import { formatDate } from './helpers';
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#firstSlider');
@@ -37,11 +38,15 @@ const availableRoomsView = document.querySelector('.available-rooms-view');
 const roomsShownText = document.querySelector('.rooms-shown-txt');
 const showRoomsBtn = document.querySelector('.filter-show-button');
 const userDashView = document.querySelector('.user-dash-view');
-const upcomingBookings = document.querySelector('.upcoming-bookings')
+const upcomingBookings = document.querySelector('.upcoming-bookings');
+const pastBookings = document.querySelector('.past-bookings')
 
 // EVENT LISTENERS
 window.addEventListener('load', () => {
-  console.log('hellooo')
+  console.log('in load', formatDate('calendar', Date.now()))
+  document.querySelector('#calendar').setAttribute('min', formatDate('calendar', Date.now()))
+
+  console.log(document.querySelector('#calendar'))
   getAllData(50)
   // getRoomsData();
   // getBookingsData(50);
@@ -102,5 +107,6 @@ export {
   searchBtn,
   closeBtn,
   roomsShownText,
-  upcomingBookings
+  upcomingBookings,
+  pastBookings
 };
