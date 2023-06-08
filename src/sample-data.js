@@ -3,7 +3,7 @@ const sampleData = {
     {
     "id": "5fwrgu4i7k55hl6sz",
     "userID": 9,
-    "date": "2022/04/22",
+    "date": "2023/06/08",
     "roomNumber": 1
     },
     {
@@ -87,3 +87,5 @@ const sampleData = {
     "costPerNight": 397.02
     }]
 }
+
+export {sampleData}
