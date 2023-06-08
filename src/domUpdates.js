@@ -8,6 +8,7 @@ import {
   searchBtn,
   roomsShownText,
   userDashView,
+  closeBtn
 } from './scripts';
 
 const slideBudget = (e) => {
@@ -20,26 +21,35 @@ const slideBudget = (e) => {
 };
 
 const openModal = () => {
-  filterBtn.disabled = true;
-  accountBtn.disbaled = true;
-  searchBtn.disabled = true
+  filterBtn.setAttribute('disabled', true)
+  console.log(accountBtn)
+  accountBtn.setAttribute('disabled', true)
+  console.log(accountBtn.disabled)
+  searchBtn.setAttribute('disabled', true)
   accountBtn.classList.add('no-click');
   searchBtn.classList.add('no-click');
   filterBtn.classList.add('no-click');
   availableRoomsView.classList.add('blur', 'no-click');
+  availableRoomsView.querySelectorAll('button').forEach(btn => {
+    btn.setAttribute('disabled', true)
+  })
   userDashView.classList.add('blur', 'no-click');
   filterModal.classList.add('fade-in');
   filterModal.classList.remove('hidden');
+  closeBtn.focus()
 };
 
 const closeModal = () => {
-  filterBtn.disabled = false;
-  accountBtn.disbaled = false;
-  searchBtn.disabled = false;
+  searchBtn.removeAttribute('disabled')
+  accountBtn.removeAttribute('disabled')
+  filterBtn.removeAttribute('disabled')
   accountBtn.classList.remove('no-click');
   searchBtn.classList.remove('no-click');
   filterBtn.classList.remove('no-click');
   availableRoomsView.classList.remove('blur', 'no-click');
+  availableRoomsView.querySelectorAll('button').forEach(btn => {
+    btn.removeAttribute('disabled')
+  })
   userDashView.classList.remove('blur', 'no-click');
   filterModal.classList.remove('fade-in');
   filterModal.classList.add('hidden');

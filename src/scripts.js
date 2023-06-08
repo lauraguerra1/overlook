@@ -90,5 +90,6 @@ export {
   userDashView,
   accountBtn,
   searchBtn,
+  closeBtn,
   roomsShownText,
 };

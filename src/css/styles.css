@@ -518,6 +518,7 @@ input[type="range"]:active::-moz-range-thumb {
 
 .no-click{
   pointer-events: none;
+  user-select: none;
 }
 
 .hidden {
