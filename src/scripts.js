@@ -9,8 +9,7 @@ import {
 
 import {
   slideBudget,
-  openModal,
-  closeModal,
+  toggleModal,
   showDash,
   switchToHome,
   setCalendarDate
@@ -43,35 +42,39 @@ const upcomingBookings = document.querySelector('.upcoming-bookings');
 const pastBookings = document.querySelector('.past-bookings');
 const currentBookings = document.querySelector('.current-bookings');
 const userBookingSections = Array.from([upcomingBookings, pastBookings, currentBookings])
+const filterAndSearchBtns = Array.from([filterBtn, searchBtn]);
 
 // EVENT LISTENERS
 window.addEventListener('load', () => {
   setCalendarDate()
   getUserBookings(50);
-  // getRoomsData();
-  // getBookingsData(50);
-  // getSingleUser(50);
-  // console.log(leftSlider, rightSlider)
 });
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {
-  console.log(input);
   input.addEventListener('input', (e) => {
     slideBudget(e);
   });
 });
 
-filterBtn.addEventListener('click', openModal);
-filterBtn.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    openModal();
-  }
+filterAndSearchBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    toggleModal('add', 'setAttribute');
+  });
+
+  btn.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+      toggleModal('add', 'setAttribute');
+    }
+  });
+})
+
+closeBtn.addEventListener('click', () => {
+  toggleModal('remove', 'removeAttribute');
 });
 
-closeBtn.addEventListener('click', closeModal);
 closeBtn.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
-    closeModal();
+    toggleModal('remove', 'removeAttribute');
   }
 });
 
@@ -79,13 +82,6 @@ accountBtn.addEventListener('click', showDash);
 accountBtn.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
     showDash();
-  }
-});
-
-searchBtn.addEventListener('click', openModal);
-searchBtn.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    openModal();
   }
 });
 
@@ -105,7 +101,6 @@ export {
   userDashView,
   accountBtn,
   searchBtn,
-  closeBtn,
   roomsShownText,
   userBookingSections,
   currentBookings

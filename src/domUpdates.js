@@ -8,19 +8,16 @@ import {
   availableRoomsView,
   accountBtn,
   searchBtn,
-  roomsShownText,
   userDashView,
-  closeBtn,
   userBookingSections,
-  currentBookings
+  currentBookings,
 } from './scripts';
-
 
 const setCalendarDate = () => {
   document
-  .querySelector('#calendar')
-  .setAttribute('min', formatDate('calendar', Date.now()));
-}
+    .querySelector('#calendar')
+    .setAttribute('min', formatDate('calendar', Date.now()));
+};
 
 const slideBudget = (e) => {
   const targets = {
@@ -31,39 +28,40 @@ const slideBudget = (e) => {
   targets[e.target.id].innerText = e.target.value;
 };
 
-const openModal = () => {
-  filterBtn.setAttribute('disabled', true);
-  console.log(accountBtn);
-  accountBtn.setAttribute('disabled', true);
-  console.log(accountBtn.disabled);
-  searchBtn.setAttribute('disabled', true);
-  accountBtn.classList.add('no-click');
-  searchBtn.classList.add('no-click');
-  filterBtn.classList.add('no-click');
-  availableRoomsView.classList.add('blur', 'no-click');
-  availableRoomsView.querySelectorAll('button').forEach((btn) => {
-    btn.setAttribute('disabled', true);
+const changeClass = (elements, change, classes) => {
+  elements.forEach((element) => {
+    classes.forEach((item) => {
+      element.classList[change](item);
+    });
   });
-  userDashView.classList.add('blur', 'no-click');
-  filterModal.classList.add('fade-in');
-  filterModal.classList.remove('hidden');
-  closeBtn.focus();
 };
 
-const closeModal = () => {
-  searchBtn.removeAttribute('disabled');
-  accountBtn.removeAttribute('disabled');
-  filterBtn.removeAttribute('disabled');
-  accountBtn.classList.remove('no-click');
-  searchBtn.classList.remove('no-click');
-  filterBtn.classList.remove('no-click');
-  availableRoomsView.classList.remove('blur', 'no-click');
-  availableRoomsView.querySelectorAll('button').forEach((btn) => {
-    btn.removeAttribute('disabled');
+const changeAttribute = (elements, change, attribute, boolean) => {
+  elements.forEach((element) => {
+    element[change](attribute, boolean);
   });
-  userDashView.classList.remove('blur', 'no-click');
-  filterModal.classList.remove('fade-in');
-  filterModal.classList.add('hidden');
+};
+
+const toggleModal = (changeOption, attributeOption) => {
+  changeClass([accountBtn, searchBtn, filterBtn], changeOption, ['no-click']);
+  changeClass([availableRoomsView, userDashView], changeOption, [
+    'blur',
+    'no-click',
+  ]);
+  changeAttribute(
+    [filterBtn, accountBtn, searchBtn],
+    attributeOption,
+    'disabled',
+    true
+  );
+  changeAttribute(
+    availableRoomsView.querySelectorAll('button'),
+    attributeOption,
+    'disabled',
+    true
+  );
+  filterModal.classList.toggle('fade-in');
+  filterModal.classList.toggle('hidden');
 };
 
 const showDash = () => {
@@ -75,7 +73,7 @@ const showDash = () => {
 };
 
 const switchToHome = () => {
-  closeModal();
+  toggleModal('remove', 'removeAttribute');
   filterBtn.classList.remove('hidden');
   accountBtn.classList.remove('hidden');
   searchBtn.classList.add('hidden');
@@ -83,45 +81,79 @@ const switchToHome = () => {
   userDashView.classList.add('hidden');
 };
 
-const createSingleUserBookingHTML = (booking, rooms) => {
+const getAltText = (img) => {
+  const altOptions = {
+    residentialsuite:
+      'open floor plan hotel suite with an outdoor patio, ocean view and blue decor',
+    juniorsuite: 'modern hotel suite with an ocean view and small living room',
+    suite:
+      'breezy plant filled hotel suite with an ocean view and wicker decor',
+    singleroom:
+      'single hotel room with an ocean view, small desk, and comfortable chaise',
+  };
+
+  return altOptions[img];
+};
+
+const createCardInfo = (booking, rooms) => {
   const foundRoom = rooms.find((room) => room.number === booking.roomNumber);
-  console.log('foundRoom', foundRoom);
   const img = foundRoom.roomType.split(' ').join('').toLowerCase();
+  const alt = getAltText(img);
   const date = formatDate('US', booking.date);
   let plural = '';
   if (foundRoom.numBeds > 1) {
     plural = 's';
   }
+
+  return {
+    foundRoom,
+    img,
+    alt,
+    date,
+    plural,
+  };
+};
+
+const createSingleUserBookingHTML = (booking, rooms) => {
+  const info = createCardInfo(booking, rooms);
+
   return `
   <section class="single-room user-room">
-    <img class="room-img" src="./images/${img}.png" alt="breezy plant filled hotel suite with an ocean view and wicker decor">
+    <img class="room-img" src="./images/${info.img}.png" alt="${info.alt}">
     <div class="room-details">
-      <p class="rooom-number">Room Number: ${foundRoom.number}</p>
-      <p class="room-type">Room Type: ${foundRoom.roomType}</p>
-      <p class="room-beds">${foundRoom.numBeds} ${foundRoom.bedSize} sized bed${plural}</p>
-      <p class="booked-date">Date: ${date}</p>
+      <p class="rooom-number">Room Number: ${info.foundRoom.number}</p>
+      <p class="room-type">Room Type: ${info.foundRoom.roomType}</p>
+      <p class="room-beds">${info.foundRoom.numBeds} ${info.foundRoom.bedSize} sized bed${info.plural}</p>
+      <p class="booked-date">Date: ${info.date}</p>
     </div>
   </section>
 </section>`;
 };
 
-const addTitleToSections = () => [
-  userBookingSections.forEach(section => {
-    const formattedTitle = section.id.charAt(0).toUpperCase() + section.id.split('').slice(1).join('')
+const addTitleToSections = () => {
+  userBookingSections.forEach((section) => {
+    const formattedTitle =
+      section.id.charAt(0).toUpperCase() +
+      section.id.split('').slice(1).join('');
     section.innerHTML = `<p class="${section.id}-text">${formattedTitle} Bookings</p>`;
-  })
-]
+  });
+};
+
 const createUserBookingsHTML = (userBookings, rooms) => {
-  let sortedBookings = sortBookings(userBookings, Date.now())
+  let sortedBookings = sortBookings(userBookings, Date.now());
+  document.querySelector('.total-spent').innerText = `Total Spent: $${totalCost(
+    userBookings,
+    rooms
+  )}`;
   addTitleToSections();
-  document.querySelector('.total-spent').innerText = `Total Spent: $${totalCost(userBookings, rooms)}`
+
   userBookingSections.forEach((section) => {
     section.innerHTML += sortedBookings[section.id]
       .map((booking) => createSingleUserBookingHTML(booking, rooms))
       .join('');
   });
-  console.log('sorted', sortedBookings)
-  if(!sortedBookings.current.length) {
+
+  if (!sortedBookings.current.length) {
     currentBookings.innerHTML = '';
     currentBookings.classList.add('hidden');
   }
@@ -129,10 +161,9 @@ const createUserBookingsHTML = (userBookings, rooms) => {
 
 export {
   slideBudget,
-  openModal,
-  closeModal,
+  toggleModal,
   showDash,
   switchToHome,
   createUserBookingsHTML,
-  setCalendarDate
+  setCalendarDate,
 };
