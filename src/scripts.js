@@ -29,14 +29,15 @@ const searchBtn = document.querySelector('.search-btn');
 const filterModal = document.querySelector('.filter-modal');
 const availableRoomsView = document.querySelector('.available-rooms-view');
 const roomsShownText = document.querySelector('.rooms-shown-txt');
-const showRoomsBtn = document.querySelector('.filter-show-button')
+const showRoomsBtn = document.querySelector('.filter-show-button');
+const userDashView = document.querySelector('.user-dash-view')
 
 // EVENT LISTENERS
-window.addEventListener('load', () => {
-  getRoomsData();
-  getBookingsData();
-  // console.log(leftSlider, rightSlider)
-});
+// window.addEventListener('load', () => {
+//   getRoomsData();
+//   getBookingsData();
+//   // console.log(leftSlider, rightSlider)
+// });
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {
   console.log(input);
@@ -86,6 +87,7 @@ export {
   filterBtn,
   filterModal,
   availableRoomsView,
+  userDashView,
   accountBtn,
   searchBtn,
   roomsShownText,

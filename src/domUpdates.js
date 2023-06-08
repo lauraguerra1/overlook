@@ -7,6 +7,7 @@ import {
   accountBtn,
   searchBtn,
   roomsShownText,
+  userDashView,
 } from './scripts';
 
 const slideBudget = (e) => {
@@ -26,6 +27,7 @@ const openModal = () => {
   searchBtn.classList.add('no-click');
   filterBtn.classList.add('no-click');
   availableRoomsView.classList.add('blur', 'no-click');
+  userDashView.classList.add('blur', 'no-click');
   filterModal.classList.add('fade-in');
   filterModal.classList.remove('hidden');
 };
@@ -38,6 +40,7 @@ const closeModal = () => {
   searchBtn.classList.remove('no-click');
   filterBtn.classList.remove('no-click');
   availableRoomsView.classList.remove('blur', 'no-click');
+  userDashView.classList.remove('blur', 'no-click');
   filterModal.classList.remove('fade-in');
   filterModal.classList.add('hidden');
 };
@@ -46,7 +49,8 @@ const showDash = () => {
   filterBtn.classList.add('hidden');
   accountBtn.classList.add('hidden');
   searchBtn.classList.remove('hidden');
-  roomsShownText.innerText = `Your Bookings:`;
+  availableRoomsView.classList.add('hidden');
+  userDashView.classList.remove('hidden');
 };
 
 const switchToHome = () => {
@@ -54,7 +58,8 @@ const switchToHome = () => {
   filterBtn.classList.remove('hidden');
   accountBtn.classList.remove('hidden');
   searchBtn.classList.add('hidden');
-  roomsShownText.innerText = `Showing All Bookings:`;
+  availableRoomsView.classList.remove('hidden');
+  userDashView.classList.add('hidden')
 }
 
 export { slideBudget, openModal, closeModal, showDash, switchToHome };
