@@ -19,6 +19,9 @@ import './images/pool-side.png';
 import './images/singleroom.png';
 import './images/juniorsuite.png';
 import './images/residentialsuite.png';
+import './images/canopy.png'
+import './images/yoga-room.png'
+import './images/resort-area.png'
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#firstSlider');

@@ -322,6 +322,34 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
+/* ROOM MODAL */
+/* .room-modal {
+  display: grid;
+} */
+.room-modal-details {
+  /* justify-self: flex-start; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-description, .modal-cost-date {
+  font-family: Maven Pro;
+  text-align: center;
+}
+
+.modal-imgs {
+  overflow-x: auto;
+  max-width: 80%;
+  max-height: 60%;
+  display: flex;
+}
+
+.modal-imgs > img {
+  width: 50%;
+  height: 100%;
+}
+
 /* SCROLL BAR */
 .scrollbar {
   overflow-y: auto;
@@ -410,6 +438,10 @@ input[type="range"]::-moz-range-thumb {
   margin: 10%;
   text-align: center;
   padding: 0 auto;
+}
+
+.reserve-room-btn {
+  align-self: center;
 }
 
 .filter-show-button {
