@@ -15,6 +15,8 @@ import {
   
 } from './scripts';
 
+import { currentUser } from './apicalls';
+
 const setCalendarDate = () => {
   document
     .querySelector('#calendar')
@@ -23,11 +25,11 @@ const setCalendarDate = () => {
 
 const slideBudget = (e) => {
   const targets = {
-    firstSlider: leftBudgetValue,
-    secondSlider: rightBudgetValue,
+    min: leftBudgetValue,
+    max: rightBudgetValue,
   };
-
-  targets[e.target.id].innerText = e.target.value;
+  currentUser.budget[e.target.id] = e.target.value
+  targets[e.target.id].innerText = currentUser.budget[e.target.id];
 };
 
 const changeClass = (elements, change, classes) => {

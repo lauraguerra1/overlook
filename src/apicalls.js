@@ -49,4 +49,4 @@ const getUserBookings = getRoomsAndBookings(updateRoomsAndBookingsHTML)
 
 // }
 
-export { getUserBookings, filterRooms }
+export { getUserBookings, filterRooms, currentUser }

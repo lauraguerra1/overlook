@@ -3,6 +3,7 @@ import './css/styles.css';
 import {
   filterRooms,
   getUserBookings,
+  currentUser
 } from './apicalls';
 
 import {
@@ -13,7 +14,7 @@ import {
   setCalendarDate
 } from './domUpdates';
 
-import { getAvailableRooms } from './rooms';
+import { filterRoomsByPrice, getAvailableRooms } from './rooms';
 
 //IMAGES
 import './images/suite.png';
@@ -28,8 +29,8 @@ import './images/resort-area.png'
 import { getDateValue } from './dates';
 
 //GLOBAL VARIABLES
-const leftSlider = document.querySelector('#firstSlider');
-const rightSlider = document.querySelector('#secondSlider');
+const leftSlider = document.querySelector('#min');
+const rightSlider = document.querySelector('#max');
 const leftBudgetValue = document.querySelector('.value1');
 const rightBudgetValue = document.querySelector('.value2');
 const filterCloseBtn = document.querySelector('.close-btn-1');
@@ -68,9 +69,9 @@ const updateCurrentUser = (user) => {
 const updateAvailableRooms = (data) => {
   console.log('calendar date', calendar.value)
     const date = getDateValue(calendar.value)
-    // console.log('calendar date', calendar.value)
-    const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, date)
-    return roomsByDate
+    const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, date);
+    const roomsByPrice = filterRoomsByPrice(roomsByDate, currentUser.budget.min, currentUser.budget.max)
+    return roomsByPrice
     //add handling for price and type 
  
 }
@@ -105,13 +106,7 @@ accountBtn.addEventListener('click', showDash);
 
 showRoomsBtn.addEventListener('click', () => {
   if (calendar.value) {
-
     filterRooms()
-    // const calendar = document.querySelector('#calendar')
-    // if(calendar.value) {
-    //   console.log(calendar.valueAsNumber)
-  
-    // }
     switchToHome()
   } else {
     console.log('calendar has no value')
