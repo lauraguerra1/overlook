@@ -14,7 +14,7 @@ import {
   setCalendarDate
 } from './domUpdates';
 
-import { filterRoomsByPrice, getAvailableRooms } from './rooms';
+import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
 
 //IMAGES
 import './images/suite.png';
@@ -52,28 +52,30 @@ const filterAndSearchBtns = Array.from([filterBtn, searchBtn]);
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
 const modalImgs = document.querySelector('.modal-imgs');
-const calendar = document.querySelector('#calendar')
+const calendar = document.querySelector('#calendar');
 
 //DATA MODEL 
 // let currentUser = {id: 50};
 
 // FUNCTIONS
-const updateCurrentUser = (user) => {
-  currentUser = user;
-  currentUser.budget = {
-    min: 150, 
-    max: 500
-  }
-}
+// const updateCurrentUser = (user) => {
+//   currentUser = user;
+//   currentUser.budget = {
+//     min: 150, 
+//     max: 500
+//   }
+// }
 
 const updateAvailableRooms = (data) => {
-  console.log('calendar date', calendar.value)
-    const date = getDateValue(calendar.value)
-    const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, date);
-    const roomsByPrice = filterRoomsByPrice(roomsByDate, currentUser.budget.min, currentUser.budget.max)
+  const roomType = document.querySelector('#roomTypes')
+  const date = getDateValue(calendar.value)
+  const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, date);
+  const roomsByPrice = filterRoomsByPrice(roomsByDate, currentUser.budget.min, currentUser.budget.max)
+  if(roomType.value !== 'allRooms') {
+    return filterRoomsByType(roomsByPrice, roomType.value)
+  } else {
     return roomsByPrice
-    //add handling for price and type 
- 
+  }
 }
 // EVENT LISTENERS
 window.addEventListener('load', () => {
