@@ -70,13 +70,10 @@ const switchToHome = () => {
 
 const getAltText = (img) => {
   const altOptions = {
-    residentialsuite:
-      'open floor plan hotel suite with an outdoor patio, ocean view and blue decor',
+    residentialsuite:'open floor plan hotel suite with an outdoor patio, ocean view and blue decor',
     juniorsuite: 'modern hotel suite with an ocean view and small living room',
-    suite:
-      'breezy plant filled hotel suite with an ocean view and wicker decor',
-    singleroom:
-      'single hotel room with an ocean view, small desk, and comfortable chaise',
+    suite:'breezy plant filled hotel suite with an ocean view and wicker decor',
+    singleroom:'single hotel room with an ocean view, small desk, and comfortable chaise',
   };
 
   return altOptions[img];
@@ -94,6 +91,35 @@ const createCardInfo = (booking, rooms) => {
 
   return { foundRoom, img, alt, date, plural };
 };
+
+const createSingleRoomInfo = room => {
+  const img = room.roomType.split(' ').join('').toLowerCase();
+  const alt = getAltText(img);
+  let plural = '';
+  if (room.numBeds > 1) {
+    plural = 's';
+  }
+
+  return { img, alt, plural }
+}
+
+const createSingleRoomHTML = (room) => {
+  const info = createSingleRoomInfo(room);
+
+  return `
+  <section class="single-room" id:"${room.number}">
+    <img class="room-img" src="./images/${info.img}.png" alt="${info.alt}">
+    <div class="room-details">
+      <p class="rooom-number">Room Number: ${room.number}</p>
+      <p class="room-type">Room Type: ${room.roomType}</p>
+      <p class="room-cost">Cost Per Night: $${room.costPerNight}</p>
+      <p class="room-beds">${room.numBeds} ${room.bedSize} sized bed${info.plural}</p>
+    </div>
+    <button class="btn booking-btn">
+      Book Now
+    </button>
+  </section>`;
+}
 
 const createSingleUserBookingHTML = (booking, rooms) => {
   const info = createCardInfo(booking, rooms);
@@ -137,11 +163,18 @@ const createUserBookingsHTML = (userBookings, rooms) => {
   }
 };
 
+const createAvailableRoomsHTML = rooms => {
+  availableRoomsView.innerHTML = `<p class="rooms-shown-txt">Showing <span class="rooms-avail-amt">${rooms.length}</span> Available Rooms:</p>`
+  rooms.forEach(room => {
+    availableRoomsView.innerHTML += createSingleRoomHTML(room);
+  })
+}
 export {
   slideBudget,
   toggleModal,
   showDash,
   switchToHome,
   createUserBookingsHTML,
+  createAvailableRoomsHTML,
   setCalendarDate,
 };
