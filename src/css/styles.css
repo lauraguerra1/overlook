@@ -338,10 +338,14 @@ input[type="range"]::-moz-range-thumb {
   text-align: center;
 }
 
+.modal-description-wrapper {
+  min-height: 20%;
+}
+
 .modal-imgs {
   overflow-x: auto;
   /* max-width: 80%; */
-  /* max-height: 60%; */
+  max-height: 100%;
   display: flex;
 }
 
@@ -349,6 +353,10 @@ input[type="range"]::-moz-range-thumb {
   width: 50%;
   min-height: 100%;
   margin-right: 5%;
+}
+
+#lastImg {
+  margin: 0 auto;
 }
 
 .arrows {
@@ -589,3 +597,9 @@ input[type="range"]::-moz-range-thumb {
     margin: 1%;
   }
 }
+/* 
+@media screen and (max-height: 650px) {
+  .img-slide-wrapper {
+    max-height: 40%;
+  }
+} */

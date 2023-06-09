@@ -20,7 +20,7 @@
     </div>
   </header>
   <main>
-    <div class="landing-page-container main-container hidden">
+    <div class="landing-page-container main-container hidden ">
       <div class="landing-page-view content-box"> 
         <img class="bg-img" src="./images/pool-side.png" alt="pool side resort">
         <section class="initial-content-container">
@@ -42,7 +42,7 @@
         </section>
       </div> 
     </div>
-    <div class="available-rooms-container main-container">
+    <div class="available-rooms-container main-container ">
       <nav>
         <button class="btn nav-btn search-btn hidden">
           <div class="material-icons icon">
@@ -252,17 +252,21 @@
           <!-- <h1 class="modal-heading room-modal-heading">YOU'RE BOOKING OUR</h1> -->
         </div>
         <div class="room-modal-details">
-          <p class="modal-description">Residential Suite with 1 King Bed</p>
-          <p class="modal-cost-date">Cost per night: $356.75 | Selected Date: 06/08/2023</p>
+          <div class="modal-description-wrapper">
+            <p class="modal-description">Residential Suite with 1 King Bed</p>
+            <p class="modal-cost-date">Cost per night: $356.75 | Selected Date: 06/08/2023</p>
+          </div>
+          <!-- <p class="modal-description">Residential Suite with 1 King Bed</p>
+          <p class="modal-cost-date">Cost per night: $356.75 | Selected Date: 06/08/2023</p> -->
           <div class="img-slide-wrapper">
             <button class="arrows left-arrow material-icons">
               chevron_left
             </button>
-            <section class="modal-imgs">
+            <section class="modal-imgs scrollbar">
               <img class="modal-room-img" src="./images/residentialsuite.png" alt="open floor plan hotel suite with an outdoor patio, ocean view and blue decor">
               <img src="./images/yoga-room.png">
               <img src="./images/canopy.png">
-              <img src="./images/resort-area.png">
+              <img id="lastImg" src="./images/resort-area.png">
             </section>
             <button class="arrows right-arrow material-icons">
               chevron_right
