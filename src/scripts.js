@@ -25,11 +25,13 @@ const leftSlider = document.querySelector('#firstSlider');
 const rightSlider = document.querySelector('#secondSlider');
 const leftBudgetValue = document.querySelector('.value1');
 const rightBudgetValue = document.querySelector('.value2');
-const closeBtn = document.querySelector('.close-btn');
+const filterCloseBtn = document.querySelector('.close-btn-1');
+const roomCloseBtn = document.querySelector('.close-btn-2');
 const filterBtn = document.querySelector('.filter-button');
 const accountBtn = document.querySelector('.account-btn');
 const searchBtn = document.querySelector('.search-btn');
 const filterModal = document.querySelector('.filter-modal');
+const roomModal = document.querySelector('.room-modal')
 const availableRoomsView = document.querySelector('.available-rooms-view');
 const roomsShownText = document.querySelector('.rooms-shown-txt');
 const showRoomsBtn = document.querySelector('.filter-show-button');
@@ -54,23 +56,33 @@ Array.from([leftSlider, rightSlider]).forEach((input) => {
 
 filterAndSearchBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    toggleModal('add', 'setAttribute');
+    toggleModal(filterModal, 'add', 'setAttribute');
   });
 
   btn.addEventListener('keyup', (e) => {
     if (e.key === 'Enter') {
-      toggleModal('add', 'setAttribute');
+      toggleModal(filterModal, 'add', 'setAttribute');
     }
   });
 })
 
-closeBtn.addEventListener('click', () => {
-  toggleModal('remove', 'removeAttribute');
+filterCloseBtn.addEventListener('click', () => {
+  toggleModal(filterModal, 'remove', 'removeAttribute');
 });
 
-closeBtn.addEventListener('keyup', (e) => {
+filterCloseBtn.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
-    toggleModal('remove', 'removeAttribute');
+    toggleModal(filterModal, 'remove', 'removeAttribute');
+  }
+});
+
+roomCloseBtn.addEventListener('click', () => {
+  toggleModal(roomModal, 'remove', 'removeAttribute');
+});
+
+roomCloseBtn.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    toggleModal(roomModal, 'remove', 'removeAttribute');
   }
 });
 
@@ -87,6 +99,12 @@ showRoomsBtn.addEventListener('keyup', (e) => {
     switchToHome();
   }
 });
+
+availableRoomsView.addEventListener('click', (e) => {
+  if(e.target.classList.contains('booking-btn')) {
+    toggleModal(roomModal, 'add', 'setAttribute')
+  }
+})
 
 export {
   leftBudgetValue,

@@ -41,7 +41,7 @@ h1 > span {
   letter-spacing: -0.2em;
 }
 
-h2, .filter-heading {
+h2, .modal-heading {
   font-family: 'Maven Pro', sans-serif;
   font-size: large;
   letter-spacing: 0.1em;
@@ -210,7 +210,7 @@ input {
 }
 
 /* FILTER MODAL */
-.filter-modal {
+.modal {
   position: absolute;
   min-height: fit-content; 
   height: 70%;
@@ -223,7 +223,7 @@ input {
   align-items: center;
 }
 
-.filter-modal-top {
+.modal-top {
   display: flex; 
   width: 98%;
   margin-top: 1%;

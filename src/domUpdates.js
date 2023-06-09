@@ -42,13 +42,13 @@ const changeAttribute = (elements, change, attribute, boolean) => {
   });
 };
 
-const toggleModal = (changeOption, attributeOption) => {
+const toggleModal = (modal, changeOption, attributeOption) => {
   changeClass([accountBtn, searchBtn, filterBtn], changeOption, ['no-click']);
   changeClass([availableRoomsView, userDashView], changeOption, ['blur', 'no-click',]);
   changeAttribute([filterBtn, accountBtn, searchBtn], attributeOption, 'disabled', true);
-  changeAttribute(availableRoomsView.querySelectorAll('button'), attributeOption, 'disabled', true);
-  filterModal.classList.toggle('fade-in');
-  filterModal.classList.toggle('hidden');
+  changeAttribute(availableRoomsView.querySelectorAll('booking-btn'), attributeOption, 'disabled', true);
+  modal.classList.toggle('fade-in');
+  modal.classList.toggle('hidden');
 };
 
 const showDash = () => {
@@ -60,7 +60,7 @@ const showDash = () => {
 };
 
 const switchToHome = () => {
-  toggleModal('remove', 'removeAttribute');
+  toggleModal(filterModal, 'remove', 'removeAttribute');
   filterBtn.classList.remove('hidden');
   accountBtn.classList.remove('hidden');
   searchBtn.classList.add('hidden');
