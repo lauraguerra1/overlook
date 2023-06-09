@@ -11,6 +11,8 @@ import {
   userDashView,
   userBookingSections,
   currentBookings,
+  updateAvailableRooms,
+  
 } from './scripts';
 
 const setCalendarDate = () => {
@@ -181,6 +183,14 @@ const createAvailableRoomsHTML = rooms => {
     availableRoomsView.innerHTML += createSingleRoomHTML(room);
   })
 }
+
+const updateAvailableRoomsHTML = (data) => {
+ 
+  const availableRooms = updateAvailableRooms(data);
+  createAvailableRoomsHTML(availableRooms)
+
+}
+
 export {
   slideBudget,
   toggleModal,
@@ -189,4 +199,5 @@ export {
   createUserBookingsHTML,
   createAvailableRoomsHTML,
   setCalendarDate,
+  updateAvailableRoomsHTML
 };

@@ -1,5 +1,5 @@
 const getDateValue = (date) => {
-  const dateValues = date.split('/');
+  const dateValues = date.split(/[/-]/);
   const fullDate = new Date(
     dateValues[0],
     dateValues[1] - 1,

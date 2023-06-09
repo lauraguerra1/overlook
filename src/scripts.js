@@ -1,6 +1,7 @@
 // IMPORTS
 import './css/styles.css';
 import {
+  filterRooms,
   getUserBookings,
 } from './apicalls';
 
@@ -12,6 +13,8 @@ import {
   setCalendarDate
 } from './domUpdates';
 
+import { getAvailableRooms } from './rooms';
+
 //IMAGES
 import './images/suite.png';
 import './images/lotus-logo-b.png';
@@ -22,6 +25,7 @@ import './images/residentialsuite.png';
 import './images/canopy.png'
 import './images/yoga-room.png'
 import './images/resort-area.png'
+import { getDateValue } from './dates';
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#firstSlider');
@@ -46,13 +50,36 @@ const userBookingSections = Array.from([upcomingBookings, pastBookings, currentB
 const filterAndSearchBtns = Array.from([filterBtn, searchBtn]);
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
-const modalImgs = document.querySelector('.modal-imgs')
+const modalImgs = document.querySelector('.modal-imgs');
+const calendar = document.querySelector('#calendar')
 
+//DATA MODEL 
+// let currentUser = {id: 50};
+
+// FUNCTIONS
+const updateCurrentUser = (user) => {
+  currentUser = user;
+  currentUser.budget = {
+    min: 150, 
+    max: 500
+  }
+}
+
+const updateAvailableRooms = (data) => {
+  console.log('calendar date', calendar.value)
+    const date = getDateValue(calendar.value)
+    // console.log('calendar date', calendar.value)
+    const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, date)
+    return roomsByDate
+    //add handling for price and type 
+ 
+}
 // EVENT LISTENERS
 window.addEventListener('load', () => {
   setCalendarDate()
-  getUserBookings(50);
+  getUserBookings();
 });
+
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {
   input.addEventListener('input', (e) => {
@@ -64,45 +91,30 @@ filterAndSearchBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     toggleModal(filterModal, 'add', 'setAttribute');
   });
-
-  // btn.addEventListener('keyup', (e) => {
-  //   if (e.key === 'Enter') {
-  //     toggleModal(filterModal, 'add', 'setAttribute');
-  //   }
-  // });
 })
 
 filterCloseBtn.addEventListener('click', () => {
   toggleModal(filterModal, 'remove', 'removeAttribute');
 });
 
-// filterCloseBtn.addEventListener('keyup', (e) => {
-//   if (e.key === 'Enter') {
-//     toggleModal(filterModal, 'remove', 'removeAttribute');
-//   }
-// });
-
 roomCloseBtn.addEventListener('click', () => {
   toggleModal(roomModal, 'remove', 'removeAttribute');
 });
 
-// roomCloseBtn.addEventListener('keyup', (e) => {
-//   if (e.key === 'Enter') {
-//     toggleModal(roomModal, 'remove', 'removeAttribute');
-//   }
-// });
-
 accountBtn.addEventListener('click', showDash);
-// accountBtn.addEventListener('keyup', (e) => {
-//   if (e.key === 'Enter') {
-//     showDash();
-//   }
-// });
 
-showRoomsBtn.addEventListener('click', switchToHome);
-showRoomsBtn.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    switchToHome();
+showRoomsBtn.addEventListener('click', () => {
+  if (calendar.value) {
+
+    filterRooms()
+    // const calendar = document.querySelector('#calendar')
+    // if(calendar.value) {
+    //   console.log(calendar.valueAsNumber)
+  
+    // }
+    switchToHome()
+  } else {
+    console.log('calendar has no value')
   }
 });
 
@@ -159,5 +171,8 @@ export {
   searchBtn,
   roomsShownText,
   userBookingSections,
-  currentBookings
+  currentBookings,
+  updateAvailableRooms,
+  
+  // currentUser
 };
