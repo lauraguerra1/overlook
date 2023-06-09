@@ -65,39 +65,39 @@ filterAndSearchBtns.forEach(btn => {
     toggleModal(filterModal, 'add', 'setAttribute');
   });
 
-  btn.addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
-      toggleModal(filterModal, 'add', 'setAttribute');
-    }
-  });
+  // btn.addEventListener('keyup', (e) => {
+  //   if (e.key === 'Enter') {
+  //     toggleModal(filterModal, 'add', 'setAttribute');
+  //   }
+  // });
 })
 
 filterCloseBtn.addEventListener('click', () => {
   toggleModal(filterModal, 'remove', 'removeAttribute');
 });
 
-filterCloseBtn.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    toggleModal(filterModal, 'remove', 'removeAttribute');
-  }
-});
+// filterCloseBtn.addEventListener('keyup', (e) => {
+//   if (e.key === 'Enter') {
+//     toggleModal(filterModal, 'remove', 'removeAttribute');
+//   }
+// });
 
 roomCloseBtn.addEventListener('click', () => {
   toggleModal(roomModal, 'remove', 'removeAttribute');
 });
 
-roomCloseBtn.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    toggleModal(roomModal, 'remove', 'removeAttribute');
-  }
-});
+// roomCloseBtn.addEventListener('keyup', (e) => {
+//   if (e.key === 'Enter') {
+//     toggleModal(roomModal, 'remove', 'removeAttribute');
+//   }
+// });
 
 accountBtn.addEventListener('click', showDash);
-accountBtn.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    showDash();
-  }
-});
+// accountBtn.addEventListener('keyup', (e) => {
+//   if (e.key === 'Enter') {
+//     showDash();
+//   }
+// });
 
 showRoomsBtn.addEventListener('click', switchToHome);
 showRoomsBtn.addEventListener('keyup', (e) => {

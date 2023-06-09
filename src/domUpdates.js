@@ -1,4 +1,4 @@
-import { totalCost, sortBookings } from './bookings';
+import { totalCost, sortBookings, sortSections } from './bookings';
 import { formatDate } from './dates';
 import {
   leftBudgetValue,
@@ -112,7 +112,7 @@ const createSingleRoomHTML = (room) => {
     <div class="room-details">
       <p class="rooom-number">Room Number: ${room.number}</p>
       <p class="room-type">Room Type: ${room.roomType}</p>
-      <p class="room-cost">Cost Per Night: $${room.costPerNight}</p>
+      <p class="room-cost">Cost Per Night: $${room.costPerNight.toFixed(2)}</p>
       <p class="room-beds">${room.numBeds} ${room.bedSize} sized bed${info.plural}</p>
     </div>
     <button class="btn booking-btn">
@@ -145,9 +145,21 @@ const addTitleToSections = () => {
     section.innerHTML = `<p class="${section.id}-text">${formattedTitle} Bookings</p>`;
   });
 };
+// const sortSections = (userBookings, currentDate) => {
+//   return Object.keys(userBookings).reduce((bookings, curr) => {
+//     const newBookings = sortBookingsByDate(userBookings[curr], currentDate)
+//     if (curr === 'past') {
+//       newBookings.reverse()
+//     }
+//     bookings[curr] = newBookings
+//     return bookings
+//   }, {})
+// }
 
 const createUserBookingsHTML = (userBookings, rooms) => {
-  let sortedBookings = sortBookings(userBookings, Date.now());
+  let separatedBookings = sortBookings(userBookings, Date.now());
+  const sortedBookings = sortSections(separatedBookings, Date.now());
+
   document.querySelector('.total-spent').innerText = `Total Spent: $${totalCost(userBookings,rooms)}`;
   addTitleToSections();
 

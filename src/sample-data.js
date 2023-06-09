@@ -1,4 +1,30 @@
 const sampleData = {
+  simpleBookings: [
+    {
+      "date": "2023/06/08",
+      "roomNumber": 1
+      },
+      {
+      "date": "2023/12/24",
+      "roomNumber": 2
+      },
+      {
+      "date": "2022/01/10",
+      "roomNumber": 3
+      },
+      {
+      "date": "2022/02/16",
+      "roomNumber": 4
+      },
+      {
+      "date": "2022/02/05",
+      "roomNumber": 5
+      },
+      {
+      "date": "2023/08/14",
+      "roomNumber": 6
+      }, 
+  ],
   bookings: [
     {
     "id": "5fwrgu4i7k55hl6sz",
@@ -35,7 +61,7 @@ const sampleData = {
     "userID": 38,
     "date": "2023/12/14",
     "roomNumber": 6
-    }
+    }, 
   ],
   rooms: [
     {
@@ -85,7 +111,8 @@ const sampleData = {
     "bedSize": "queen",
     "numBeds": 1,
     "costPerNight": 397.02
-    }]
+    }
+  ]
 }
 
 export {sampleData}
