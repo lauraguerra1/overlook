@@ -44,6 +44,9 @@ const pastBookings = document.querySelector('.past-bookings');
 const currentBookings = document.querySelector('.current-bookings');
 const userBookingSections = Array.from([upcomingBookings, pastBookings, currentBookings])
 const filterAndSearchBtns = Array.from([filterBtn, searchBtn]);
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
+const modalImgs = document.querySelector('.modal-imgs')
 
 // EVENT LISTENERS
 window.addEventListener('load', () => {
@@ -106,6 +109,42 @@ showRoomsBtn.addEventListener('keyup', (e) => {
 availableRoomsView.addEventListener('click', (e) => {
   if(e.target.classList.contains('booking-btn')) {
     toggleModal(roomModal, 'add', 'setAttribute')
+  }
+})
+
+leftArrow.addEventListener('click', () => {
+  modalImgs.scrollBy({
+    top: 0,
+    left: -200,
+    behavior: "smooth",
+  })
+})
+
+leftArrow.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    modalImgs.scrollBy({
+      top: 0,
+      left: -200,
+      behavior: "smooth",
+    })
+  }
+})
+
+rightArrow.addEventListener('click', () => {
+  modalImgs.scrollBy({
+    top: 0,
+    left: 200,
+    behavior: "smooth",
+  })
+})
+
+rightArrow.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    modalImgs.scrollBy({
+      top: 0,
+      left: 200,
+      behavior: "smooth",
+    })
   }
 })
 

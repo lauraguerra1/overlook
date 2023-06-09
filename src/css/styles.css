@@ -340,14 +340,27 @@ input[type="range"]::-moz-range-thumb {
 
 .modal-imgs {
   overflow-x: auto;
-  max-width: 80%;
-  max-height: 60%;
+  /* max-width: 80%; */
+  /* max-height: 60%; */
   display: flex;
 }
 
 .modal-imgs > img {
   width: 50%;
-  height: 100%;
+  min-height: 100%;
+  margin-right: 5%;
+}
+
+.arrows {
+  background-color: #00000000;
+  border: none;
+}
+
+.img-slide-wrapper {
+  display: flex;
+  align-items: center;
+  max-width: 90%;
+  max-height: 60%;
 }
 
 /* SCROLL BAR */

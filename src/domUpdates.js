@@ -46,7 +46,7 @@ const toggleModal = (modal, changeOption, attributeOption) => {
   changeClass([accountBtn, searchBtn, filterBtn], changeOption, ['no-click']);
   changeClass([availableRoomsView, userDashView], changeOption, ['blur', 'no-click',]);
   changeAttribute([filterBtn, accountBtn, searchBtn], attributeOption, 'disabled', true);
-  changeAttribute(availableRoomsView.querySelectorAll('booking-btn'), attributeOption, 'disabled', true);
+  changeAttribute(availableRoomsView.querySelectorAll('.booking-btn'), attributeOption, 'disabled', true);
   modal.classList.toggle('fade-in');
   modal.classList.toggle('hidden');
 };
