@@ -323,9 +323,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 /* ROOM MODAL */
-/* .room-modal {
-  display: grid;
-} */
+
 .room-modal-details {
   /* justify-self: flex-start; */
   display: flex;
@@ -532,6 +530,10 @@ input[type="range"]::-moz-range-thumb {
 
 .hidden {
   display: none;
+}
+
+.error {
+  color: red;
 }
 
 /* MEDIA QUERIES */

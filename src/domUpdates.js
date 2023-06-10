@@ -1,5 +1,5 @@
 import { totalCost, sortBookings, sortSections } from './bookings';
-import { formatDate } from './dates';
+import { formatDate, checkDateValidity } from './dates';
 import {
   leftBudgetValue,
   rightBudgetValue,
@@ -12,16 +12,24 @@ import {
   userBookingSections,
   currentBookings,
   updateAvailableRooms,
-  
+  calendar,
+  dateError
 } from './scripts';
 
-import { currentUser } from './apicalls';
+import { currentUser, filterRooms } from './apicalls';
 
 const setCalendarDate = () => {
   document
     .querySelector('#calendar')
     .setAttribute('min', formatDate('calendar', Date.now()));
 };
+
+const removeDateError = () => {
+  if(checkDateValidity(Date.now(), calendar.value)) {
+    changeClass([calendar], 'remove', ['error']);
+    changeClass([dateError], 'add', ['hidden']);
+  }
+}
 
 const slideBudget = (e) => {
   const targets = {
@@ -72,6 +80,16 @@ const switchToHome = () => {
   userDashView.classList.add('hidden');
 };
 
+const closeFilterModal = () => {
+  if (calendar.value && checkDateValidity(Date.now(), calendar.value)) {
+    filterRooms()
+    switchToHome()
+  } else {
+    dateError.classList.remove('hidden')
+    calendar.classList.add('error')
+  }
+}
+
 const getAltText = (img) => {
   const altOptions = {
     residentialsuite:'open floor plan hotel suite with an outdoor patio, ocean view and blue decor',
@@ -83,35 +101,47 @@ const getAltText = (img) => {
   return altOptions[img];
 };
 
-const createCardInfo = (booking, rooms) => {
+const createCardInfo = (booking, rooms, i, array) => {
   const foundRoom = rooms.find((room) => room.number === booking.roomNumber);
   const img = foundRoom.roomType.split(' ').join('').toLowerCase();
   const alt = getAltText(img);
   const date = formatDate('US', booking.date);
   let plural = '';
+  let roomLast = ''; 
+
   if (foundRoom.numBeds > 1) {
     plural = 's';
   }
 
-  return { foundRoom, img, alt, date, plural };
+  if(i === array.length - 1) {
+    roomLast = 'last-room'
+  }
+
+  return { foundRoom, img, alt, date, plural, roomLast};
 };
 
-const createSingleRoomInfo = room => {
+const createSingleRoomInfo = (room, i, array) => {
   const img = room.roomType.split(' ').join('').toLowerCase();
   const alt = getAltText(img);
   let plural = '';
+  let roomLast = '';
+
   if (room.numBeds > 1) {
     plural = 's';
   }
 
-  return { img, alt, plural }
+  if(i === array.length - 1) {
+    roomLast = 'last-room'
+  }
+
+  return { img, alt, plural, roomLast }
 }
 
-const createSingleRoomHTML = (room) => {
-  const info = createSingleRoomInfo(room);
+const createSingleRoomHTML = (room, i, array) => {
+  const info = createSingleRoomInfo(room, i, array);
 
   return `
-  <section class="single-room" id:"${room.number}">
+  <section class="single-room ${info.roomLast}" id:"${room.number}">
     <img class="room-img" src="./images/${info.img}.png" alt="${info.alt}">
     <div class="room-details">
       <p class="rooom-number">Room Number: ${room.number}</p>
@@ -125,11 +155,11 @@ const createSingleRoomHTML = (room) => {
   </section>`;
 }
 
-const createSingleUserBookingHTML = (booking, rooms) => {
-  const info = createCardInfo(booking, rooms);
+const createSingleUserBookingHTML = (booking, rooms, i, array) => {
+  const info = createCardInfo(booking, rooms, i, array);
 
   return `
-  <section class="single-room user-room">
+  <section class="single-room user-room ${info.roomLast}">
     <img class="room-img" src="./images/${info.img}.png" alt="${info.alt}">
     <div class="room-details">
       <p class="rooom-number">Room Number: ${info.foundRoom.number}</p>
@@ -159,7 +189,7 @@ const createUserBookingsHTML = (userBookings, rooms) => {
 
   userBookingSections.forEach((section) => {
     section.innerHTML += sortedBookings[section.id]
-      .map((booking) => createSingleUserBookingHTML(booking, rooms))
+      .map((booking, i, array) => createSingleUserBookingHTML(booking, rooms, i, array))
       .join('');
   });
 
@@ -171,8 +201,8 @@ const createUserBookingsHTML = (userBookings, rooms) => {
 
 const createAvailableRoomsHTML = rooms => {
   availableRoomsView.innerHTML = `<p class="rooms-shown-txt">Showing <span class="rooms-avail-amt">${rooms.length}</span> Available Rooms:</p>`
-  rooms.forEach(room => {
-    availableRoomsView.innerHTML += createSingleRoomHTML(room);
+  rooms.forEach((room, i, array) => {
+    availableRoomsView.innerHTML += createSingleRoomHTML(room, i, array);
   })
 }
 
@@ -196,5 +226,7 @@ export {
   createAvailableRoomsHTML,
   setCalendarDate,
   updateAvailableRoomsHTML,
-  updateBookingsHTML
+  updateBookingsHTML,
+  removeDateError,
+  closeFilterModal
 };

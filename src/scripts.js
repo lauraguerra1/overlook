@@ -11,7 +11,9 @@ import {
   toggleModal,
   showDash,
   switchToHome,
-  setCalendarDate
+  setCalendarDate,
+  removeDateError,
+  closeFilterModal
 } from './domUpdates';
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
@@ -26,7 +28,7 @@ import './images/residentialsuite.png';
 import './images/canopy.png'
 import './images/yoga-room.png'
 import './images/resort-area.png'
-import { getDateValue } from './dates';
+import { checkDateValidity, getDateValue } from './dates';
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#min');
@@ -53,6 +55,7 @@ const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
 const modalImgs = document.querySelector('.modal-imgs');
 const calendar = document.querySelector('#calendar');
+const dateError = document.querySelector('.date-error-msg');
 
 //DATA MODEL 
 // let currentUser = {id: 50};
@@ -106,14 +109,9 @@ roomCloseBtn.addEventListener('click', () => {
 
 accountBtn.addEventListener('click', showDash);
 
-showRoomsBtn.addEventListener('click', () => {
-  if (calendar.value) {
-    filterRooms()
-    switchToHome()
-  } else {
-    console.log('calendar has no value')
-  }
-});
+calendar.addEventListener('input', removeDateError);
+
+showRoomsBtn.addEventListener('click', closeFilterModal);
 
 availableRoomsView.addEventListener('click', (e) => {
   if(e.target.classList.contains('booking-btn')) {
@@ -170,6 +168,7 @@ export {
   userBookingSections,
   currentBookings,
   updateAvailableRooms,
-  
+  calendar,
+  dateError
   // currentUser
 };
