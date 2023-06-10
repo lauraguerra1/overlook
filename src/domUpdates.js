@@ -13,7 +13,8 @@ import {
   currentBookings,
   updateAvailableRooms,
   calendar,
-  dateError
+  dateError,
+  noResultsView
 } from './scripts';
 
 import { currentUser, filterRooms } from './apicalls';
@@ -194,10 +195,15 @@ const createUserBookingsHTML = (userBookings, rooms) => {
 };
 
 const createAvailableRoomsHTML = rooms => {
-  availableRoomsView.innerHTML = `<p class="rooms-shown-txt">Showing <span class="rooms-avail-amt">${rooms.length}</span> Available Rooms:</p>`
-  rooms.forEach((room, i, array) => {
-    availableRoomsView.innerHTML += createSingleRoomHTML(room, i, array);
-  })
+  if(rooms.length) {
+    availableRoomsView.innerHTML = `<p class="rooms-shown-txt">Showing <span class="rooms-avail-amt">${rooms.length}</span> Available Rooms:</p>`
+    rooms.forEach((room, i, array) => {
+      availableRoomsView.innerHTML += createSingleRoomHTML(room, i, array);
+    })
+  } else {
+    availableRoomsView.classList.add('hidden')
+    noResultsView.classList.remove('hidden')
+  }
 }
 
 const updateAvailableRoomsHTML = (data) => {

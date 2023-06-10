@@ -28,6 +28,7 @@ import './images/residentialsuite.png';
 import './images/canopy.png'
 import './images/yoga-room.png'
 import './images/resort-area.png'
+import './images/no-results.png'
 import { checkDateValidity, getDateValue } from './dates';
 
 //GLOBAL VARIABLES
@@ -56,6 +57,7 @@ const rightArrow = document.querySelector('.right-arrow');
 const modalImgs = document.querySelector('.modal-imgs');
 const calendar = document.querySelector('#calendar');
 const dateError = document.querySelector('.date-error-msg');
+const noResultsView = document.querySelector('.no-results-view')
 
 //DATA MODEL 
 // let currentUser = {id: 50};
@@ -169,6 +171,7 @@ export {
   currentBookings,
   updateAvailableRooms,
   calendar,
-  dateError
+  dateError,
+  noResultsView
   // currentUser
 };
