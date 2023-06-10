@@ -1,26 +1,29 @@
 // IMPORTS
 import './css/styles.css';
 import {
-  filterRooms,
   getUserBookings,
-  currentUser
+  currentUser,
+  loadRooms
 } from './apicalls';
 
 import {
   slideBudget,
   toggleModal,
   showDash,
-  switchToHome,
   setCalendarDate,
   removeDateError,
-  closeFilterModal
+  closeFilterModal,
+  updateSelectedRoom,
+  updateRoomModal
 } from './domUpdates';
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
 
+import { getDateValue } from './dates';
+
 //IMAGES
 import './images/suite.png';
-import './images/lotus-logo-b.png';
+import './images/lotus-logo.png';
 import './images/pool-side.png';
 import './images/singleroom.png';
 import './images/juniorsuite.png';
@@ -29,7 +32,6 @@ import './images/canopy.png'
 import './images/yoga-room.png'
 import './images/resort-area.png'
 import './images/no-results.png'
-import { checkDateValidity, getDateValue } from './dates';
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#min');
@@ -71,10 +73,18 @@ const noResultsView = document.querySelector('.no-results-view')
 //   }
 // }
 
+// let allRooms = [];
+// const loadRooms = () => {
+//   fetchAPI('rooms')
+//     .then(data => {
+//       allRooms = data.rooms
+//     })
+// }
+
 const updateAvailableRooms = (data) => {
   const roomType = document.querySelector('#roomTypes')
-  const date = getDateValue(calendar.value)
-  const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, date);
+  currentUser.selectedDate = getDateValue(calendar.value)
+  const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, currentUser.selectedDate);
   const roomsByPrice = filterRoomsByPrice(roomsByDate, currentUser.budget.min, currentUser.budget.max)
   if(roomType.value !== 'allRooms') {
     return filterRoomsByType(roomsByPrice, roomType.value)
@@ -84,6 +94,7 @@ const updateAvailableRooms = (data) => {
 }
 // EVENT LISTENERS
 window.addEventListener('load', () => {
+  loadRooms()
   setCalendarDate()
   getUserBookings();
 });
@@ -117,6 +128,8 @@ showRoomsBtn.addEventListener('click', closeFilterModal);
 
 availableRoomsView.addEventListener('click', (e) => {
   if(e.target.classList.contains('booking-btn')) {
+    updateSelectedRoom(e)
+    updateRoomModal()
     toggleModal(roomModal, 'add', 'setAttribute')
   }
 })
@@ -172,6 +185,7 @@ export {
   updateAvailableRooms,
   calendar,
   dateError,
-  noResultsView
+  noResultsView,
+  // allRooms
   // currentUser
 };

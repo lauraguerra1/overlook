@@ -3,6 +3,11 @@ import {
   updateBookingsHTML,
 } from './domUpdates';
 
+// import { allRooms } from './scripts';
+let pageData = {
+  allRooms: [],
+  selectedRoom: {}
+}
 
 let currentUser = {
   id: 50,
@@ -11,6 +16,15 @@ let currentUser = {
     max: 500,
   }
 };
+
+
+// let allRooms = [];
+const loadRooms = () => {
+  fetchAPI('rooms')
+    .then(data => {
+      pageData.allRooms = data.rooms
+    })
+}
 
 const fetchAPI = (dataType) => {
   return fetch(`http://localhost:3001/api/v1/${dataType}`)
@@ -35,4 +49,4 @@ const filterRooms = getRoomsAndBookings(updateAvailableRoomsHTML);
 
 const getUserBookings = getRoomsAndBookings(updateBookingsHTML);
 
-export { getUserBookings, filterRooms, currentUser };
+export { getUserBookings, filterRooms, loadRooms, currentUser, pageData };

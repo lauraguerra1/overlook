@@ -17,7 +17,9 @@ import {
   noResultsView
 } from './scripts';
 
-import { currentUser, filterRooms } from './apicalls';
+import { currentUser, filterRooms, pageData } from './apicalls';
+
+const formatRoomType = room => room.roomType.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 
 const setCalendarDate = () => {
   document
@@ -57,7 +59,7 @@ const changeAttribute = (elements, change, attribute, boolean) => {
 
 const toggleModal = (modal, changeOption, attributeOption) => {
   changeClass([accountBtn, searchBtn, filterBtn], changeOption, ['no-click']);
-  changeClass([availableRoomsView, userDashView], changeOption, ['blur', 'no-click',]);
+  changeClass([availableRoomsView, userDashView, noResultsView], changeOption, ['blur', 'no-click',]);
   changeAttribute([filterBtn, accountBtn, searchBtn], attributeOption, 'disabled', true);
   changeAttribute(availableRoomsView.querySelectorAll('.booking-btn'), attributeOption, 'disabled', true);
   modal.classList.toggle('fade-in');
@@ -125,7 +127,7 @@ const createSingleRoomInfo = (room, i, array) => {
     plural = 's';
   }
 
-  if(i === array.length - 1) {
+  if(i === array?.length - 1) {
     roomLast = 'last-room'
   }
 
@@ -136,11 +138,11 @@ const createSingleRoomHTML = (room, i, array) => {
   const info = createSingleRoomInfo(room, i, array);
 
   return `
-  <section class="single-room ${info.roomLast}" id:"${room.number}">
+  <section class="single-room ${info.roomLast}" id="${room.number}">
     <img class="room-img" src="./images/${info.img}.png" alt="${info.alt}">
     <div class="room-details">
       <p class="rooom-number">Room Number: ${room.number}</p>
-      <p class="room-type">Room Type: ${room.roomType}</p>
+      <p class="room-type">Room Type: ${formatRoomType(room)}</p>
       <p class="room-cost">Cost Per Night: $${room.costPerNight.toFixed(2)}</p>
       <p class="room-beds">${room.numBeds} ${room.bedSize} sized bed${info.plural}</p>
     </div>
@@ -158,7 +160,7 @@ const createSingleUserBookingHTML = (booking, rooms, i, array) => {
     <img class="room-img" src="./images/${info.img}.png" alt="${info.alt}">
     <div class="room-details">
       <p class="rooom-number">Room Number: ${info.foundRoom.number}</p>
-      <p class="room-type">Room Type: ${info.foundRoom.roomType}</p>
+      <p class="room-type">Room Type: ${formatRoomType(info.foundRoom)}</p>
       <p class="room-beds">${info.foundRoom.numBeds} ${info.foundRoom.bedSize} sized bed${info.plural}</p>
       <p class="booked-date">Date: ${info.date}</p>
     </div>
@@ -196,6 +198,7 @@ const createUserBookingsHTML = (userBookings, rooms) => {
 
 const createAvailableRoomsHTML = rooms => {
   if(rooms.length) {
+    noResultsView.classList.add('hidden')
     availableRoomsView.innerHTML = `<p class="rooms-shown-txt">Showing <span class="rooms-avail-amt">${rooms.length}</span> Available Rooms:</p>`
     rooms.forEach((room, i, array) => {
       availableRoomsView.innerHTML += createSingleRoomHTML(room, i, array);
@@ -207,6 +210,7 @@ const createAvailableRoomsHTML = rooms => {
 }
 
 const updateAvailableRoomsHTML = (data) => {
+  // allRooms = data[0].rooms
   const availableRooms = updateAvailableRooms(data);
   createAvailableRoomsHTML(availableRooms)
 
@@ -215,6 +219,29 @@ const updateAvailableRoomsHTML = (data) => {
 const updateBookingsHTML = (data, id) => {
   let userBookings = data[1].bookings.filter(booking => booking.userID === id)
   createUserBookingsHTML(userBookings, data[0].rooms)
+}
+
+const updateSelectedRoom = (e) => {
+  const roomID = e.target.closest('.single-room').id
+  pageData.selectedRoom = {
+    room: pageData.allRooms.find(currentRoom => currentRoom.number.toString() === roomID),
+    get info() {
+      return createSingleRoomInfo(this.room)
+    },
+    USDate: formatDate('US', currentUser.selectedDate),
+    APIDate: formatDate('API', currentUser.selectedDate)
+  }
+}
+
+const updateRoomModal = () => {
+  const room = pageData.selectedRoom.room;
+  const info = pageData.selectedRoom.info;
+  const roomType = formatRoomType(room)
+  document.querySelector('.modal-description').innerText = `${roomType} with ${room.numBeds} ${room.bedSize} bed${info.plural}`
+  document.querySelector('.room-price').innerText = room.costPerNight.toFixed(2)
+  document.querySelector('.selected-date').innerText = pageData.selectedRoom.USDate
+  document.querySelector('.modal-room-img').src = `./images/${info.img}.png`;
+  document.querySelector('.modal-room-img').alt = info.alt;
 }
 
 export {
@@ -228,5 +255,7 @@ export {
   updateAvailableRoomsHTML,
   updateBookingsHTML,
   removeDateError,
-  closeFilterModal
+  closeFilterModal,
+  updateSelectedRoom,
+  updateRoomModal
 };
