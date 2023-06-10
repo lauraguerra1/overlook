@@ -29,7 +29,7 @@ const checkInitialDateFormat = (date) => {
 
 const fixIntegerFormat = (date) => {
   let setDate = date;
-  if (date.length !== 2) {
+  if (date.toString().length !== 2) {
     setDate = `0${date}`;
   }
 
