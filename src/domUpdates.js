@@ -210,7 +210,6 @@ const createAvailableRoomsHTML = rooms => {
 }
 
 const updateAvailableRoomsHTML = (data) => {
-  // allRooms = data[0].rooms
   const availableRooms = updateAvailableRooms(data);
   createAvailableRoomsHTML(availableRooms)
 
@@ -236,8 +235,7 @@ const updateSelectedRoom = (e) => {
 const updateRoomModal = () => {
   const room = pageData.selectedRoom.room;
   const info = pageData.selectedRoom.info;
-  const roomType = formatRoomType(room)
-  document.querySelector('.modal-description').innerText = `${roomType} with ${room.numBeds} ${room.bedSize} bed${info.plural}`
+  document.querySelector('.modal-description').innerText = `${formatRoomType(room)} with ${room.numBeds} ${room.bedSize} bed${info.plural}`
   document.querySelector('.room-price').innerText = room.costPerNight.toFixed(2)
   document.querySelector('.selected-date').innerText = pageData.selectedRoom.USDate
   document.querySelector('.modal-room-img').src = `./images/${info.img}.png`;

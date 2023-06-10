@@ -336,6 +336,10 @@ input[type="range"]::-moz-range-thumb {
   text-align: center;
 }
 
+.modal-cost-date span {
+  font-family: Maven Pro;
+}
+
 .modal-description-wrapper {
   min-height: 20%;
 }
@@ -479,6 +483,29 @@ input[type="range"]::-moz-range-thumb {
   border: none;
   cursor: pointer;
 }
+
+/* ERROR VIEWS */
+.no-results-view {
+  max-height: 80%;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .no-results-view > p {
+  /* position: absolute; */
+  /* top:0; 
+  text-align: center;
+} */
+
+.no-results-img {
+  /* position: relative; */
+  max-height: 90%;  
+  max-width: 90%;
+} 
+
+
 
 /* ANIMATIONS */
 
