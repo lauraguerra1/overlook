@@ -2,7 +2,9 @@
 import './css/styles.css';
 import {
   getUserBookings,
+  submitBooking,
   currentUser,
+  pageData,
   loadRooms
 } from './apicalls';
 
@@ -59,28 +61,11 @@ const rightArrow = document.querySelector('.right-arrow');
 const modalImgs = document.querySelector('.modal-imgs');
 const calendar = document.querySelector('#calendar');
 const dateError = document.querySelector('.date-error-msg');
-const noResultsView = document.querySelector('.no-results-view')
+const noResultsView = document.querySelector('.no-results-view');
+const reserveBtn = document.querySelector('.reserve-room-btn');
 
-//DATA MODEL 
-// let currentUser = {id: 50};
 
 // FUNCTIONS
-// const updateCurrentUser = (user) => {
-//   currentUser = user;
-//   currentUser.budget = {
-//     min: 150, 
-//     max: 500
-//   }
-// }
-
-// let allRooms = [];
-// const loadRooms = () => {
-//   fetchAPI('rooms')
-//     .then(data => {
-//       allRooms = data.rooms
-//     })
-// }
-
 const updateAvailableRooms = (data) => {
   const roomType = document.querySelector('#roomTypes')
   currentUser.selectedDate = getDateValue(calendar.value)
@@ -168,6 +153,10 @@ rightArrow.addEventListener('keydown', (e) => {
       behavior: "smooth",
     })
   }
+})
+
+reserveBtn.addEventListener('click', () => {
+  submitBooking(currentUser.id, pageData.selectedRoom.APIDate, pageData.selectedRoom.room.number)
 })
 
 export {

@@ -26,8 +26,24 @@ const loadRooms = () => {
     })
 }
 
-const fetchAPI = (dataType) => {
-  return fetch(`http://localhost:3001/api/v1/${dataType}`)
+const submitBooking = (userID, date, roomNumber) => {
+  const data = { userID, date, roomNumber }
+  fetchAPI('bookings', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((data) => {
+      console.log(data.newBooking)
+      getUserBookings()
+    })
+    .catch(error => console.error(error))
+}
+
+const fetchAPI = (dataType, options) => {
+  return fetch(`http://localhost:3001/api/v1/${dataType}`, options)
     .then((response) => {
       return response.json();
     })
@@ -49,4 +65,4 @@ const filterRooms = getRoomsAndBookings(updateAvailableRoomsHTML);
 
 const getUserBookings = getRoomsAndBookings(updateBookingsHTML);
 
-export { getUserBookings, filterRooms, loadRooms, currentUser, pageData };
+export { getUserBookings, filterRooms, loadRooms, submitBooking, currentUser, pageData };
