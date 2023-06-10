@@ -149,16 +149,6 @@ const addTitleToSections = () => {
     section.innerHTML = `<p class="${section.id}-text">${formattedTitle} Bookings</p>`;
   });
 };
-// const sortSections = (userBookings, currentDate) => {
-//   return Object.keys(userBookings).reduce((bookings, curr) => {
-//     const newBookings = sortBookingsByDate(userBookings[curr], currentDate)
-//     if (curr === 'past') {
-//       newBookings.reverse()
-//     }
-//     bookings[curr] = newBookings
-//     return bookings
-//   }, {})
-// }
 
 const createUserBookingsHTML = (userBookings, rooms) => {
   let separatedBookings = sortBookings(userBookings, Date.now());
@@ -187,10 +177,14 @@ const createAvailableRoomsHTML = rooms => {
 }
 
 const updateAvailableRoomsHTML = (data) => {
- 
   const availableRooms = updateAvailableRooms(data);
   createAvailableRoomsHTML(availableRooms)
 
+}
+
+const updateBookingsHTML = (data, id) => {
+  let userBookings = data[1].bookings.filter(booking => booking.userID === id)
+  createUserBookingsHTML(userBookings, data[0].rooms)
 }
 
 export {
@@ -201,5 +195,6 @@ export {
   createUserBookingsHTML,
   createAvailableRoomsHTML,
   setCalendarDate,
-  updateAvailableRoomsHTML
+  updateAvailableRoomsHTML,
+  updateBookingsHTML
 };
