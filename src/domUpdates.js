@@ -88,8 +88,8 @@ const getAltText = (img) => {
   const altOptions = {
     residentialsuite:'open floor plan hotel suite with an outdoor patio, ocean view and blue decor',
     juniorsuite: 'modern hotel suite with an ocean view and small living room',
-    suite:'breezy plant filled hotel suite with an ocean view and wicker decor',
-    singleroom:'single hotel room with an ocean view, small desk, and comfortable chaise',
+    singleroom:'breezy plant filled hotel room with an ocean view and wicker decor',
+    suite:'suite with an ocean view, small desk, and comfortable chaise',
   };
 
   return altOptions[img];
