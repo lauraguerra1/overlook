@@ -12,13 +12,18 @@ import {
 describe('date', () => {
   const currentDate = 1686229866393;
   it('should return a date value with hours set to zero', () => {
+    // console.log(getDateValue('2023-12-07'))
     const newDate = getDateValue('2023/06/08');
+    const sameDate = getDateValue('2023-06-08');
     assert.equal(newDate, 1686196800000);
+    assert.equal(sameDate, 1686196800000);
   });
 
   it('should return a date value for a different date', () => {
     const newDate = getDateValue('2021/12/10');
+    const sameDate = getDateValue('2021-12-10');
     assert.equal(newDate, 1639112400000);
+    assert.equal(sameDate, 1639112400000);
   });
 
   it('should return true is the date is in the future', () => {

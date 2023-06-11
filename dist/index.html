@@ -20,11 +20,11 @@
     </div>
   </header>
   <main>
-    <div class="landing-page-container main-container hidden">
+    <div class="landing-page-container main-container  hidden">
       <div class="landing-page-view content-box"> 
         <img class="bg-img" src="./images/pool-side.png" alt="pool side resort">
         <section class="initial-content-container">
-          <div class="login-view-container">
+          <div class="login-view-container ">
             <div class="login-child">
               <h1>WELCOME</h1>
               <p>Please Log-in</p>
@@ -44,26 +44,26 @@
     </div>
     <div class="available-rooms-container main-container">
       <nav>
-        <button class="btn nav-btn search-btn hidden">
+        <button class="btn nav-btn search-btn">
           <div class="material-icons icon">
             search
           </div>
           <p class="btn-text">FIND ROOMS</p>
         </button>
-        <button class="btn nav-btn account-btn">
+        <button class="btn nav-btn account-btn hidden">
           <div class="material-icons icon">
             person
           </div>
           <p class="btn-text">DASHBOARD</p>
         </button>
-        <button class="btn nav-btn filter-button">
+        <button class="btn nav-btn filter-button hidden">
           <div class="material-icons icon">
             filter_alt
           </div>
           <p class="btn-text">FILTER</p>
         </button>
       </nav>
-      <div class="available-rooms-view content-box scrollbar">
+      <div class="available-rooms-view content-box scrollbar hidden">
         <p class="rooms-shown-txt">Showing <span class="rooms-avail-amt">All</span> Available Rooms:</p>
         <section class="single-room">
           <img class="room-img" src="./images/suite.png" alt="breezy plant filled hotel suite with an ocean view and wicker decor">
@@ -126,7 +126,7 @@
           </button>
         </section>
       </div>
-      <div class="user-dash-view hidden">
+      <div class="user-dash-view">
         <p class="total-spent">Total Spent:</p>
         <div class="current-bookings" id="current">
           <p class="current-text">Current Bookings</p>
@@ -195,12 +195,12 @@
           </section>
         </div>
       </div>    
-      <section class="filter-modal hidden">
-        <div class="filter-modal-top">
-          <button class="material-icons close-btn">
+      <section class="modal filter-modal hidden">
+        <div class="modal-top filter-modal-top">
+          <button class="material-icons close-btn-1 close-btn">
             close
           </button>
-          <h1 class="filter-heading">FILTERS</h1>
+          <h1 class="modal-heading filter-modal-heading">FILTERS</h1>
         </div>
         <div class="filter-modal-bottom">
           <section class="filter-tags">
@@ -214,33 +214,20 @@
                 <option value="allRooms">
                   Any
                 </option>
-                <option value="residentialSuite">
+                <option value="residential suite">
                   Residential Suite
                 </option>
-                <option value="juniorSuite">
+                <option value="junior suite">
                   Junior Suite
                 </option>
                 <option value="suite">
                   Suite
                 </option>
-                <option value="singleRoom">
+                <option value="single room">
                   Single Room 
                 </option>
               </select>
             </form>
-          
-            <!-- <section tabindex="0" class="filter-option">
-              Residential Suite
-            </section>
-            <section tabindex="0" class="filter-option">
-              Junior Suite
-            </section>
-            <section tabindex="0" class="filter-option">
-              Suite
-            </section>
-            <section tabindex="0" class="filter-option">
-              Single Room 
-            </section> -->
           </section> 
           <section class="budget-container">
             <label for="valueSliders" id="valueLabel">Filter By Price Range:</label>
@@ -248,14 +235,48 @@
               <span>$</span><span class="value1">150</span><span> &dash; $</span><span class="value2">500</span>
             </section>
             <form class="slider-track" id="valueSliders">
-              <input type="range" min="150" max="250" value="150" id="firstSlider"> 
-              <input type="range" min="251" max="500" value="500" id="secondSlider"> 
+              <input type="range" min="150" max="250" value="150" id="min"> 
+              <input type="range" min="251" max="500" value="500" id="max"> 
             </form>
           </section>
+          <p class="date-error-msg error hidden">Please select a valid date!</p>
           <button class="btn-text filter-show-button">
             SHOW ROOMS
           </button>
         </div>
+      </section>
+      <section class="modal room-modal hidden">
+        <div class="modal-top room-modal-top">
+          <button class="material-icons close-btn-2 close-btn">
+            close
+          </button>
+          <!-- <h1 class="modal-heading room-modal-heading">YOU'RE BOOKING OUR</h1> -->
+        </div>
+        <div class="room-modal-details">
+          <div class="modal-description-wrapper">
+            <p class="modal-description">Residential Suite with 1 King Bed</p>
+            <p class="modal-cost-date">Cost per night: $356.75 | Selected Date: 06/08/2023</p>
+          </div>
+          <!-- <p class="modal-description">Residential Suite with 1 King Bed</p>
+          <p class="modal-cost-date">Cost per night: $356.75 | Selected Date: 06/08/2023</p> -->
+          <div class="img-slide-wrapper">
+            <button class="arrows left-arrow material-icons">
+              chevron_left
+            </button>
+            <section class="modal-imgs scrollbar">
+              <img class="modal-room-img" src="./images/residentialsuite.png" alt="open floor plan hotel suite with an outdoor patio, ocean view and blue decor">
+              <img src="./images/yoga-room.png">
+              <img src="./images/canopy.png">
+              <img id="lastImg" src="./images/resort-area.png">
+            </section>
+            <button class="arrows right-arrow material-icons">
+              chevron_right
+            </button>
+          </div>
+        </div>
+        <button class="btn btn-text reserve-room-btn">
+          RESERVE NOW
+        </button>
       </section>
     </div>
   </main>

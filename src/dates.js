@@ -1,5 +1,5 @@
 const getDateValue = (date) => {
-  const dateValues = date.split('/');
+  const dateValues = date.split(/[/-]/);
   const fullDate = new Date(
     dateValues[0],
     dateValues[1] - 1,
@@ -29,7 +29,7 @@ const checkInitialDateFormat = (date) => {
 
 const fixIntegerFormat = (date) => {
   let setDate = date;
-  if (date.length !== 2) {
+  if (date.toString().length !== 2) {
     setDate = `0${date}`;
   }
 

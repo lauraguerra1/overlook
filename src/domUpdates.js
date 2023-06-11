@@ -1,5 +1,5 @@
-import { totalCost, sortBookings } from './bookings';
-import { formatDate } from './dates';
+import { totalCost, sortBookings, sortSections } from './bookings';
+import { formatDate, checkDateValidity } from './dates';
 import {
   leftBudgetValue,
   rightBudgetValue,
@@ -11,7 +11,12 @@ import {
   userDashView,
   userBookingSections,
   currentBookings,
+  updateAvailableRooms,
+  calendar,
+  dateError
 } from './scripts';
+
+import { currentUser, filterRooms } from './apicalls';
 
 const setCalendarDate = () => {
   document
@@ -19,13 +24,20 @@ const setCalendarDate = () => {
     .setAttribute('min', formatDate('calendar', Date.now()));
 };
 
+const removeDateError = () => {
+  if(checkDateValidity(Date.now(), calendar.value)) {
+    changeClass([calendar], 'remove', ['error']);
+    changeClass([dateError], 'add', ['hidden']);
+  }
+}
+
 const slideBudget = (e) => {
   const targets = {
-    firstSlider: leftBudgetValue,
-    secondSlider: rightBudgetValue,
+    min: leftBudgetValue,
+    max: rightBudgetValue,
   };
-
-  targets[e.target.id].innerText = e.target.value;
+  currentUser.budget[e.target.id] = e.target.value
+  targets[e.target.id].innerText = currentUser.budget[e.target.id];
 };
 
 const changeClass = (elements, change, classes) => {
@@ -42,64 +54,106 @@ const changeAttribute = (elements, change, attribute, boolean) => {
   });
 };
 
-const toggleModal = (changeOption, attributeOption) => {
+const toggleModal = (modal, changeOption, attributeOption) => {
   changeClass([accountBtn, searchBtn, filterBtn], changeOption, ['no-click']);
   changeClass([availableRoomsView, userDashView], changeOption, ['blur', 'no-click',]);
   changeAttribute([filterBtn, accountBtn, searchBtn], attributeOption, 'disabled', true);
-  changeAttribute(availableRoomsView.querySelectorAll('button'), attributeOption, 'disabled', true);
-  filterModal.classList.toggle('fade-in');
-  filterModal.classList.toggle('hidden');
+  changeAttribute(availableRoomsView.querySelectorAll('.booking-btn'), attributeOption, 'disabled', true);
+  modal.classList.toggle('fade-in');
+  modal.classList.toggle('hidden');
 };
 
 const showDash = () => {
-  filterBtn.classList.add('hidden');
-  accountBtn.classList.add('hidden');
-  searchBtn.classList.remove('hidden');
-  availableRoomsView.classList.add('hidden');
-  userDashView.classList.remove('hidden');
+  changeClass([filterBtn, accountBtn, searchBtn, availableRoomsView], 'add', ['hidden'])
+  changeClass([searchBtn, userDashView], 'remove', ['hidden'])
 };
 
 const switchToHome = () => {
-  toggleModal('remove', 'removeAttribute');
-  filterBtn.classList.remove('hidden');
-  accountBtn.classList.remove('hidden');
-  searchBtn.classList.add('hidden');
-  availableRoomsView.classList.remove('hidden');
-  userDashView.classList.add('hidden');
+  toggleModal(filterModal, 'remove', 'removeAttribute');
+  changeClass([filterBtn, accountBtn, searchBtn, availableRoomsView], 'remove', ['hidden'])
+  changeClass([searchBtn, userDashView], 'add', ['hidden'])
 };
+
+const closeFilterModal = () => {
+  if (calendar.value && checkDateValidity(Date.now(), calendar.value)) {
+    filterRooms()
+    switchToHome()
+  } else {
+    dateError.classList.remove('hidden')
+    calendar.classList.add('error')
+  }
+}
 
 const getAltText = (img) => {
   const altOptions = {
-    residentialsuite:
-      'open floor plan hotel suite with an outdoor patio, ocean view and blue decor',
+    residentialsuite:'open floor plan hotel suite with an outdoor patio, ocean view and blue decor',
     juniorsuite: 'modern hotel suite with an ocean view and small living room',
-    suite:
-      'breezy plant filled hotel suite with an ocean view and wicker decor',
-    singleroom:
-      'single hotel room with an ocean view, small desk, and comfortable chaise',
+    singleroom:'breezy plant filled hotel room with an ocean view and wicker decor',
+    suite:'suite with an ocean view, small desk, and comfortable chaise',
   };
 
   return altOptions[img];
 };
 
-const createCardInfo = (booking, rooms) => {
+const createCardInfo = (booking, rooms, i, array) => {
   const foundRoom = rooms.find((room) => room.number === booking.roomNumber);
   const img = foundRoom.roomType.split(' ').join('').toLowerCase();
   const alt = getAltText(img);
   const date = formatDate('US', booking.date);
   let plural = '';
+  let roomLast = ''; 
+
   if (foundRoom.numBeds > 1) {
     plural = 's';
   }
 
-  return { foundRoom, img, alt, date, plural };
+  if(i === array.length - 1) {
+    roomLast = 'last-room'
+  }
+
+  return { foundRoom, img, alt, date, plural, roomLast};
 };
 
-const createSingleUserBookingHTML = (booking, rooms) => {
-  const info = createCardInfo(booking, rooms);
+const createSingleRoomInfo = (room, i, array) => {
+  const img = room.roomType.split(' ').join('').toLowerCase();
+  const alt = getAltText(img);
+  let plural = '';
+  let roomLast = '';
+
+  if (room.numBeds > 1) {
+    plural = 's';
+  }
+
+  if(i === array.length - 1) {
+    roomLast = 'last-room'
+  }
+
+  return { img, alt, plural, roomLast }
+}
+
+const createSingleRoomHTML = (room, i, array) => {
+  const info = createSingleRoomInfo(room, i, array);
 
   return `
-  <section class="single-room user-room">
+  <section class="single-room ${info.roomLast}" id:"${room.number}">
+    <img class="room-img" src="./images/${info.img}.png" alt="${info.alt}">
+    <div class="room-details">
+      <p class="rooom-number">Room Number: ${room.number}</p>
+      <p class="room-type">Room Type: ${room.roomType}</p>
+      <p class="room-cost">Cost Per Night: $${room.costPerNight.toFixed(2)}</p>
+      <p class="room-beds">${room.numBeds} ${room.bedSize} sized bed${info.plural}</p>
+    </div>
+    <button class="btn booking-btn">
+      Book Now
+    </button>
+  </section>`;
+}
+
+const createSingleUserBookingHTML = (booking, rooms, i, array) => {
+  const info = createCardInfo(booking, rooms, i, array);
+
+  return `
+  <section class="single-room user-room ${info.roomLast}">
     <img class="room-img" src="./images/${info.img}.png" alt="${info.alt}">
     <div class="room-details">
       <p class="rooom-number">Room Number: ${info.foundRoom.number}</p>
@@ -121,13 +175,15 @@ const addTitleToSections = () => {
 };
 
 const createUserBookingsHTML = (userBookings, rooms) => {
-  let sortedBookings = sortBookings(userBookings, Date.now());
+  let separatedBookings = sortBookings(userBookings, Date.now());
+  const sortedBookings = sortSections(separatedBookings, Date.now());
+
   document.querySelector('.total-spent').innerText = `Total Spent: $${totalCost(userBookings,rooms)}`;
   addTitleToSections();
 
   userBookingSections.forEach((section) => {
     section.innerHTML += sortedBookings[section.id]
-      .map((booking) => createSingleUserBookingHTML(booking, rooms))
+      .map((booking, i, array) => createSingleUserBookingHTML(booking, rooms, i, array))
       .join('');
   });
 
@@ -137,11 +193,34 @@ const createUserBookingsHTML = (userBookings, rooms) => {
   }
 };
 
+const createAvailableRoomsHTML = rooms => {
+  availableRoomsView.innerHTML = `<p class="rooms-shown-txt">Showing <span class="rooms-avail-amt">${rooms.length}</span> Available Rooms:</p>`
+  rooms.forEach((room, i, array) => {
+    availableRoomsView.innerHTML += createSingleRoomHTML(room, i, array);
+  })
+}
+
+const updateAvailableRoomsHTML = (data) => {
+  const availableRooms = updateAvailableRooms(data);
+  createAvailableRoomsHTML(availableRooms)
+
+}
+
+const updateBookingsHTML = (data, id) => {
+  let userBookings = data[1].bookings.filter(booking => booking.userID === id)
+  createUserBookingsHTML(userBookings, data[0].rooms)
+}
+
 export {
   slideBudget,
   toggleModal,
   showDash,
   switchToHome,
   createUserBookingsHTML,
+  createAvailableRoomsHTML,
   setCalendarDate,
+  updateAvailableRoomsHTML,
+  updateBookingsHTML,
+  removeDateError,
+  closeFilterModal
 };

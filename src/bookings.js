@@ -9,6 +9,29 @@ const sortBookings = (bookings, date) => {
   };
 };
 
+const sortBookingsByDate = (bookings, currentDate) => {
+  const updatedBookings = bookings.map(booking => {
+    const diff = currentDate - getDateValue(booking.date);
+    return {booking, diff}
+  })
+  const bookingsToSort = JSON.parse(JSON.stringify(updatedBookings))
+  return bookingsToSort.sort((a,b) => {
+    return b.diff - a.diff
+  })
+  .map(booking => booking.booking)
+}
+
+const sortSections = (userBookings, currentDate) => {
+  return Object.keys(userBookings).reduce((bookings, curr) => {
+    const newBookings = sortBookingsByDate(userBookings[curr], currentDate)
+    if (curr === 'past') {
+      newBookings.reverse()
+    }
+    bookings[curr] = newBookings
+    return bookings
+  }, {})
+}
+
 const totalCost = (bookings, rooms) => {
   let bookedRooms = bookings.map((booking) => {
     return rooms.find((room) => room.number === booking.roomNumber);
@@ -19,4 +42,4 @@ const totalCost = (bookings, rooms) => {
     .toFixed(2);
 };
 
-export { sortBookings, totalCost };
+export { sortBookings, totalCost, sortBookingsByDate, sortSections };

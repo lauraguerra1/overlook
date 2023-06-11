@@ -1,7 +1,9 @@
 // IMPORTS
 import './css/styles.css';
 import {
+  filterRooms,
   getUserBookings,
+  currentUser
 } from './apicalls';
 
 import {
@@ -9,8 +11,12 @@ import {
   toggleModal,
   showDash,
   switchToHome,
-  setCalendarDate
+  setCalendarDate,
+  removeDateError,
+  closeFilterModal
 } from './domUpdates';
+
+import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
 
 //IMAGES
 import './images/suite.png';
@@ -19,17 +25,23 @@ import './images/pool-side.png';
 import './images/singleroom.png';
 import './images/juniorsuite.png';
 import './images/residentialsuite.png';
+import './images/canopy.png'
+import './images/yoga-room.png'
+import './images/resort-area.png'
+import { checkDateValidity, getDateValue } from './dates';
 
 //GLOBAL VARIABLES
-const leftSlider = document.querySelector('#firstSlider');
-const rightSlider = document.querySelector('#secondSlider');
+const leftSlider = document.querySelector('#min');
+const rightSlider = document.querySelector('#max');
 const leftBudgetValue = document.querySelector('.value1');
 const rightBudgetValue = document.querySelector('.value2');
-const closeBtn = document.querySelector('.close-btn');
+const filterCloseBtn = document.querySelector('.close-btn-1');
+const roomCloseBtn = document.querySelector('.close-btn-2');
 const filterBtn = document.querySelector('.filter-button');
 const accountBtn = document.querySelector('.account-btn');
 const searchBtn = document.querySelector('.search-btn');
 const filterModal = document.querySelector('.filter-modal');
+const roomModal = document.querySelector('.room-modal')
 const availableRoomsView = document.querySelector('.available-rooms-view');
 const roomsShownText = document.querySelector('.rooms-shown-txt');
 const showRoomsBtn = document.querySelector('.filter-show-button');
@@ -39,12 +51,41 @@ const pastBookings = document.querySelector('.past-bookings');
 const currentBookings = document.querySelector('.current-bookings');
 const userBookingSections = Array.from([upcomingBookings, pastBookings, currentBookings])
 const filterAndSearchBtns = Array.from([filterBtn, searchBtn]);
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
+const modalImgs = document.querySelector('.modal-imgs');
+const calendar = document.querySelector('#calendar');
+const dateError = document.querySelector('.date-error-msg');
 
+//DATA MODEL 
+// let currentUser = {id: 50};
+
+// FUNCTIONS
+// const updateCurrentUser = (user) => {
+//   currentUser = user;
+//   currentUser.budget = {
+//     min: 150, 
+//     max: 500
+//   }
+// }
+
+const updateAvailableRooms = (data) => {
+  const roomType = document.querySelector('#roomTypes')
+  const date = getDateValue(calendar.value)
+  const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, date);
+  const roomsByPrice = filterRoomsByPrice(roomsByDate, currentUser.budget.min, currentUser.budget.max)
+  if(roomType.value !== 'allRooms') {
+    return filterRoomsByType(roomsByPrice, roomType.value)
+  } else {
+    return roomsByPrice
+  }
+}
 // EVENT LISTENERS
 window.addEventListener('load', () => {
   setCalendarDate()
-  getUserBookings(50);
+  getUserBookings();
 });
+
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {
   input.addEventListener('input', (e) => {
@@ -54,39 +95,65 @@ Array.from([leftSlider, rightSlider]).forEach((input) => {
 
 filterAndSearchBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    toggleModal('add', 'setAttribute');
-  });
-
-  btn.addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
-      toggleModal('add', 'setAttribute');
-    }
+    toggleModal(filterModal, 'add', 'setAttribute');
   });
 })
 
-closeBtn.addEventListener('click', () => {
-  toggleModal('remove', 'removeAttribute');
+filterCloseBtn.addEventListener('click', () => {
+  toggleModal(filterModal, 'remove', 'removeAttribute');
 });
 
-closeBtn.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    toggleModal('remove', 'removeAttribute');
-  }
+roomCloseBtn.addEventListener('click', () => {
+  toggleModal(roomModal, 'remove', 'removeAttribute');
 });
 
 accountBtn.addEventListener('click', showDash);
-accountBtn.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    showDash();
-  }
-});
 
-showRoomsBtn.addEventListener('click', switchToHome);
-showRoomsBtn.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    switchToHome();
+calendar.addEventListener('input', removeDateError);
+
+showRoomsBtn.addEventListener('click', closeFilterModal);
+
+availableRoomsView.addEventListener('click', (e) => {
+  if(e.target.classList.contains('booking-btn')) {
+    toggleModal(roomModal, 'add', 'setAttribute')
   }
-});
+})
+
+leftArrow.addEventListener('click', () => {
+  modalImgs.scrollBy({
+    top: 0,
+    left: -200,
+    behavior: "smooth",
+  })
+})
+
+leftArrow.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    modalImgs.scrollBy({
+      top: 0,
+      left: -200,
+      behavior: "smooth",
+    })
+  }
+})
+
+rightArrow.addEventListener('click', () => {
+  modalImgs.scrollBy({
+    top: 0,
+    left: 200,
+    behavior: "smooth",
+  })
+})
+
+rightArrow.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    modalImgs.scrollBy({
+      top: 0,
+      left: 200,
+      behavior: "smooth",
+    })
+  }
+})
 
 export {
   leftBudgetValue,
@@ -99,5 +166,9 @@ export {
   searchBtn,
   roomsShownText,
   userBookingSections,
-  currentBookings
+  currentBookings,
+  updateAvailableRooms,
+  calendar,
+  dateError
+  // currentUser
 };
