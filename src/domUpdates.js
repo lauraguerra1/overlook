@@ -65,16 +65,18 @@ const toggleModal = (modal, changeOption, attributeOption) => {
   changeClass([availableRoomsView, userDashView, noResultsView], changeOption, ['blur', 'no-click',]);
   changeAttribute([filterBtn, accountBtn, searchBtn], attributeOption, 'disabled', true);
   changeAttribute(availableRoomsView.querySelectorAll('.booking-btn'), attributeOption, 'disabled', true);
-  modal.classList.toggle('fade-in');
+  if (modal !== bookingModal) {
+    modal.classList.toggle('fade-in');
+  }
   modal.classList.toggle('hidden');
   filterCloseBtn.classList.remove('hidden');
-  userDashView.querySelectorAll('.user-room').forEach(el => el.removeAttribute('tabindex', 0))
+  changeAttribute(userDashView.querySelectorAll('.user-room'), 'removeAttribute', 'tabindex', 0)
 };
 
 const showDash = () => {
   changeClass([filterBtn, accountBtn, searchBtn, availableRoomsView], 'add', ['hidden'])
   changeClass([searchBtn, userDashView], 'remove', ['hidden'])
-  userDashView.querySelectorAll('.user-room').forEach(el => el.setAttribute('tabindex', 0))
+  changeAttribute(userDashView.querySelectorAll('.user-room'), 'setAttribute', 'tabindex', 0)
 };
 
 const switchToHome = () => {

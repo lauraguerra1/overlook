@@ -38,7 +38,6 @@ const submitBooking = (userID, date, roomNumber) => {
   })
     .then((data) => {
       showConfirmation(data.newBooking)
-      console.log(data.newBooking)
       getUserBookings()
     })
     .catch(error => console.error(error))
