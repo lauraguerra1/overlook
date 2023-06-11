@@ -40,7 +40,7 @@ const submitBooking = (userID, date, roomNumber) => {
       showConfirmation(data.newBooking)
       getUserBookings()
     })
-    .catch(error => console.error(error))
+    .catch(() => alert(`We failed to connect to the server. Please refresh.`));
 }
 
 const fetchAPI = (dataType, options) => {
@@ -48,7 +48,10 @@ const fetchAPI = (dataType, options) => {
     .then((response) => {
       return response.json();
     })
-    .catch((err) => console.error(err));
+    .catch(() => {
+      document.querySelectorAll('.main-container').forEach(view => view.classList.add('hidden'))
+      document.querySelector('.error-page').classList.remove('hidden')
+    });
 };
 
 const getRoomsAndBookings = (eventHandler) => {
@@ -58,7 +61,10 @@ const getRoomsAndBookings = (eventHandler) => {
       .then((data) => {
         eventHandler(data, id);
       })
-      .catch((err) => console.error(err));
+      .catch(() => {
+        document.querySelectorAll('.main-container').forEach(view => view.classList.add('hidden'))
+        document.querySelector('.error-page').classList.remove('hidden')
+      });
   };
 };
 
