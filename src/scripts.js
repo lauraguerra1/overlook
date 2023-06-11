@@ -17,7 +17,8 @@ import {
   closeFilterModal,
   updateSelectedRoom,
   updateRoomModal,
-  returnToFilter
+  returnToFilter,
+  changeAttribute
 } from './domUpdates';
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
@@ -102,6 +103,7 @@ filterAndSearchBtns.forEach(btn => {
 
 filterCloseBtn.addEventListener('click', () => {
   toggleModal(filterModal, 'remove', 'removeAttribute');
+  changeAttribute(userDashView.querySelectorAll('.user-room'), 'setAttribute', 'tabindex', 0)
 });
 
 roomCloseBtn.addEventListener('click', () => {

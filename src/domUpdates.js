@@ -68,11 +68,13 @@ const toggleModal = (modal, changeOption, attributeOption) => {
   modal.classList.toggle('fade-in');
   modal.classList.toggle('hidden');
   filterCloseBtn.classList.remove('hidden');
+  userDashView.querySelectorAll('.user-room').forEach(el => el.removeAttribute('tabindex', 0))
 };
 
 const showDash = () => {
   changeClass([filterBtn, accountBtn, searchBtn, availableRoomsView], 'add', ['hidden'])
   changeClass([searchBtn, userDashView], 'remove', ['hidden'])
+  userDashView.querySelectorAll('.user-room').forEach(el => el.setAttribute('tabindex', 0))
 };
 
 const switchToHome = () => {
@@ -160,7 +162,7 @@ const createSingleUserBookingHTML = (booking, rooms, i, array) => {
   const info = createCardInfo(booking, rooms, i, array);
 
   return `
-  <section class="single-room user-room ${info.roomLast}">
+  <section tabindex="0" class="single-room user-room ${info.roomLast}">
     <img class="room-img" src="./images/${info.img}.png" alt="${info.alt}">
     <div class="room-details">
       <p class="rooom-number">Room Number: ${info.foundRoom.number}</p>
@@ -271,5 +273,6 @@ export {
   updateSelectedRoom,
   updateRoomModal,
   showConfirmation,
-  returnToFilter
+  returnToFilter,
+  changeAttribute
 };
