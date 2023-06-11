@@ -478,7 +478,7 @@ input[type="range"]::-moz-range-thumb {
   border: none;
 }
 
-.close-btn, .close-btn-3 {
+.close-btn {
   background-color: #00000000;
   border: none;
   cursor: pointer;

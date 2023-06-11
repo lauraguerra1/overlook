@@ -4,6 +4,7 @@ import {
   leftBudgetValue,
   rightBudgetValue,
   filterBtn,
+  filterCloseBtn,
   filterModal,
   availableRoomsView,
   accountBtn,
@@ -66,6 +67,7 @@ const toggleModal = (modal, changeOption, attributeOption) => {
   changeAttribute(availableRoomsView.querySelectorAll('.booking-btn'), attributeOption, 'disabled', true);
   modal.classList.toggle('fade-in');
   modal.classList.toggle('hidden');
+  filterCloseBtn.classList.remove('hidden');
 };
 
 const showDash = () => {
@@ -250,6 +252,10 @@ const showConfirmation = (confirmation) => {
   changeClass([bookingModal], 'remove', ['hidden'])
 }
 
+const returnToFilter = () => {
+  changeClass([bookingModal, filterModal, filterCloseBtn], 'toggle', ['hidden'])
+}
+
 export {
   slideBudget,
   toggleModal,
@@ -264,5 +270,6 @@ export {
   closeFilterModal,
   updateSelectedRoom,
   updateRoomModal,
-  showConfirmation
+  showConfirmation,
+  returnToFilter
 };

@@ -16,7 +16,8 @@ import {
   removeDateError,
   closeFilterModal,
   updateSelectedRoom,
-  updateRoomModal
+  updateRoomModal,
+  returnToFilter
 } from './domUpdates';
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
@@ -64,7 +65,8 @@ const calendar = document.querySelector('#calendar');
 const dateError = document.querySelector('.date-error-msg');
 const noResultsView = document.querySelector('.no-results-view');
 const reserveBtn = document.querySelector('.reserve-room-btn');
-
+const bookingDashBtn = document.querySelector('.booking-modal-dash-btn');
+const bookingSearchBtn = document.querySelector('.booking-modal-search-btn');
 
 // FUNCTIONS
 const updateAvailableRooms = (data) => {
@@ -160,10 +162,17 @@ reserveBtn.addEventListener('click', () => {
   submitBooking(currentUser.id, pageData.selectedRoom.APIDate, pageData.selectedRoom.room.number)
 })
 
+bookingSearchBtn.addEventListener('click', returnToFilter);
+bookingDashBtn.addEventListener('click', () => {
+  toggleModal(bookingModal, 'remove', 'removeAttribute')
+  showDash()
+});
+
 export {
   leftBudgetValue,
   rightBudgetValue,
   filterBtn,
+  filterCloseBtn,
   filterModal,
   bookingModal, 
   roomModal,
