@@ -516,11 +516,15 @@ input[type="range"]::-moz-range-thumb {
   align-items: center;
 }
 
-/* .no-results-view > p {
-  /* position: absolute; */
-  /* top:0; 
-  text-align: center;
-} */
+.error-page {
+  max-height: 100%;
+  width: 100vw;
+}
+
+.error-page > img {
+  max-height: 100%;
+  width: 100%;
+}
 
 .no-results-img {
   /* position: relative; */
