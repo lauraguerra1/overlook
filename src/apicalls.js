@@ -1,4 +1,5 @@
 import {
+  showConfirmation,
   updateAvailableRoomsHTML,
   updateBookingsHTML,
 } from './domUpdates';
@@ -36,6 +37,7 @@ const submitBooking = (userID, date, roomNumber) => {
     }
   })
     .then((data) => {
+      showConfirmation(data.newBooking)
       console.log(data.newBooking)
       getUserBookings()
     })

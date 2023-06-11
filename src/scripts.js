@@ -46,7 +46,8 @@ const filterBtn = document.querySelector('.filter-button');
 const accountBtn = document.querySelector('.account-btn');
 const searchBtn = document.querySelector('.search-btn');
 const filterModal = document.querySelector('.filter-modal');
-const roomModal = document.querySelector('.room-modal')
+const roomModal = document.querySelector('.room-modal');
+const bookingModal = document.querySelector('.booking-modal');
 const availableRoomsView = document.querySelector('.available-rooms-view');
 const roomsShownText = document.querySelector('.rooms-shown-txt');
 const showRoomsBtn = document.querySelector('.filter-show-button');
@@ -164,6 +165,8 @@ export {
   rightBudgetValue,
   filterBtn,
   filterModal,
+  bookingModal, 
+  roomModal,
   availableRoomsView,
   userDashView,
   accountBtn,

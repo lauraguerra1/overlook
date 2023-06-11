@@ -478,10 +478,22 @@ input[type="range"]::-moz-range-thumb {
   border: none;
 }
 
-.close-btn {
+.close-btn, .close-btn-3 {
   background-color: #00000000;
   border: none;
   cursor: pointer;
+}
+
+/* BOOKING MODAL */
+.booking-modal {
+  background: rgba(154, 179, 199, 0.947);
+}
+
+.booking-modal-bottom {
+  max-height: 10%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ERROR VIEWS */

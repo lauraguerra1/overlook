@@ -14,7 +14,9 @@ import {
   updateAvailableRooms,
   calendar,
   dateError,
-  noResultsView
+  noResultsView,
+  roomModal, 
+  bookingModal
 } from './scripts';
 
 import { currentUser, filterRooms, pageData } from './apicalls';
@@ -242,6 +244,12 @@ const updateRoomModal = () => {
   document.querySelector('.modal-room-img').alt = info.alt;
 }
 
+const showConfirmation = (confirmation) => {
+  document.querySelector('.confirmation').innerText = confirmation.id;
+  changeClass([roomModal], 'add', ['hidden'])
+  changeClass([bookingModal], 'remove', ['hidden'])
+}
+
 export {
   slideBudget,
   toggleModal,
@@ -255,5 +263,6 @@ export {
   removeDateError,
   closeFilterModal,
   updateSelectedRoom,
-  updateRoomModal
+  updateRoomModal,
+  showConfirmation
 };
