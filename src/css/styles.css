@@ -53,8 +53,7 @@ h2, .modal-heading {
   height: 50%;
   width: 10%;
   border-right: 2px solid black;
-  margin: 1%, 2%;
-  margin-left: 0;
+  margin: 1% 2% 1% 0;
   padding: 1%
 }
 
