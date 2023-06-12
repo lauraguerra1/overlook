@@ -1,6 +1,4 @@
 const verifyUserName = (userName) => {
-  // const userName = document.querySelector('#username').value
-  // const password = document.querySelector('#password').value
   let validity = { valid: false };
 
   if (userName.includes('customer') && userName.length === 10) {
@@ -25,4 +23,19 @@ const verifyPassword = (password) => {
   return validity;
 };
 
-export { verifyUserName, verifyPassword };
+const verifyCredentials = (userName, password) => {
+  let userCredentials;
+  let valid = false
+
+  if(userName && password) {
+    userCredentials = verifyUserName(userName)
+    const validPass = verifyPassword(password)
+    if(userCredentials.valid && validPass) {
+      valid = true
+    }
+  }
+
+  return {id: userCredentials.id, valid}
+}
+
+export { verifyUserName, verifyPassword, verifyCredentials };

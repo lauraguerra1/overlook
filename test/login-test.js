@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { verifyPassword, verifyUserName } from '../src/login';
+import { verifyCredentials, verifyPassword, verifyUserName } from '../src/login';
 const assert = chai.assert;
 
 describe('login', () => {
@@ -70,4 +70,40 @@ describe('login', () => {
 
     assert.equal(validPass, false);
   });
+
+  it('should very both username and password', () => {
+    const validityCheck = verifyCredentials('customer50', 'overlook2021');
+
+    assert.equal(validityCheck.valid, true)
+  })
+
+  it('should very a different user', () => {
+    const validityCheck = verifyCredentials('customer01', 'overlook2021')
+
+    assert.equal(validityCheck.valid, true)
+  })
+
+  it('should return user id', () => {
+    const validityCheck = verifyCredentials('customer01', 'overlook2021')
+
+    assert.equal(validityCheck.id, 1)
+  })
+
+  it('should have a false validity if username is invalid', () => {
+    const validityCheck = verifyCredentials('customer00', 'overlook2021')
+
+    assert.equal(validityCheck.valid, false)
+  })
+
+  it('should have a false validity if password is invalid', () => {
+    const validityCheck = verifyCredentials('customer01', 'overlook2020')
+
+    assert.equal(validityCheck.valid, false)
+  })
+
+  it('should have a false validity if both username and password are invalid', () => {
+    const validityCheck = verifyCredentials('customer00', 'overlook2020')
+
+    assert.equal(validityCheck.valid, false)
+  })
 });

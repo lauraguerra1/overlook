@@ -39,6 +39,7 @@ import './images/yoga-room.png'
 import './images/resort-area.png'
 import './images/no-results.png'
 import './images/500-error.png'
+import { verifyCredentials, verifyPassword, verifyUserName } from './login';
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#min');
@@ -92,15 +93,23 @@ const updateAvailableRooms = (data) => {
 window.addEventListener('load', () => {
   loadRooms()
   setCalendarDate()
-  // getRoomsAndBookings(updateBookingsHTML)
-  // getUserBookings();
 });
 
 loginBtn.addEventListener('click', () => {
-  currentUser.id = 43
-  getRoomsAndBookings(updateBookingsHTML)
-  landingPage.classList.add('hidden')
-  document.querySelector('.available-rooms-container').classList.remove('hidden')
+  const userName = document.querySelector('#username').value
+  const password = document.querySelector('#password').value
+  const errorMsg = document.querySelector('.credential-error')
+  const validUser = verifyCredentials(userName, password)
+
+  if(validUser.valid) {
+    currentUser.id = validUser.id
+    getRoomsAndBookings(updateBookingsHTML)
+    errorMsg.classList.remove('hidden')
+    landingPage.classList.add('hidden')
+    document.querySelector('.available-rooms-container').classList.remove('hidden')
+  } else {
+    errorMsg.classList.remove('hidden')
+  }
 })
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {
