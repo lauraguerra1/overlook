@@ -89,7 +89,6 @@ window.addEventListener('load', () => {
   getUserBookings();
 });
 
-
 Array.from([leftSlider, rightSlider]).forEach((input) => {
   input.addEventListener('input', (e) => {
     slideBudget(e);

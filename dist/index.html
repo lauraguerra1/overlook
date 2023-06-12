@@ -240,13 +240,13 @@
             </form>
           </section> 
           <section class="budget-container">
-            <label for="valueSliders" id="valueLabel">Filter By Price Range:</label>
+            <p id="valueLabel">Filter By Price Range:</p>
             <section class="values">
               <span>$</span><span class="value1">150</span><span> &dash; $</span><span class="value2">500</span>
             </section>
             <form class="slider-track" id="valueSliders">
-              <input type="range" min="150" max="250" value="150" id="min"> 
-              <input type="range" min="251" max="500" value="500" id="max"> 
+              <input aria-label="minimum price" type="range" min="150" max="250" value="150" id="min"> 
+              <input aria-label="maximum price" type="range" min="251" max="500" value="500" id="max"> 
             </form>
           </section>
           <p class="date-error-msg error hidden">Please select a valid date!</p>
@@ -272,9 +272,9 @@
             </button>
             <section class="modal-imgs scrollbar">
               <img class="modal-room-img" src="./images/residentialsuite.png" alt="open floor plan hotel suite with an outdoor patio, ocean view and blue decor">
-              <img src="./images/yoga-room.png">
-              <img src="./images/canopy.png">
-              <img id="lastImg" src="./images/resort-area.png">
+              <img src="./images/yoga-room.png" alt="relaxing yoga room with a scenic view or greenery and foliage">
+              <img src="./images/canopy.png" alt="outdoor bedroom canopy with hammock and bench">
+              <img id="lastImg" src="./images/resort-area.png" alt="roof top infinity pool with lounge chairs">
             </section>
             <button class="arrows right-arrow material-icons">
               chevron_right
