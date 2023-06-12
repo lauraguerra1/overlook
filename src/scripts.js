@@ -73,6 +73,7 @@ const landingPage = document.querySelector('.landing-page-container');
 const loginBtn = document.querySelector('.login-btn');
 const errorMsg = document.querySelector('.credential-error');
 const mainPage = document.querySelector('.available-rooms-container')
+const loginForm = document.querySelector('.login-child')
 
 // FUNCTIONS
 const updateAvailableRooms = (data) => {
@@ -95,6 +96,10 @@ window.addEventListener('load', () => {
 });
 
 loginBtn.addEventListener('click', logIn)
+
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+})
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {
   input.addEventListener('input', (e) => {
