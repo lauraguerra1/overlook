@@ -36,6 +36,7 @@ import './images/canopy.png'
 import './images/yoga-room.png'
 import './images/resort-area.png'
 import './images/no-results.png'
+import './images/500-error.png'
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#min');

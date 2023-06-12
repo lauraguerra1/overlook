@@ -516,11 +516,29 @@ input[type="range"]::-moz-range-thumb {
   align-items: center;
 }
 
-/* .no-results-view > p {
-  /* position: absolute; */
-  /* top:0; 
+.error-page {
+  max-height: 100%;
+  width: 100vw;
+  position: relative;
+  display: grid;
+}
+
+#serverInstructions {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  justify-self: center;
+  margin-top: 5%;
+}
+
+.error-page > img {
+  max-height: 100%;
+  width: 100%;
+}
+
+.error-btn {
   text-align: center;
-} */
+}
 
 .no-results-img {
   /* position: relative; */
