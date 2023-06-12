@@ -59,6 +59,7 @@ const getRoomsAndBookings = (eventHandler) => {
   // return () => {
     Promise.all([fetchAPI('rooms'), fetchAPI('bookings')])
       .then((data) => {
+        console.log('in promise', data)
         eventHandler(data, id);
       })
       .catch(() => {

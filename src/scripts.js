@@ -71,6 +71,8 @@ const noResultsView = document.querySelector('.no-results-view');
 const reserveBtn = document.querySelector('.reserve-room-btn');
 const bookingDashBtn = document.querySelector('.booking-modal-dash-btn');
 const bookingSearchBtn = document.querySelector('.booking-modal-search-btn');
+const landingPage = document.querySelector('.landing-page-container');
+const loginBtn = document.querySelector('.login-btn');
 
 // FUNCTIONS
 const updateAvailableRooms = (data) => {
@@ -86,12 +88,20 @@ const updateAvailableRooms = (data) => {
 }
 
 // EVENT LISTENERS
+
 window.addEventListener('load', () => {
   loadRooms()
   setCalendarDate()
-  getRoomsAndBookings(updateBookingsHTML)
+  // getRoomsAndBookings(updateBookingsHTML)
   // getUserBookings();
 });
+
+loginBtn.addEventListener('click', () => {
+  currentUser.id = 43
+  getRoomsAndBookings(updateBookingsHTML)
+  landingPage.classList.add('hidden')
+  document.querySelector('.available-rooms-container').classList.remove('hidden')
+})
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {
   input.addEventListener('input', (e) => {

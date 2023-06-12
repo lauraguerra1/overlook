@@ -200,11 +200,15 @@ const createUserBookingsHTML = (userBookings, rooms) => {
       .map((booking, i, array) => createSingleUserBookingHTML(booking, rooms, i, array))
       .join('');
   });
+  console.log('in create user bookings, current', sortedBookings.current)
 
   if (!sortedBookings.current.length) {
     currentBookings.innerHTML = '';
     currentBookings.classList.add('hidden');
+  } else {
+    currentBookings.classList.remove('hidden');
   }
+
 };
 
 const createAvailableRoomsHTML = rooms => {
