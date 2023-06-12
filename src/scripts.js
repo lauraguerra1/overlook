@@ -1,7 +1,8 @@
 // IMPORTS
 import './css/styles.css';
 import {
-  getUserBookings,
+  // getUserBookings,
+  getRoomsAndBookings,
   submitBooking,
   currentUser,
   pageData,
@@ -18,7 +19,8 @@ import {
   updateSelectedRoom,
   updateRoomModal,
   returnToFilter,
-  changeAttribute
+  changeAttribute,
+  updateBookingsHTML
 } from './domUpdates';
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
@@ -87,7 +89,8 @@ const updateAvailableRooms = (data) => {
 window.addEventListener('load', () => {
   loadRooms()
   setCalendarDate()
-  getUserBookings();
+  getRoomsAndBookings(updateBookingsHTML)
+  // getUserBookings();
 });
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {

@@ -38,7 +38,7 @@ const submitBooking = (userID, date, roomNumber) => {
   })
     .then((data) => {
       showConfirmation(data.newBooking)
-      getUserBookings()
+      getRoomsAndBookings(updateBookingsHTML)
     })
     .catch(() => alert(`We failed to connect to the server. Please refresh.`));
 }
@@ -56,7 +56,7 @@ const fetchAPI = (dataType, options) => {
 
 const getRoomsAndBookings = (eventHandler) => {
   const id = currentUser.id;
-  return () => {
+  // return () => {
     Promise.all([fetchAPI('rooms'), fetchAPI('bookings')])
       .then((data) => {
         eventHandler(data, id);
@@ -65,11 +65,15 @@ const getRoomsAndBookings = (eventHandler) => {
         document.querySelectorAll('.main-container').forEach(view => view.classList.add('hidden'))
         document.querySelector('.error-page').classList.remove('hidden')
       });
-  };
+  // };
 };
 
-const filterRooms = getRoomsAndBookings(updateAvailableRoomsHTML);
+// const filterRooms = getRoomsAndBookings(updateAvailableRoomsHTML);
 
-const getUserBookings = getRoomsAndBookings(updateBookingsHTML);
+// const getUserBookings = getRoomsAndBookings(updateBookingsHTML);
 
-export { getUserBookings, filterRooms, loadRooms, submitBooking, currentUser, pageData };
+export { 
+  // getUserBookings,
+  getRoomsAndBookings,  
+  // filterRooms, 
+  loadRooms, submitBooking, currentUser, pageData };

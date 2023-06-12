@@ -20,7 +20,10 @@ import {
   bookingModal
 } from './scripts';
 
-import { currentUser, filterRooms, pageData } from './apicalls';
+import { currentUser, 
+  // filterRooms, 
+  getRoomsAndBookings,
+  pageData } from './apicalls';
 
 const formatRoomType = room => room.roomType.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 
@@ -87,7 +90,7 @@ const switchToHome = () => {
 
 const closeFilterModal = () => {
   if (calendar.value && checkDateValidity(Date.now(), calendar.value)) {
-    filterRooms()
+    getRoomsAndBookings(updateAvailableRoomsHTML)
     switchToHome()
   } else {
     dateError.classList.remove('hidden')
