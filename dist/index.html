@@ -26,11 +26,11 @@
         <a class='btn-text error-btn' href="https://github.com/lauraguerra1/overlook" target="_blank">SEE SERVER INSTALLATION INSTRUCTIONS</a>
       </button>
     </div>
-    <div class="landing-page-container main-container  hidden">
+    <div class="landing-page-container main-container">
       <div class="landing-page-view content-box"> 
         <img class="bg-img" src="./images/pool-side.png" alt="pool side resort">
         <section class="initial-content-container">
-          <div class="login-view-container ">
+          <div class="login-view-container">
             <div class="login-child">
               <h1>WELCOME</h1>
               <p>Please Log-in</p>
@@ -38,17 +38,16 @@
             <form class="login-child">
               <input type="text" id="username">
               <label for="username">username</label>
-            </form>
-            <form class="login-child">
               <input type="password" id="password">
               <label for="password">password</label> 
             </form>
+            <p class="credential-error error hidden">Invalid credentials!</p>
             <button class="login-btn">Log-In</button>
           </div>
         </section>
       </div> 
     </div>
-    <div class="available-rooms-container main-container">
+    <div class="available-rooms-container main-container hidden">
       <nav>
         <button class="btn nav-btn search-btn">
           <div class="material-icons icon">
@@ -132,7 +131,7 @@
           </button>
         </section>
       </div>
-      <div class="user-dash-view">
+      <div class="user-dash-view ">
         <p class="total-spent">Total Spent:</p>
         <div class="current-bookings" id="current">
           <p class="current-text">Current Bookings</p>

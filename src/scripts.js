@@ -1,14 +1,15 @@
 // IMPORTS
 import './css/styles.css';
 import {
-  getUserBookings,
   submitBooking,
   currentUser,
   pageData,
-  loadRooms
+  loadRooms,
+  getRoomsAndBookings
 } from './apicalls';
 
 import {
+  logIn,
   slideBudget,
   toggleModal,
   showDash,
@@ -18,12 +19,13 @@ import {
   updateSelectedRoom,
   updateRoomModal,
   returnToFilter,
-  changeAttribute
+  changeAttribute,
+  changeBtnAmount
 } from './domUpdates';
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
 
-import { getDateValue } from './dates';
+import { checkDateValidity, getDateValue } from './dates';
 
 //IMAGES
 import './images/suite.png';
@@ -69,31 +71,52 @@ const noResultsView = document.querySelector('.no-results-view');
 const reserveBtn = document.querySelector('.reserve-room-btn');
 const bookingDashBtn = document.querySelector('.booking-modal-dash-btn');
 const bookingSearchBtn = document.querySelector('.booking-modal-search-btn');
+const landingPage = document.querySelector('.landing-page-container');
+const loginBtn = document.querySelector('.login-btn');
+const errorMsg = document.querySelector('.credential-error');
+const mainPage = document.querySelector('.available-rooms-container')
+const loginForm = document.querySelector('.login-child')
+const roomType = document.querySelector('#roomTypes')
 
 // FUNCTIONS
 const updateAvailableRooms = (data) => {
-  const roomType = document.querySelector('#roomTypes')
   currentUser.selectedDate = getDateValue(calendar.value)
   const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, currentUser.selectedDate);
   const roomsByPrice = filterRoomsByPrice(roomsByDate, currentUser.budget.min, currentUser.budget.max)
+  let filteredRooms = roomsByPrice;
+
   if(roomType.value !== 'allRooms') {
-    return filterRoomsByType(roomsByPrice, roomType.value)
-  } else {
-    return roomsByPrice
-  }
+    filteredRooms = filterRoomsByType(roomsByPrice, roomType.value)
+  } 
+
+  return filteredRooms
 }
+
 // EVENT LISTENERS
+
 window.addEventListener('load', () => {
   loadRooms()
   setCalendarDate()
-  getUserBookings();
 });
+
+loginBtn.addEventListener('click', logIn)
+
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+})
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {
   input.addEventListener('input', (e) => {
     slideBudget(e);
   });
 });
+
+
+Array.from([calendar, roomType, leftSlider, rightSlider]).forEach(input => {
+  input.addEventListener('input', () => {
+    getRoomsAndBookings(changeBtnAmount)
+  })
+})
 
 filterAndSearchBtns.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -189,6 +212,8 @@ export {
   calendar,
   dateError,
   noResultsView,
-  // allRooms
-  // currentUser
+  landingPage, 
+  errorMsg, 
+  mainPage,
+  showRoomsBtn
 };
