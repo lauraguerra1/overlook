@@ -1,8 +1,6 @@
 // IMPORTS
 import './css/styles.css';
 import {
-  // getUserBookings,
-  getRoomsAndBookings,
   submitBooking,
   currentUser,
   pageData,
@@ -10,6 +8,7 @@ import {
 } from './apicalls';
 
 import {
+  logIn,
   slideBudget,
   toggleModal,
   showDash,
@@ -20,7 +19,6 @@ import {
   updateRoomModal,
   returnToFilter,
   changeAttribute,
-  updateBookingsHTML
 } from './domUpdates';
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
@@ -39,7 +37,6 @@ import './images/yoga-room.png'
 import './images/resort-area.png'
 import './images/no-results.png'
 import './images/500-error.png'
-import { verifyCredentials, verifyPassword, verifyUserName } from './login';
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#min');
@@ -74,6 +71,8 @@ const bookingDashBtn = document.querySelector('.booking-modal-dash-btn');
 const bookingSearchBtn = document.querySelector('.booking-modal-search-btn');
 const landingPage = document.querySelector('.landing-page-container');
 const loginBtn = document.querySelector('.login-btn');
+const errorMsg = document.querySelector('.credential-error');
+const mainPage = document.querySelector('.available-rooms-container')
 
 // FUNCTIONS
 const updateAvailableRooms = (data) => {
@@ -95,22 +94,7 @@ window.addEventListener('load', () => {
   setCalendarDate()
 });
 
-loginBtn.addEventListener('click', () => {
-  const userName = document.querySelector('#username').value
-  const password = document.querySelector('#password').value
-  const errorMsg = document.querySelector('.credential-error')
-  const validUser = verifyCredentials(userName, password)
-
-  if(validUser.valid) {
-    currentUser.id = validUser.id
-    getRoomsAndBookings(updateBookingsHTML)
-    errorMsg.classList.remove('hidden')
-    landingPage.classList.add('hidden')
-    document.querySelector('.available-rooms-container').classList.remove('hidden')
-  } else {
-    errorMsg.classList.remove('hidden')
-  }
-})
+loginBtn.addEventListener('click', logIn)
 
 Array.from([leftSlider, rightSlider]).forEach((input) => {
   input.addEventListener('input', (e) => {
@@ -212,6 +196,7 @@ export {
   calendar,
   dateError,
   noResultsView,
-  // allRooms
-  // currentUser
+  landingPage, 
+  errorMsg, 
+  mainPage
 };
