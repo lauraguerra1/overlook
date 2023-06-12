@@ -82,6 +82,7 @@ const updateAvailableRooms = (data) => {
     return roomsByPrice
   }
 }
+
 // EVENT LISTENERS
 window.addEventListener('load', () => {
   loadRooms()
