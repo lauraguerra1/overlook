@@ -74,7 +74,7 @@ const toggleModal = (modal, changeOption, attributeOption) => {
 };
 
 const showDash = () => {
-  changeClass([filterBtn, accountBtn, searchBtn, availableRoomsView], 'add', ['hidden'])
+  changeClass([filterBtn, accountBtn, searchBtn, availableRoomsView, noResultsView], 'add', ['hidden'])
   changeClass([searchBtn, userDashView], 'remove', ['hidden'])
   changeAttribute(userDashView.querySelectorAll('.user-room'), 'setAttribute', 'tabindex', 0)
 };
