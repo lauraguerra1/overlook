@@ -4,7 +4,8 @@ import {
   submitBooking,
   currentUser,
   pageData,
-  loadRooms
+  loadRooms,
+  getRoomsAndBookings
 } from './apicalls';
 
 import {
@@ -19,11 +20,12 @@ import {
   updateRoomModal,
   returnToFilter,
   changeAttribute,
+  changeBtnAmount
 } from './domUpdates';
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
 
-import { getDateValue } from './dates';
+import { checkDateValidity, getDateValue } from './dates';
 
 //IMAGES
 import './images/suite.png';
@@ -74,18 +76,20 @@ const loginBtn = document.querySelector('.login-btn');
 const errorMsg = document.querySelector('.credential-error');
 const mainPage = document.querySelector('.available-rooms-container')
 const loginForm = document.querySelector('.login-child')
+const roomType = document.querySelector('#roomTypes')
 
 // FUNCTIONS
 const updateAvailableRooms = (data) => {
-  const roomType = document.querySelector('#roomTypes')
   currentUser.selectedDate = getDateValue(calendar.value)
   const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, currentUser.selectedDate);
   const roomsByPrice = filterRoomsByPrice(roomsByDate, currentUser.budget.min, currentUser.budget.max)
+  let filteredRooms = roomsByPrice;
+
   if(roomType.value !== 'allRooms') {
-    return filterRoomsByType(roomsByPrice, roomType.value)
-  } else {
-    return roomsByPrice
-  }
+    filteredRooms = filterRoomsByType(roomsByPrice, roomType.value)
+  } 
+
+  return filteredRooms
 }
 
 // EVENT LISTENERS
@@ -106,6 +110,13 @@ Array.from([leftSlider, rightSlider]).forEach((input) => {
     slideBudget(e);
   });
 });
+
+
+Array.from([calendar, roomType, leftSlider, rightSlider]).forEach(input => {
+  input.addEventListener('input', () => {
+    getRoomsAndBookings(changeBtnAmount)
+  })
+})
 
 filterAndSearchBtns.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -203,5 +214,6 @@ export {
   noResultsView,
   landingPage, 
   errorMsg, 
-  mainPage
+  mainPage,
+  showRoomsBtn
 };

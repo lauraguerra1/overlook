@@ -111,6 +111,15 @@ h2, .modal-heading {
   width: 80%;
 }
 
+.login-child > label {
+  margin-bottom: 5%;
+}
+
+.login-child > input {
+  margin-top: 5%;
+  border-radius: 10px;
+}
+
 .login-view-container p {
   text-align: center;
 }

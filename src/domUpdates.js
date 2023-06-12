@@ -21,7 +21,8 @@ import {
   bookingModal,
   landingPage,
   mainPage,
-  errorMsg
+  errorMsg,
+  showRoomsBtn
 } from './scripts';
 
 import { currentUser, getRoomsAndBookings, pageData } from './apicalls';
@@ -240,6 +241,11 @@ const createAvailableRoomsHTML = (rooms) => {
   }
 };
 
+const changeBtnAmount = (data) => {
+  const rooms = updateAvailableRooms(data)
+  showRoomsBtn.innerText = `SHOW ${rooms.length} ROOMS`
+}
+
 const updateAvailableRoomsHTML = (data) => {
   const availableRooms = updateAvailableRooms(data);
   createAvailableRoomsHTML(availableRooms);
@@ -300,4 +306,5 @@ export {
   showConfirmation,
   returnToFilter,
   changeAttribute,
+  changeBtnAmount
 };
