@@ -164,6 +164,18 @@ input {
 }
 
 /* USER DASHBOARD */
+.current-bookings > section{
+  min-width: 30%;
+  max-width: 35%;
+}
+
+
+.current-bookings {
+  overflow-x: auto; 
+  display: flex;
+  max-width: 95%;
+}
+
 .user-dash-view {
   width: 80%;
   max-height: 90%;
@@ -334,6 +346,10 @@ input[type="range"]::-moz-range-thumb {
   text-align: center;
 }
 
+.modal-cost-date span {
+  font-family: Maven Pro;
+}
+
 .modal-description-wrapper {
   min-height: 20%;
 }
@@ -477,6 +493,42 @@ input[type="range"]::-moz-range-thumb {
   border: none;
   cursor: pointer;
 }
+
+/* BOOKING MODAL */
+.booking-modal {
+  background: rgba(154, 179, 199, 0.947);
+  height: 30%;
+}
+
+.booking-modal-bottom {
+  max-height: 10%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ERROR VIEWS */
+.no-results-view {
+  max-height: 80%;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .no-results-view > p {
+  /* position: absolute; */
+  /* top:0; 
+  text-align: center;
+} */
+
+.no-results-img {
+  /* position: relative; */
+  max-height: 90%;  
+  max-width: 90%;
+} 
+
+
 
 /* ANIMATIONS */
 

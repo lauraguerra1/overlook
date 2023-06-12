@@ -13,7 +13,7 @@
 </head>
 <body>
   <header>
-    <img class="logo" src="./images/lotus-logo-b.png" alt="Lavish Living Lotus Logo">
+    <img class="logo" src="./images/lotus-logo.png" alt="Lavish Living Lotus Logo">
     <div> 
       <h1>L<span>A</span>VISH LIVING  HOTEL</h1>
       <h2>WHERE BEAUTY SLEEP AWAITS</h2>
@@ -194,7 +194,11 @@
             </section>
           </section>
         </div>
-      </div>    
+      </div>
+      <section class="no-results-view hidden">
+        <!-- <p>Our Apologies...</p> -->
+        <img class='no-results-img' src="./images/no-results.png" alt="We couldn't find any results for your search. Please try again.">
+      </section>    
       <section class="modal filter-modal hidden">
         <div class="modal-top filter-modal-top">
           <button class="material-icons close-btn-1 close-btn">
@@ -250,15 +254,12 @@
           <button class="material-icons close-btn-2 close-btn">
             close
           </button>
-          <!-- <h1 class="modal-heading room-modal-heading">YOU'RE BOOKING OUR</h1> -->
         </div>
         <div class="room-modal-details">
           <div class="modal-description-wrapper">
             <p class="modal-description">Residential Suite with 1 King Bed</p>
-            <p class="modal-cost-date">Cost per night: $356.75 | Selected Date: 06/08/2023</p>
+            <p class="modal-cost-date">Cost per night: $<span class="room-price">356.75</span> | Selected Date: <span class="selected-date">06/08/2023</span></p>
           </div>
-          <!-- <p class="modal-description">Residential Suite with 1 King Bed</p>
-          <p class="modal-cost-date">Cost per night: $356.75 | Selected Date: 06/08/2023</p> -->
           <div class="img-slide-wrapper">
             <button class="arrows left-arrow material-icons">
               chevron_left
@@ -277,6 +278,22 @@
         <button class="btn btn-text reserve-room-btn">
           RESERVE NOW
         </button>
+      </section>
+      <section class="modal booking-modal hidden">
+        <div class="booking-details">
+          <div class="modal-description-wrapper">
+            <p class="success-msg">Thank you for booking your stay with us!</p>
+            <p class="booking-confirmation">Your confirmation number is <span class="confirmation">16005458389558</span></p>
+          </div>
+        </div>
+        <div class="booking-modal-bottom">
+          <button class="btn btn-text booking-modal-dash-btn">
+            VIEW YOUR BOOKINGS
+          </button>
+          <button class="btn btn-text booking-modal-search-btn ">
+            CONTINUE SEARCHING
+          </button>
+        </div>
       </section>
     </div>
   </main>

@@ -1,26 +1,33 @@
 // IMPORTS
 import './css/styles.css';
 import {
-  filterRooms,
   getUserBookings,
-  currentUser
+  submitBooking,
+  currentUser,
+  pageData,
+  loadRooms
 } from './apicalls';
 
 import {
   slideBudget,
   toggleModal,
   showDash,
-  switchToHome,
   setCalendarDate,
   removeDateError,
-  closeFilterModal
+  closeFilterModal,
+  updateSelectedRoom,
+  updateRoomModal,
+  returnToFilter,
+  changeAttribute
 } from './domUpdates';
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
 
+import { getDateValue } from './dates';
+
 //IMAGES
 import './images/suite.png';
-import './images/lotus-logo-b.png';
+import './images/lotus-logo.png';
 import './images/pool-side.png';
 import './images/singleroom.png';
 import './images/juniorsuite.png';
@@ -28,7 +35,7 @@ import './images/residentialsuite.png';
 import './images/canopy.png'
 import './images/yoga-room.png'
 import './images/resort-area.png'
-import { checkDateValidity, getDateValue } from './dates';
+import './images/no-results.png'
 
 //GLOBAL VARIABLES
 const leftSlider = document.querySelector('#min');
@@ -41,7 +48,8 @@ const filterBtn = document.querySelector('.filter-button');
 const accountBtn = document.querySelector('.account-btn');
 const searchBtn = document.querySelector('.search-btn');
 const filterModal = document.querySelector('.filter-modal');
-const roomModal = document.querySelector('.room-modal')
+const roomModal = document.querySelector('.room-modal');
+const bookingModal = document.querySelector('.booking-modal');
 const availableRoomsView = document.querySelector('.available-rooms-view');
 const roomsShownText = document.querySelector('.rooms-shown-txt');
 const showRoomsBtn = document.querySelector('.filter-show-button');
@@ -56,23 +64,16 @@ const rightArrow = document.querySelector('.right-arrow');
 const modalImgs = document.querySelector('.modal-imgs');
 const calendar = document.querySelector('#calendar');
 const dateError = document.querySelector('.date-error-msg');
-
-//DATA MODEL 
-// let currentUser = {id: 50};
+const noResultsView = document.querySelector('.no-results-view');
+const reserveBtn = document.querySelector('.reserve-room-btn');
+const bookingDashBtn = document.querySelector('.booking-modal-dash-btn');
+const bookingSearchBtn = document.querySelector('.booking-modal-search-btn');
 
 // FUNCTIONS
-// const updateCurrentUser = (user) => {
-//   currentUser = user;
-//   currentUser.budget = {
-//     min: 150, 
-//     max: 500
-//   }
-// }
-
 const updateAvailableRooms = (data) => {
   const roomType = document.querySelector('#roomTypes')
-  const date = getDateValue(calendar.value)
-  const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, date);
+  currentUser.selectedDate = getDateValue(calendar.value)
+  const roomsByDate = getAvailableRooms(data[1].bookings, data[0].rooms, currentUser.selectedDate);
   const roomsByPrice = filterRoomsByPrice(roomsByDate, currentUser.budget.min, currentUser.budget.max)
   if(roomType.value !== 'allRooms') {
     return filterRoomsByType(roomsByPrice, roomType.value)
@@ -82,6 +83,7 @@ const updateAvailableRooms = (data) => {
 }
 // EVENT LISTENERS
 window.addEventListener('load', () => {
+  loadRooms()
   setCalendarDate()
   getUserBookings();
 });
@@ -101,6 +103,7 @@ filterAndSearchBtns.forEach(btn => {
 
 filterCloseBtn.addEventListener('click', () => {
   toggleModal(filterModal, 'remove', 'removeAttribute');
+  changeAttribute(userDashView.querySelectorAll('.user-room'), 'setAttribute', 'tabindex', 0)
 });
 
 roomCloseBtn.addEventListener('click', () => {
@@ -115,6 +118,8 @@ showRoomsBtn.addEventListener('click', closeFilterModal);
 
 availableRoomsView.addEventListener('click', (e) => {
   if(e.target.classList.contains('booking-btn')) {
+    updateSelectedRoom(e)
+    updateRoomModal()
     toggleModal(roomModal, 'add', 'setAttribute')
   }
 })
@@ -155,11 +160,24 @@ rightArrow.addEventListener('keydown', (e) => {
   }
 })
 
+reserveBtn.addEventListener('click', () => {
+  submitBooking(currentUser.id, pageData.selectedRoom.APIDate, pageData.selectedRoom.room.number)
+})
+
+bookingSearchBtn.addEventListener('click', returnToFilter);
+bookingDashBtn.addEventListener('click', () => {
+  toggleModal(bookingModal, 'remove', 'removeAttribute')
+  showDash()
+});
+
 export {
   leftBudgetValue,
   rightBudgetValue,
   filterBtn,
+  filterCloseBtn,
   filterModal,
+  bookingModal, 
+  roomModal,
   availableRoomsView,
   userDashView,
   accountBtn,
@@ -169,6 +187,8 @@ export {
   currentBookings,
   updateAvailableRooms,
   calendar,
-  dateError
+  dateError,
+  noResultsView,
+  // allRooms
   // currentUser
 };

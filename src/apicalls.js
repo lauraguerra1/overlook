@@ -1,8 +1,14 @@
 import {
+  showConfirmation,
   updateAvailableRoomsHTML,
   updateBookingsHTML,
 } from './domUpdates';
 
+// import { allRooms } from './scripts';
+let pageData = {
+  allRooms: [],
+  selectedRoom: {}
+}
 
 let currentUser = {
   id: 50,
@@ -12,8 +18,33 @@ let currentUser = {
   }
 };
 
-const fetchAPI = (dataType) => {
-  return fetch(`http://localhost:3001/api/v1/${dataType}`)
+
+// let allRooms = [];
+const loadRooms = () => {
+  fetchAPI('rooms')
+    .then(data => {
+      pageData.allRooms = data.rooms
+    })
+}
+
+const submitBooking = (userID, date, roomNumber) => {
+  const data = { userID, date, roomNumber }
+  fetchAPI('bookings', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((data) => {
+      showConfirmation(data.newBooking)
+      getUserBookings()
+    })
+    .catch(error => console.error(error))
+}
+
+const fetchAPI = (dataType, options) => {
+  return fetch(`http://localhost:3001/api/v1/${dataType}`, options)
     .then((response) => {
       return response.json();
     })
@@ -35,4 +66,4 @@ const filterRooms = getRoomsAndBookings(updateAvailableRoomsHTML);
 
 const getUserBookings = getRoomsAndBookings(updateBookingsHTML);
 
-export { getUserBookings, filterRooms, currentUser };
+export { getUserBookings, filterRooms, loadRooms, submitBooking, currentUser, pageData };
