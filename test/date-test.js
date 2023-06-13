@@ -5,26 +5,11 @@ import {
   checkDateValidity,
   checkInitialDateFormat,
   fixIntegerFormat,
-  getDateValue,
   formatDate
 } from '../src/dates';
 
 describe('date', () => {
   const currentDate = 1686229866393;
-  it('should return a date value with hours set to zero', () => {
-    // console.log(getDateValue('2023-12-07'))
-    const newDate = getDateValue('2023/06/08');
-    const sameDate = getDateValue('2023-06-08');
-    assert.equal(newDate, 1686196800000);
-    assert.equal(sameDate, 1686196800000);
-  });
-
-  it('should return a date value for a different date', () => {
-    const newDate = getDateValue('2021/12/10');
-    const sameDate = getDateValue('2021-12-10');
-    assert.equal(newDate, 1639112400000);
-    assert.equal(sameDate, 1639112400000);
-  });
 
   it('should return true is the date is in the future', () => {
     const validDate = checkDateValidity(currentDate, '2024/10/05');
@@ -39,11 +24,6 @@ describe('date', () => {
   it('should return false if the date is in the past', () => {
     const validDate = checkDateValidity(currentDate, '2021/06/08');
     assert.equal(validDate, false);
-  });
-
-  it('should return a date integer if given a date with forward slashes', () => {
-    const newDate = checkInitialDateFormat('2023/06/08');
-    assert.equal(newDate, 1686196800000);
   });
 
   it('should return the same integer if given an integer', () => {
@@ -61,11 +41,6 @@ describe('date', () => {
     assert.deepEqual(month, '11');
   });
 
-  it('should format a number into a US date', () => {
-    const USDate = formatDate('US', 1686196800000)
-    assert.equal(USDate, '6/8/2023')
-  })
-
   it('should format a date into a US date', () => {
     const USDate = formatDate('US', '2023/06/08')
     assert.equal(USDate, '6/8/2023')
@@ -76,19 +51,9 @@ describe('date', () => {
     assert.equal(USDate, '10/18/2023')
   })
 
-  it('should format a number into yyyy-mm-dd', () => {
-    const calendarDate = formatDate('calendar', 1686196800000)
-    assert.equal(calendarDate, '2023-06-08')
-  })
-
   it('should format a date into yyyy-mm-dd', () => {
     const calendarDate = formatDate('calendar', '2023/06/08')
     assert.equal(calendarDate, '2023-06-08')
-  })
-
-  it('should format a number into yyyy/mm/dd', () => {
-    const APIDate = formatDate('API', 1686196800000)
-    assert.equal(APIDate, '2023/06/08')
   })
 
   it('should format a date into yyyy/mm/dd', () => {

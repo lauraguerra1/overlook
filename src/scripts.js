@@ -25,7 +25,7 @@ import {
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
 
-import { checkDateValidity, getDateValue } from './dates';
+import { getDateValue } from './dates';
 
 //IMAGES
 import './images/suite.png';
@@ -114,6 +114,12 @@ Array.from([leftSlider, rightSlider]).forEach((input) => {
 
 Array.from([calendar, roomType, leftSlider, rightSlider]).forEach(input => {
   input.addEventListener('input', () => {
+    getRoomsAndBookings(changeBtnAmount)
+  })
+})
+
+Array.from([bookingSearchBtn, filterBtn, searchBtn]).forEach(btn => {
+  btn.addEventListener('click', () => {
     getRoomsAndBookings(changeBtnAmount)
   })
 })
