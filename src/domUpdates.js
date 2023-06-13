@@ -22,7 +22,8 @@ import {
   landingPage,
   mainPage,
   errorMsg,
-  showRoomsBtn
+  showRoomsBtn,
+  logOutBtn
 } from './scripts';
 
 import { currentUser, getRoomsAndBookings, pageData } from './apicalls';
@@ -43,6 +44,14 @@ const logIn = () => {
     changeClass([errorMsg], 'remove', ['hidden'])
   }
 };
+
+const logOut = () => {
+  mainPage.classList.add('hidden')
+  landingPage.classList.remove('hidden')
+  document.querySelector('#username').value = ''
+  document.querySelector('#password').value = ''
+  currentUser.id = null;
+}
 
 const setCalendarDate = () => {
   document
@@ -81,9 +90,9 @@ const changeAttribute = (elements, change, attribute, boolean) => {
 };
 
 const toggleModal = (modal, changeOption, attributeOption) => {
-  changeClass([accountBtn, searchBtn, filterBtn], changeOption, ['no-click']);
+  changeClass([accountBtn, searchBtn, filterBtn, logOutBtn], changeOption, ['no-click']);
   changeClass([availableRoomsView, userDashView, noResultsView], changeOption, ['blur', 'no-click']);
-  changeAttribute([filterBtn, accountBtn, searchBtn], attributeOption, 'disabled', true);
+  changeAttribute([filterBtn, accountBtn, searchBtn, logOutBtn], attributeOption, 'disabled', true);
   changeAttribute(availableRoomsView.querySelectorAll('.booking-btn'), attributeOption, 'disabled', true);
 
   if (modal !== bookingModal) {
@@ -306,5 +315,6 @@ export {
   showConfirmation,
   returnToFilter,
   changeAttribute,
-  changeBtnAmount
+  changeBtnAmount,
+  logOut
 };
