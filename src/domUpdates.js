@@ -106,14 +106,14 @@ const toggleModal = (modal, changeOption, attributeOption) => {
 
 const showDash = () => {
   changeClass([filterBtn, accountBtn, searchBtn, availableRoomsView, noResultsView], 'add', ['hidden']);
-  changeClass([searchBtn, userDashView], 'remove', ['hidden']);
+  changeClass([searchBtn, userDashView, logOutBtn], 'remove', ['hidden']);
   changeAttribute(userDashView.querySelectorAll('.user-room'), 'setAttribute', 'tabindex', 0);
 };
 
 const switchToHome = () => {
   toggleModal(filterModal, 'remove', 'removeAttribute');
   changeClass([filterBtn, accountBtn, searchBtn, availableRoomsView],'remove',['hidden']);
-  changeClass([searchBtn, userDashView], 'add', ['hidden']);
+  changeClass([searchBtn, userDashView, logOutBtn], 'add', ['hidden']);
 };
 
 const closeFilterModal = () => {
