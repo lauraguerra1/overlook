@@ -596,6 +596,14 @@ input[type="range"]::-moz-range-thumb {
 }
 
 /* OVERRIDES */
+button:hover {
+  cursor: pointer;
+  background-color:rgba(118, 149, 193, 0.85);
+}
+
+.close-btn:hover {
+  background-color: #00000000;
+}
 .last-room {
   margin-bottom: 1%; 
 }
