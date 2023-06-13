@@ -248,6 +248,10 @@ input {
   margin-top: 1%;
 }
 
+.modal-heading {
+  padding-right: 7%;
+}
+
 .filter-modal-bottom {
   display: flex; 
   flex-direction: column;
