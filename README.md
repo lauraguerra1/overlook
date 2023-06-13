@@ -14,6 +14,9 @@ Javascript | HTML | CSS | REST API
 The 'Lavish Living Hotel' website allows users to log in and view their previous, upcoming and current stays at the hotel. The user dashboard will also provide users with insight into how much money thy have spent at the hotel so far. Furthermore, users can search for rooms to book, and filter the results based on date, type of room, and price range.
 - Upon login, the fetch API is used to retrieve data about the user who has logged in, and throughout the appliaction network requests are made to create and read data.
 
+## Preview of App:
+
+![Lavish Living Hotel Gif](https://user-images.githubusercontent.com/121131581/245508036-3fd70ad7-d13b-4fbf-b79c-5b91f179f334.gif)
 
 ## Installation Instructions 
 In order for this application to function, it will require accessing both a backend server repository as well as the client-side repository. 
@@ -36,13 +39,6 @@ In order for this application to function, it will require accessing both a back
 - Run the command: `npm start`
 - Once the modules have finished compiling, enter `http://localhost:8080/` into your browser to see the live web page. 
 - Use a username between `customer01` and `customer50` along with the password `overlook2021` to log in. 
-
-## Preview of App:
-
-![Lavish Living Hotel Gif](https://user-images.githubusercontent.com/121131581/245508036-3fd70ad7-d13b-4fbf-b79c-5b91f179f334.gif)
-
-
-
 
 
 
