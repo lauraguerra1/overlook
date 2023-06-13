@@ -16,7 +16,7 @@ The 'Lavish Living Hotel' website allows users to log in and view their previous
 
 ## Preview of App:
 
-![Lavish Living Hotel Gif](https://user-images.githubusercontent.com/121131581/245508036-3fd70ad7-d13b-4fbf-b79c-5b91f179f334.gif)
+![Lavish Living Hotel Gif](https://user-images.githubusercontent.com/121131581/245564148-0f40200e-9a6f-4c35-9743-51175102bd7a.gif)
 
 ## Installation Instructions 
 In order for this application to function, it will require accessing both a backend server repository as well as the client-side repository. 
