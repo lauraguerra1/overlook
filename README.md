@@ -1,99 +1,66 @@
-# Webpack Starter Kit
-test line here 
-## Clone This Repo
+# Overlook 
+<div align="center">
+<b>Built With:</b>
+<br>
+Javascript | HTML | CSS | REST API
+<br>
+<em>Testing Technologies:</em>
+<br>
+ Mocha & Chai 
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+</div>
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+## Abstract: 
+The 'Lavish Living Hotel' website allows users to log in and view their previous, upcoming and current stays at the hotel. The user dashboard will also provide users with insight into how much money thy have spent at the hotel so far. Furthermore, users can search for rooms to book, and filter the results based on date, type of room, and price range.
+- Upon login, the fetch API is used to retrieve data about the user who has logged in, and throughout the appliaction network requests are made to create and read data.
 
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
 
-## Setup
+## Installation Instructions 
+In order for this application to function, it will require accessing both a backend server repository as well as the client-side repository. 
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+### Server Setup
+- Fork [this](https://github.com/turingschool-examples/overlook-api) repository. 
+- Clone it to your local machine using the command: `git clone git@github.com:turingschool-examples/overlook-api.git`.
+- Run the command: `cd overlook-api`
+- Run the command: `npm install`
+- Run the command: `npm start`
 
-Then install the library dependencies. Run:
+<br>
 
-```bash
-npm install
-```
+### Client App Setup
+- Open a separate tab in your terminal using `command T`
+- Fork [this](https://github.com/lauraguerra1/overlook) repository. 
+- Clone it to your local machine using the command: `git clone git@github.com:lauraguerra1/overlook.git`.
+- Run the command: `cd overlook`
+- Run the command: `npm install`
+- Run the command: `npm start`
+- Once the modules have finished compiling, enter `http://localhost:8080/` into your browser to see the live web page. 
+- Use a username between `customer01` and `customer50` along with the password `overlook2021` to log in. 
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+## Preview of App:
 
-## Where to Add Your Code
+![Lavish Living Hotel Gif](https://user-images.githubusercontent.com/121131581/245508036-3fd70ad7-d13b-4fbf-b79c-5b91f179f334.gif)
 
-### JavaScript
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
 
-**Create all of your feature code files in the `src` directory.**
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
 
-### HTML
+## Context: 
+- Mod 2, Week 5: 
+  - I am a current students of Turing School of Software & Design. 
+  - Turing is a 7 month program, which offers a total of 4 modules. 
+  - This project was completed during the fifth week of the second module that the program has to offer. 
 
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
+- A total of approximately 25 hours was spent on this project. 
 
-### Images
+## Contributors: 
+- [Laura Garcia Guerra](https://github.com/lauraguerra1)
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
-
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
+## Learning Goals:
+- Use object and array prototype methods to perform data manipulation.
+- Create a user interface that is easy to use and clearly displays information.
+- Write DRY, reusable code that follows SRP and trends toward function purity
+- Implement a robust testing suite using Test Driven Development.
+- Make network requests (using fetch API) to create and read data.
+- Implement the use of a project board and collaborate with other students to provide usability tests and code reviews. 
