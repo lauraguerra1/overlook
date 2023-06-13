@@ -20,7 +20,8 @@ import {
   updateRoomModal,
   returnToFilter,
   changeAttribute,
-  changeBtnAmount
+  changeBtnAmount,
+  logOut
 } from './domUpdates';
 
 import { filterRoomsByPrice, filterRoomsByType, getAvailableRooms } from './rooms';
@@ -76,7 +77,8 @@ const loginBtn = document.querySelector('.login-btn');
 const errorMsg = document.querySelector('.credential-error');
 const mainPage = document.querySelector('.available-rooms-container')
 const loginForm = document.querySelector('.login-child')
-const roomType = document.querySelector('#roomTypes')
+const roomType = document.querySelector('#roomTypes');
+const logOutBtn = document.querySelector('.logout-btn');
 
 // FUNCTIONS
 const updateAvailableRooms = (data) => {
@@ -199,6 +201,8 @@ bookingDashBtn.addEventListener('click', () => {
   showDash()
 });
 
+logOutBtn.addEventListener('click', logOut)
+
 export {
   leftBudgetValue,
   rightBudgetValue,
@@ -221,5 +225,6 @@ export {
   landingPage, 
   errorMsg, 
   mainPage,
-  showRoomsBtn
+  showRoomsBtn,
+  logOutBtn
 };
