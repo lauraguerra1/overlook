@@ -41,7 +41,7 @@ const submitBooking = (userID, date, roomNumber) => {
 };
 
 const fetchAPI = (dataType, options) => {
-  return fetch(`http://localhost:3001/api/v1/${dataType}`, options)
+  return fetch(`https://overlook-api-heroku.herokuapp.com/api/v1/${dataType}`, options)
     .then((response) => {
       return response.json();
     })
