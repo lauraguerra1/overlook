@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Maven+Pro&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <title>Lavish Living Hotel</title>
+</head>
+<body>
+  <header>
+    <img class="logo" src="./images/lotus-logo.png" alt="Lavish Living Lotus Logo">
+    <div> 
+      <h1>L<span>A</span>VISH LIVING  HOTEL</h1>
+      <h2>WHERE BEAUTY SLEEP AWAITS</h2>
+    </div>
+  </header>
+  <main>
+    <div class="error-page main-container hidden">
+      <img src="./images/500-error.png" alt="We're sorry, a server error has occurred.">
+      <button id="serverInstructions" class="btn">
+        <a class='btn-text error-btn' href="https://github.com/lauraguerra1/overlook" target="_blank">SEE SERVER INSTALLATION INSTRUCTIONS</a>
+      </button>
+    </div>
+    <div class="landing-page-container main-container">
+      <div class="landing-page-view content-box"> 
+        <img class="bg-img" src="./images/pool-side.png" alt="pool side resort">
+        <section class="initial-content-container">
+          <div class="login-view-container">
+            <div class="login-child">
+              <h1>WELCOME</h1>
+              <p>Please Log-in</p>
+            </div>
+            <form class="login-child">
+              <input type="text" id="username">
+              <label for="username">username</label>
+              <input type="password" id="password">
+              <label for="password">password</label> 
+            </form>
+            <p class="credential-error error hidden">Invalid credentials!</p>
+            <button class="login-btn">Log-In</button>
+          </div>
+        </section>
+      </div> 
+    </div>
+    <div class="available-rooms-container main-container hidden">
+      <nav>
+        <button class="btn nav-btn search-btn">
+          <div class="material-icons icon">
+            search
+          </div>
+          <p class="btn-text">FIND ROOMS</p>
+        </button>
+        <button class="btn nav-btn account-btn hidden">
+          <div class="material-icons icon">
+            person
+          </div>
+          <p class="btn-text">DASHBOARD</p>
+        </button>
+        <button class="btn nav-btn filter-button hidden">
+          <div class="material-icons icon">
+            filter_alt
+          </div>
+          <p class="btn-text">FILTER</p>
+        </button>
+        <button class="btn logout-btn nav-btn">
+          <div class="material-icons icon">
+            person
+          </div>
+          <p class="btn-text">LOG OUT</p>
+        </button>
+      </nav>
+      <div class="available-rooms-view content-box scrollbar hidden">
+        <p class="rooms-shown-txt">Showing <span class="rooms-avail-amt">All</span> Available Rooms:</p>
+        <!-- Available rooms will appear here -->
+      </div>
+      <div class="user-dash-view ">
+        <p class="total-spent">Total Spent:</p>
+        <div class="current-bookings" id="current">
+          <p class="current-text">Current Bookings</p>
+          <!-- Current bookings will appear here -->
+        </div>  
+        <div class="all-user-bookings">
+          <section class="upcoming-bookings content-box scrollbar" id="upcoming">
+            <p class="upcoming-text">Upcoming Bookings</p>
+            <!-- upcoming bookings will appear here -->
+          </section>
+          <section class="past-bookings content-box scrollbar" id="past">
+            <p class="past-text">Past Bookings</p>
+            <!-- past bookings will appear here -->
+          </section> 
+        </div>
+      </div>
+      <section class="no-results-view hidden">
+        <img class='no-results-img' src="./images/no-results.png" alt="We couldn't find any results for your search. Please try again.">
+      </section>    
+      <section class="modal filter-modal hidden">
+        <div class="modal-top filter-modal-top">
+          <button class="material-icons close-btn-1 close-btn">
+            close
+          </button>
+          <h1 class="modal-heading filter-modal-heading">FILTERS</h1>
+        </div>
+        <div class="filter-modal-bottom">
+          <section class="filter-tags">
+            <form>
+              <label for="calendar">Change Date:</label>
+              <input type="date" id="calendar">
+            </form>
+            <form>
+              <label for="roomTypes">Filter By Room Type:</label>
+              <select id="roomTypes">
+                <option value="allRooms">
+                  Any
+                </option>
+                <option value="residential suite">
+                  Residential Suite
+                </option>
+                <option value="junior suite">
+                  Junior Suite
+                </option>
+                <option value="suite">
+                  Suite
+                </option>
+                <option value="single room">
+                  Single Room 
+                </option>
+              </select>
+            </form>
+          </section> 
+          <section class="budget-container">
+            <p id="valueLabel">Filter By Price Range:</p>
+            <section class="values">
+              <span>$</span><span class="value1">150</span><span> &dash; $</span><span class="value2">500</span>
+            </section>
+            <form class="slider-track" id="valueSliders">
+              <input aria-label="minimum price" type="range" min="150" max="250" value="150" id="min"> 
+              <input aria-label="maximum price" type="range" min="251" max="500" value="500" id="max"> 
+            </form>
+          </section>
+          <p class="date-error-msg error hidden">Please select a valid date!</p>
+          <button class="btn-text filter-show-button">
+            SHOW ROOMS
+          </button>
+        </div>
+      </section>
+      <section class="modal room-modal hidden">
+        <div class="modal-top room-modal-top">
+          <button class="material-icons close-btn-2 close-btn">
+            close
+          </button>
+        </div>
+        <div class="room-modal-details">
+          <div class="modal-description-wrapper">
+            <p class="modal-description">Residential Suite with 1 King Bed</p>
+            <p class="modal-cost-date">Cost per night: $<span class="room-price">356.75</span> | Selected Date: <span class="selected-date">06/08/2023</span></p>
+          </div>
+          <div class="img-slide-wrapper">
+            <button class="arrows left-arrow material-icons">
+              chevron_left
+            </button>
+            <section class="modal-imgs scrollbar">
+              <img class="modal-room-img" src="./images/residentialsuite.png" alt="open floor plan hotel suite with an outdoor patio, ocean view and blue decor">
+              <img src="./images/yoga-room.png" alt="relaxing yoga room with a scenic view or greenery and foliage">
+              <img src="./images/canopy.png" alt="outdoor bedroom canopy with hammock and bench">
+              <img id="lastImg" src="./images/resort-area.png" alt="roof top infinity pool with lounge chairs">
+            </section>
+            <button class="arrows right-arrow material-icons">
+              chevron_right
+            </button>
+          </div>
+        </div>
+        <div class="modal-bottom">
+          <button class="btn btn-text reserve-room-btn">
+            RESERVE NOW
+          </button>
+        </div>
+      </section>
+      <section class="modal booking-modal hidden">
+        <div class="booking-details">
+          <div class="modal-description-wrapper">
+            <p class="success-msg">Thank you for booking your stay with us!</p>
+            <p class="booking-confirmation">Your confirmation number is <span class="confirmation">16005458389558</span></p>
+          </div>
+        </div>
+        <div class="booking-modal-bottom">
+          <button class="btn btn-text booking-modal-dash-btn">
+            VIEW YOUR BOOKINGS
+          </button>
+          <button class="btn btn-text booking-modal-search-btn ">
+            CONTINUE SEARCHING
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="bundle.js"></script>
+
+</body>
+</html>
