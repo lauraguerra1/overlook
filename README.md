@@ -19,19 +19,10 @@ The 'Lavish Living Hotel' website allows users to log in and view their previous
 ![Lavish Living Hotel Gif](https://user-images.githubusercontent.com/121131581/245564148-0f40200e-9a6f-4c35-9743-51175102bd7a.gif)
 
 ## Installation Instructions 
-In order for this application to function, it will require accessing both a backend server repository as well as the client-side repository. 
+- If you would like to visit the live website, [follow this link!](https://lauraguerra1.github.io/overlook/)
+- You may log in with a username between `customer01` through `customer50` and the password `overlook2021`
 
-### Server Setup
-- Fork [this](https://github.com/turingschool-examples/overlook-api) repository. 
-- Clone it to your local machine using the command: `git clone git@github.com:turingschool-examples/overlook-api.git`.
-- Run the command: `cd overlook-api`
-- Run the command: `npm install`
-- Run the command: `npm start`
-
-<br>
-
-### Client App Setup
-- Open a separate tab in your terminal using `command T`
+If you would like to run the app from your machine, follow these instructions:
 - Fork [this](https://github.com/lauraguerra1/overlook) repository. 
 - Clone it to your local machine using the command: `git clone git@github.com:lauraguerra1/overlook.git`.
 - Run the command: `cd overlook`
