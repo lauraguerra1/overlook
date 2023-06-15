@@ -10,7 +10,6 @@ describe('rooms', () => {
   let sampleBookings = sampleData.bookings
   const bookingDate = getDateValue('2023/06/08');
   it('should get available rooms', () => {
-    // const bookingDate = getDateValue('2023/06/08');
     const availableRooms = getAvailableRooms(sampleBookings, sampleRooms, bookingDate)
     assert.deepEqual(availableRooms, [sampleRooms[1], sampleRooms[2], sampleRooms[3], sampleRooms[4], sampleRooms[5]])
   });

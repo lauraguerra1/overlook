@@ -4,7 +4,7 @@ import {
   updateBookingsHTML,
 } from './domUpdates';
 
-// import { allRooms } from './scripts';
+
 let pageData = {
   allRooms: [],
   selectedRoom: {},
@@ -17,7 +17,6 @@ let currentUser = {
   },
 };
 
-// let allRooms = [];
 const loadRooms = () => {
   fetchAPI('rooms').then((data) => {
     pageData.allRooms = data.rooms;
