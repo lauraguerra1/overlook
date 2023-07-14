@@ -137,10 +137,14 @@ input {
 
 .available-rooms-view {
   margin-right: 1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .rooms-shown-txt {
   margin-left: 5%;
+  align-self: flex-start;
 }
 
 .single-room {
@@ -630,6 +634,17 @@ button:hover {
 }
 
 /* MEDIA QUERIES */
+
+@media screen and (max-width: 1000px) {
+  .landing-page-view {
+    display: flex;
+    justify-content: center;
+  }
+  .initial-content-container {
+    width: 50%;
+  }
+}
+
 @media screen and (max-width: 975px) {
   .room-details {
     margin-right: 10%;
@@ -637,8 +652,18 @@ button:hover {
 }
 
 @media screen and (max-width: 750px) {
+  .initial-content-container {
+    width: 80%;
+  }
+
+  .bg-img {
+    height: 75%;
+  }
+
   .filter-tags {
     flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
   }
 
   .filter-option {
@@ -662,6 +687,7 @@ button:hover {
 
   .all-user-bookings {
     flex-direction: column;
+
   }
 
   .single-room {
@@ -676,11 +702,16 @@ button:hover {
   }
 
   .user-room {
-    height: 100%;  
+    height: 90%; 
+    min-width: 300px;
   }
 
   .all-user-bookings > .content-box {
-    height: 80%;
+    height: 400px;
+    margin-top: 5%; 
+    flex-direction: row;
+    overflow-x: auto;
+    align-self: center;
   }
 
   .room-details {
@@ -690,5 +721,33 @@ button:hover {
 
   .room-details > p {
     margin: 1%;
+  }
+
+  .modal-imgs > img {
+    width: 100%;
+  }
+
+  .modal {
+    width: 90%;
+  }
+
+
+  @keyframes animate-modal {
+    0% {
+      height: 0%;
+    }
+    100% {
+      height: 60%
+    }
+  }
+
+  .booking-modal-dash-btn, .booking-modal-search-btn {
+    margin: 1% 1% 10% 1%
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .logo {
+    width: 20%;
   }
 }
